@@ -26,3 +26,6 @@ kit/*
 !.vscode/extensions.json
 .DS_Store
 Thumbs.db
+
+# scratch test scripts
+*.tmp.ts
