@@ -37,14 +37,27 @@ export function RequireAdmin() {
       <div>
         <PageHeader eyebrow="Admin" title="No access" />
         <p className="mt-6 max-w-prose text-lg text-muted">
-          This area is for mess administrators. If you were just made an admin, open{' '}
-          <Link to="/profile" className="text-ink underline underline-offset-4">
-            Profile
-          </Link>{' '}
-          and press “Refresh access”.
+          This area is for mess administrators. If you were just made an admin, sign out and sign in again.{' '}
+          <Link to="/" className="text-ink underline underline-offset-4">
+            Back to the menu
+          </Link>
         </p>
       </div>
     );
   }
   return <Outlet />;
+}
+
+/**
+ * New accounts set up their profile (name, weight, targets) before anything else.
+ * Admin screens are exempt so an admin can always reach them.
+ */
+export function OnboardingGate({ children }: { children: ReactNode }) {
+  const { state } = useAuth();
+  const location = useLocation();
+  const needsSetup = state.status === 'signedIn' && state.profile !== null && state.profile.targets === null;
+  if (needsSetup && location.pathname !== '/setup' && !location.pathname.startsWith('/admin')) {
+    return <Navigate to="/setup" replace />;
+  }
+  return <>{children}</>;
 }

@@ -201,12 +201,24 @@ service cloud.firestore {
     }
 
     function validProfile(d) {
-      return d.keys().hasOnly(['displayName', 'email', 'targets', 'createdAt', 'updatedAt'])
+      return d.keys().hasOnly(['displayName', 'email', 'targets', 'body', 'createdAt', 'updatedAt'])
         && d.keys().hasAll(['displayName', 'email', 'targets', 'createdAt', 'updatedAt'])
         && text(d.displayName, 80)
         && (d.email == null || (d.email is string && d.email.size() <= 254))
         && (d.targets == null || validTargets(d.targets))
+        && (!('body' in d) || d.body == null || validBody(d.body))
         && d.updatedAt == request.time;
+    }
+
+    function validBody(b) {
+      return b is map
+        && b.keys().hasOnly(['heightCm', 'age', 'sex', 'activity', 'goal'])
+        && b.keys().hasAll(['heightCm', 'age', 'sex', 'activity', 'goal'])
+        && isNum(b.heightCm) && b.heightCm >= 100 && b.heightCm <= 250
+        && b.age is int && b.age >= 10 && b.age <= 100
+        && b.sex in ['male', 'female']
+        && b.activity in ['sedentary', 'light', 'moderate', 'active']
+        && b.goal in ['lose', 'maintain', 'gain'];
     }
 
     function validTargets(t) {

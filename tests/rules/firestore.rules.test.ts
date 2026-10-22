@@ -298,6 +298,16 @@ describe('user profiles', () => {
     await assertFails(updateDoc(ref, { targets: { kcal: 2000 }, updatedAt: serverTimestamp() }));
   });
 
+  it('body details are optional and validated', async () => {
+    const ref = doc(asUser('alice'), 'users/alice');
+    const body = { heightCm: 165, age: 21, sex: 'female', activity: 'light', goal: 'gain' };
+    await assertSucceeds(updateDoc(ref, { body, updatedAt: serverTimestamp() }));
+    await assertSucceeds(updateDoc(ref, { body: null, updatedAt: serverTimestamp() }));
+    await assertFails(updateDoc(ref, { body: { ...body, heightCm: 20 }, updatedAt: serverTimestamp() }));
+    await assertFails(updateDoc(ref, { body: { ...body, sex: 'x' }, updatedAt: serverTimestamp() }));
+    await assertFails(updateDoc(ref, { body: { ...body, extra: 1 }, updatedAt: serverTimestamp() }));
+  });
+
   it('createdAt cannot be changed and profiles cannot be deleted', async () => {
     const ref = doc(asUser('alice'), 'users/alice');
     await assertFails(updateDoc(ref, { createdAt: serverTimestamp(), updatedAt: serverTimestamp() }));

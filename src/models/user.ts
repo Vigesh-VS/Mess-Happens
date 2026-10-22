@@ -8,12 +8,22 @@ export interface NutritionTargets {
   fiber_g: number;
 }
 
+export interface BodyDetails {
+  heightCm: number;
+  age: number;
+  sex: 'male' | 'female';
+  activity: 'sedentary' | 'light' | 'moderate' | 'active';
+  goal: 'lose' | 'maintain' | 'gain';
+}
+
 /** `users/{uid}` — the admin role is a custom claim, never a field here. */
 export interface UserProfile {
   displayName: string;
   email: string | null;
   /** null until the user sets their own; the app then shows labelled defaults. */
   targets: NutritionTargets | null;
+  /** Optional details for the maintenance-calorie calculator. */
+  body?: BodyDetails | null;
   createdAt: TimestampLike;
   updatedAt: TimestampLike;
 }

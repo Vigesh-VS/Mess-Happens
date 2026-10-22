@@ -5,8 +5,11 @@ import { useSignedIn } from '../auth/AuthContext';
 import { useMessData } from '../data/MessDataContext';
 import { useDayLog } from '../data/useDayLog';
 import { useMessToday } from '../hooks/useMessToday';
-import { formatLongDate } from '../lib/messDate';
-import { DEFAULT_TARGETS, NUTRIENTS, fiberIncomplete, formatNumber, formatQuantity, scale, totalsOf } from '../lib/nutrition';
+import { addDays, formatLongDate } from '../lib/messDate';
+import { DEFAULT_TARGETS, NUTRIENTS, fiberIncomplete, formatNumber, totalsOf } from '../lib/nutrition';
+import { useWeights } from '../data/useWeights';
+import { weightChange } from '../lib/weightChart';
+import { WeightChart } from '../components/WeightChart';
 import { DayNav, useSelectedDate } from '../components/menu/DayNav';
 import { LoadingScreen } from '../components/ui/LoadingScreen';
 import { Notice } from '../components/ui/Notice';
@@ -22,8 +25,6 @@ export function SummaryPage() {
 
   const { day, byMeal } = useMemo(() => totalsOf(log.entries), [log.entries]);
   const targets = profile?.targets ?? DEFAULT_TARGETS;
-  const usingDefaults = !profile?.targets;
-  const entries = Object.values(log.entries).filter((e) => e.quantity > 0);
   const fiberPartial = fiberIncomplete(log.entries);
 
   return (
@@ -52,26 +53,6 @@ export function SummaryPage() {
               />
             ))}
           </section>
-          <p className="mt-2 text-sm text-muted">
-            {usingDefaults ? (
-              <>
-                Default targets — general guidance, not personal or medical advice.{' '}
-                <Link to="/profile" className="text-ink underline underline-offset-4">
-                  Set your own
-                </Link>
-                .
-              </>
-            ) : (
-              <>
-                Your targets ·{' '}
-                <Link to="/profile" className="text-ink underline underline-offset-4">
-                  Edit
-                </Link>
-              </>
-            )}{' '}
-            Nutrition values are estimates unless marked verified.
-          </p>
-
           <section className="mt-12 border-t border-ink pt-4">
             <h2 className="label text-ink">By meal</h2>
             <table className="mt-2 w-full text-left tabular-nums">
@@ -110,38 +91,48 @@ export function SummaryPage() {
             </table>
           </section>
 
-          <section className="mt-12 border-t border-ink pt-4">
-            <div className="flex items-baseline justify-between">
-              <h2 className="label text-ink">What you logged</h2>
-              <Link to={date === today ? '/' : `/?date=${date}`} className="text-sm underline underline-offset-4">
-                Edit
-              </Link>
-            </div>
-            {entries.length === 0 ? (
-              <p className="py-4 text-muted">Nothing logged for this day.</p>
-            ) : (
-              <ul className="divide-y divide-line">
-                {MEALS.flatMap((m) =>
-                  entries
-                    .filter((e) => e.meal === m)
-                    .map((e) => (
-                      <li key={`${m}-${e.foodId}`} className="flex items-baseline justify-between gap-4 py-3">
-                        <span className="min-w-0">
-                          <span className="font-semibold">{e.name}</span>
-                          <span className="text-sm text-muted">
-                            {' '}
-                            · {m} · {formatQuantity(e.quantity, e.unit)}
-                          </span>
-                        </span>
-                        <span className="shrink-0 tabular-nums">{formatNumber(scale(e.snapshot, e.quantity).kcal)} kcal</span>
-                      </li>
-                    )),
-                )}
-              </ul>
-            )}
-          </section>
+          <WeightWeek uid={user.uid} today={today} />
         </>
       )}
     </>
+  );
+}
+
+/** Body weight over the last 7 days, at the end of the Summary. */
+function WeightWeek({ uid, today }: { uid: string; today: string }) {
+  const weights = useWeights(uid);
+  const from = addDays(today, -6);
+  const week = (weights ?? []).filter((w) => w.date >= from && w.date <= today);
+  const change = weightChange(week);
+  return (
+    <section className="mt-12" aria-labelledby="weight-week">
+      <div className="flex items-baseline justify-between gap-4">
+        <h2 id="weight-week" className="label text-ink">
+          Weight · last 7 days
+        </h2>
+        <Link to="/weight" className="text-sm underline underline-offset-4">
+          {week.length ? 'All weigh-ins' : 'Log weight'}
+        </Link>
+      </div>
+      {weights === null ? null : week.length === 0 ? (
+        <p className="py-4 text-muted">No weigh-ins this week.</p>
+      ) : (
+        <>
+          <p className="mt-2 tabular-nums">
+            <span className="text-title">{formatNumber(week[0]!.kg, 1)}</span>
+            <span className="text-muted"> kg now</span>
+            {change !== null ? (
+              <span className="text-muted">
+                {' '}
+                · {change === 0 ? 'no change' : `${change > 0 ? '+' : '−'}${formatNumber(Math.abs(change), 1)} kg`} this week
+              </span>
+            ) : null}
+          </p>
+          <div className="mt-4">
+            <WeightChart points={week} />
+          </div>
+        </>
+      )}
+    </section>
   );
 }

@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router';
 import { useAuth } from '../../auth/AuthContext';
+import { OnboardingGate } from '../../auth/guards';
 import { GUEST_NAV_ITEMS, NAV_ITEMS } from './navItems';
 import { OfflineBadge } from './OfflineBadge';
 import { Brand } from '../Brand';
@@ -39,7 +40,9 @@ export function AppShell() {
       <div className="min-w-0 flex-1">
         <OfflineBadge className="border-b border-line px-4 py-2 sm:px-6 lg:hidden" />
         <main id="main" className="mx-auto w-full max-w-5xl px-4 pb-28 pt-8 sm:px-6 sm:pt-12 lg:px-12 lg:pb-16">
-          <Outlet />
+          <OnboardingGate>
+            <Outlet />
+          </OnboardingGate>
         </main>
       </div>
 
