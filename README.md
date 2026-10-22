@@ -2,7 +2,7 @@
 
 Today's mess menu (odd/even academic weeks), personal food tracking with +/−, nutrition totals against targets, and an admin panel — as an installable web app.
 
-React + TypeScript + Vite + Tailwind · Firebase Auth + Firestore + Hosting · free Spark plan (no Cloud Functions).
+React + TypeScript + Vite + Tailwind · Firebase Auth + Firestore (backend) · Vercel or Firebase Hosting (frontend) · free Spark plan (no Cloud Functions).
 
 ## What's in it
 
@@ -70,16 +70,16 @@ npm run set-admin -- you@example.com   # then Profile → Refresh access
 
 In the app: **Admin → Menus → Odd / even week → Save and publish**.
 
-### 4. Deploy to Hosting
+### 4. Host the frontend on Vercel
 
-```bash
-npm run build
-npx firebase deploy --only hosting
-```
+1. vercel.com → sign in with GitHub → **Add New → Project** → import this repository.
+2. Framework **Vite** (settings come from `vercel.json`: `npm run build` → `dist`).
+3. **Environment Variables:** add the six `VITE_FIREBASE_*` values from `.env.local` and `VITE_USE_EMULATORS=false`.
+4. **Deploy.** Then in Firebase → **Authentication → Settings → Authorized domains → Add domain**, add your `*.vercel.app` address (and any custom domain). Without this, sign-in fails on the live site.
 
-The site is live at `https://<project-id>.web.app`. Then, in **Authentication → Settings → Authorized domains**, make sure `<project-id>.web.app` and `<project-id>.firebaseapp.com` are listed (they usually are), plus any custom domain you add later.
+Every push to the GitHub branch redeploys automatically. If you change environment variables in Vercel, redeploy so the build picks them up. Run `npm run deploy:rules` whenever `firestore.rules` changes.
 
-To ship updates later: `npm run build && npx firebase deploy --only hosting` (and `npm run deploy:rules` if `firestore.rules` changed). Installed apps pick up the new version on their next launch.
+**Alternative — Firebase Hosting:** `npm run build && npx firebase deploy --only hosting` serves the same build at `https://<project-id>.web.app` (configured in `firebase.json`).
 
 ## Scripts
 
