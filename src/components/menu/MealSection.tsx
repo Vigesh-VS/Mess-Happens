@@ -1,4 +1,3 @@
-import type { ReactNode } from 'react';
 import {
   isSpecialMeal,
   type CatalogFood,
@@ -9,7 +8,7 @@ import {
   type MenuItem,
   type SpecialMenu,
 } from '../../models';
-import { expandSpecial, toBlocks, type MenuBlock } from '../../lib/menu';
+import { expandSpecial } from '../../lib/menu';
 import { formatNumber } from '../../lib/nutrition';
 import { FoodRow } from './FoodRow';
 import type { Tracking } from './types';
@@ -72,7 +71,7 @@ export function MealSection(props: MealSectionProps) {
   );
 }
 
-/** End-of-meal summary: plain figures, no box or rule. */
+/** End-of-meal summary in a light box, so it reads apart from the food list. */
 function MealTotals({ meal, totals }: { meal: Meal; totals: DayTotals }) {
   const figures: [string, string, string][] = [
     [formatNumber(totals.kcal), 'kcal', ''],
@@ -82,7 +81,7 @@ function MealTotals({ meal, totals }: { meal: Meal; totals: DayTotals }) {
     [formatNumber(totals.fiber_g, 1), 'g', 'fiber'],
   ];
   return (
-    <div className="mt-6" aria-label={`${meal} total`}>
+    <div className="mt-6 rounded-sm border border-line px-4 py-3" aria-label={`${meal} total`}>
       <p className="label">{meal} total</p>
       <p className="mt-2 flex flex-wrap items-baseline gap-x-5 gap-y-1 tabular-nums">
         {figures.map(([value, unit, name]) => (
@@ -100,7 +99,7 @@ function MealTotals({ meal, totals }: { meal: Meal; totals: DayTotals }) {
   );
 }
 
-function RegularMeal({ meal, items, foods, choiceLabels, varieties = {}, tracking }: MealSectionProps & { items: MenuItem[] }) {
+function RegularMeal({ meal, items, foods, varieties = {}, tracking }: MealSectionProps & { items: MenuItem[] }) {
   // Condiments go in a compact, collapsed row so the main list stays short.
   const main = items.filter((i) => foods[i.foodId]?.category !== 'condiment');
   const extras = items.filter((i) => foods[i.foodId]?.category === 'condiment');
@@ -109,8 +108,8 @@ function RegularMeal({ meal, items, foods, choiceLabels, varieties = {}, trackin
   return (
     <>
       <ul className="mt-2">
-        {toBlocks(main).map((block) => (
-          <Block key={blockKey(block)} block={block} meal={meal} foods={foods} choiceLabels={choiceLabels} varieties={varieties} tracking={tracking} />
+        {main.map((item) => (
+          <FoodRow key={item.foodId} meal={meal} item={item} food={foods[item.foodId]} tracking={tracking} variety={varieties[item.foodId]} />
         ))}
       </ul>
       {extras.length > 0 ? (
@@ -131,63 +130,6 @@ function RegularMeal({ meal, items, foods, choiceLabels, varieties = {}, trackin
         </details>
       ) : null}
     </>
-  );
-}
-
-function blockKey(block: MenuBlock): string {
-  return block.kind === 'item' ? block.item.foodId : `group:${block.groupId}`;
-}
-
-function Block({
-  block,
-  meal,
-  foods,
-  choiceLabels,
-  varieties,
-  tracking,
-}: {
-  block: MenuBlock;
-  meal: Meal;
-  foods: Record<string, CatalogFood>;
-  choiceLabels: Record<string, string>;
-  varieties: Record<string, string>;
-  tracking?: Tracking;
-}) {
-  if (block.kind === 'item') {
-    return <FoodRow meal={meal} item={block.item} food={foods[block.item.foodId]} tracking={tracking} variety={varieties[block.item.foodId]} />;
-  }
-  return (
-    <ChoiceGroup label={choiceLabels[block.groupId]} items={block.items} meal={meal} tracking={tracking}>
-      {block.items.map((item) => (
-        <FoodRow key={item.foodId} meal={meal} item={item} food={foods[item.foodId]} tracking={tracking} variety={varieties[item.foodId]} />
-      ))}
-    </ChoiceGroup>
-  );
-}
-
-/** "Pick one" pair. Logging both is allowed, with a soft warning. */
-function ChoiceGroup({
-  label,
-  items,
-  meal,
-  tracking,
-  children,
-}: {
-  label?: string;
-  items: MenuItem[];
-  meal: Meal;
-  tracking?: Tracking;
-  children: ReactNode;
-}) {
-  const loggedCount = items.filter((i) => (tracking?.quantityOf(meal, i.foodId) ?? 0) > 0).length;
-  return (
-    <li className="py-3">
-      <div>
-        <p className="label">Pick one{label ? ` — ${label.replace(/^Pick one:\s*/i, '')}` : ''}</p>
-        <ul>{children}</ul>
-        {loggedCount > 1 ? <p className="pb-2 text-sm text-muted">You logged more than one option of a pick-one pair.</p> : null}
-      </div>
-    </li>
   );
 }
 
@@ -214,12 +156,12 @@ function SpecialMeal({
           <ul>
             {c.shared.map(row)}
             {c.veg.length || c.nonVeg.length ? (
-              <ChoiceGroup label="veg or non-veg" items={[...c.veg, ...c.nonVeg]} meal={meal} tracking={tracking}>
+              <>
                 {c.veg.length ? <li className="label pt-3">Veg</li> : null}
                 {c.veg.map(row)}
                 {c.nonVeg.length ? <li className="label pt-3">Non-veg</li> : null}
                 {c.nonVeg.map(row)}
-              </ChoiceGroup>
+              </>
             ) : null}
           </ul>
         </div>

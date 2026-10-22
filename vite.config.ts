@@ -11,8 +11,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'favicon-16.png', 'favicon-32.png', 'favicon-48.png', 'icons/apple-touch-icon.png'],
       manifest: {
-        name: 'Mess — menu & nutrition',
-        short_name: 'Mess',
+        name: 'Mess Happens — menu & nutrition',
+        short_name: 'Mess Happens',
         description: 'Today’s mess menu and your nutrition, in one place.',
         start_url: '/',
         scope: '/',

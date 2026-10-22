@@ -6,7 +6,7 @@ export function AuthLayout({ title, children, footer }: { title: string; childre
     <main className="mx-auto flex min-h-dvh w-full max-w-sm flex-col justify-center px-4 py-12">
       <div className="flex items-baseline justify-between gap-4">
         <Link to="/" className="text-2xl font-extrabold tracking-tight">
-          Mess.
+          Mess Happens
         </Link>
         <Link to="/" className="text-sm text-muted underline-offset-4 hover:text-ink hover:underline">
           See today’s menu

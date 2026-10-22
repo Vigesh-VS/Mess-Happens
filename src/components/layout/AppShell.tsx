@@ -17,7 +17,7 @@ export function AppShell() {
       </a>
 
       <aside className="hidden lg:sticky lg:top-0 lg:flex lg:h-dvh lg:w-60 lg:shrink-0 lg:flex-col lg:border-r lg:border-line lg:px-8 lg:py-10">
-        <p className="text-2xl font-extrabold tracking-tight">Mess.</p>
+        <p className="text-2xl font-extrabold tracking-tight">Mess Happens</p>
         <nav aria-label="Main" className="mt-12 flex flex-col gap-1">
           {items.map(({ to, label }) => (
             <NavLink
