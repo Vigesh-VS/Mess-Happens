@@ -1,0 +1,228 @@
+rules_version = '2';
+
+// Mess Nutrition Tracker — Firestore Security Rules.
+// Roles: any signed-in user; admin = custom claim `admin: true` (set only by scripts/set-admin.ts).
+// Anything not matched below is denied.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- helpers ----------
+
+    function signedIn() { return request.auth != null; }
+    function isAdmin() { return signedIn() && request.auth.token.get('admin', false) == true; }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
+
+    function isDateId(id) { return id.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$'); }
+    function isNum(v) { return v is int || v is float; }
+    function nonNeg(v) { return isNum(v) && v >= 0; }
+    function positive(v) { return isNum(v) && v > 0; }
+    function nullableNonNeg(v) { return v == null || nonNeg(v); }
+    function inRange(v, max) { return isNum(v) && v >= 0 && v <= max; }
+    function text(v, max) { return v is string && v.size() > 0 && v.size() <= max; }
+
+    function mealsMap(m) {
+      return m is map && m.keys().hasOnly(['breakfast', 'lunch', 'snacks', 'dinner']);
+    }
+    function isUnit(u) { return u in ['g', 'ml', 'piece', 'slice', 'cup', 'tsp', 'sachet', 'bowl']; }
+
+    // Admin writes must carry a server timestamp and the writer's uid.
+    function stampedByMe(d) {
+      return d.updatedAt == request.time && d.updatedBy == request.auth.uid;
+    }
+
+    // ---------- config ----------
+
+    match /config/{docId} {
+      allow read: if signedIn();
+    }
+
+    match /config/academicCalendar {
+      allow create, update: if isAdmin() && validCalendar(request.resource.data);
+    }
+
+    function validCalendar(d) {
+      return d.keys().hasOnly(['referenceDate', 'referenceParity', 'weekStartsOn', 'timezone', 'updatedAt', 'updatedBy'])
+        && d.keys().hasAll(['referenceDate', 'referenceParity', 'weekStartsOn', 'timezone', 'updatedAt', 'updatedBy'])
+        && d.referenceDate is string && isDateId(d.referenceDate)
+        && d.referenceParity in ['odd', 'even']
+        && d.weekStartsOn in ['sunday', 'monday']
+        && text(d.timezone, 64)
+        && stampedByMe(d);
+    }
+
+    match /config/menu {
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(['mealOrder', 'choiceGroups', 'updatedAt', 'updatedBy'])
+        && request.resource.data.mealOrder is list
+        && request.resource.data.choiceGroups is map
+        && stampedByMe(request.resource.data);
+    }
+
+    // ---------- foods ----------
+
+    match /foods/{foodId} {
+      allow read: if signedIn();
+
+      allow create: if isAdmin()
+        && foodId.matches('^[a-z0-9-]{1,64}$')
+        && validFood(request.resource.data)
+        && request.resource.data.version == 1
+        && request.resource.data.createdAt == request.time;
+
+      // Every edit bumps `version` and, in the same batch, archives the old values
+      // to history/{oldVersion} — so logged snapshots can always be traced.
+      allow update: if isAdmin()
+        && validFood(request.resource.data)
+        && request.resource.data.version == resource.data.version + 1
+        && request.resource.data.createdAt == resource.data.createdAt
+        && existsAfter(/databases/$(database)/documents/foods/$(foodId)/history/$(string(resource.data.version)));
+
+      allow delete: if isAdmin();
+
+      match /history/{version} {
+        allow read: if isAdmin();
+        allow create: if isAdmin()
+          && version == string(get(/databases/$(database)/documents/foods/$(foodId)).data.version)
+          && request.resource.data.archivedAt == request.time
+          && request.resource.data.archivedBy == request.auth.uid;
+        allow update, delete: if false;
+      }
+    }
+
+    function validFood(d) {
+      return d.keys().hasOnly(['name', 'nameLower', 'category', 'servingSize', 'servingUnit', 'quantityStep',
+                                'trackable', 'nutrition', 'verificationStatus', 'dataSource', 'note', 'varieties',
+                                'version', 'createdAt', 'updatedAt', 'updatedBy'])
+        && d.keys().hasAll(['name', 'nameLower', 'category', 'servingSize', 'servingUnit', 'quantityStep',
+                             'trackable', 'nutrition', 'verificationStatus', 'dataSource',
+                             'version', 'createdAt', 'updatedAt', 'updatedBy'])
+        && text(d.name, 100)
+        && d.nameLower == d.name.lower()
+        && d.category in ['breakfast', 'bread', 'rice', 'curry', 'side', 'chutney', 'condiment',
+                          'snack', 'dessert', 'beverage', 'fruit', 'dairy', 'egg']
+        && positive(d.servingSize)
+        && isUnit(d.servingUnit)
+        && positive(d.quantityStep)
+        && d.trackable is bool
+        && validNutrition(d.nutrition)
+        && d.verificationStatus in ['estimated', 'needs-review', 'verified']
+        && d.dataSource is string && d.dataSource.size() <= 1000
+        && (!('note' in d) || (d.note is string && d.note.size() <= 500))
+        && (!('varieties' in d) || (d.varieties is list && d.varieties.size() <= 30))
+        && d.version is int
+        && stampedByMe(d);
+    }
+
+    function validNutrition(n) {
+      return n is map
+        && n.keys().hasOnly(['basis', 'calories_kcal', 'protein_g', 'carbohydrates_g', 'fat_g', 'fiber_g', 'sugar_g'])
+        && n.keys().hasAll(['basis', 'calories_kcal', 'protein_g', 'carbohydrates_g', 'fat_g', 'fiber_g', 'sugar_g'])
+        && n.basis is map && n.basis.keys().hasOnly(['quantity', 'unit'])
+        && positive(n.basis.quantity) && isUnit(n.basis.unit)
+        && nonNeg(n.calories_kcal) && nonNeg(n.protein_g) && nonNeg(n.carbohydrates_g) && nonNeg(n.fat_g)
+        && nullableNonNeg(n.fiber_g) && nullableNonNeg(n.sugar_g);
+    }
+
+    // ---------- menus ----------
+
+    match /menus/{menuId} {
+      allow read: if signedIn();
+      allow create, update: if isAdmin()
+        && menuId.matches('^(odd|even)_(sunday|monday|tuesday|wednesday|thursday|friday|saturday)$')
+        && request.resource.data.keys().hasOnly(['parity', 'weekday', 'meals', 'updatedAt', 'updatedBy'])
+        && menuId == request.resource.data.parity + '_' + request.resource.data.weekday
+        && mealsMap(request.resource.data.meals)
+        && stampedByMe(request.resource.data);
+    }
+
+    match /specialMenus/{specialId} {
+      allow read: if signedIn();
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(['description', 'variants', 'alwaysServed', 'rotationRule', 'updatedAt', 'updatedBy'])
+        && request.resource.data.variants is map
+        && request.resource.data.alwaysServed is list
+        && stampedByMe(request.resource.data);
+    }
+
+    // One document per date; replaces only the meals it lists.
+    match /menuOverrides/{date} {
+      allow read: if signedIn();
+      allow create, update: if isAdmin()
+        && isDateId(date)
+        && request.resource.data.keys().hasOnly(['reason', 'meals', 'varieties', 'updatedAt', 'updatedBy'])
+        && text(request.resource.data.reason, 200)
+        && mealsMap(request.resource.data.meals)
+        && (!('varieties' in request.resource.data) || request.resource.data.varieties is map)
+        && stampedByMe(request.resource.data);
+      allow delete: if isAdmin() && isDateId(date);
+    }
+
+    // ---------- users (private to the owner; admins have no access) ----------
+
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+      allow create: if isOwner(uid)
+        && validProfile(request.resource.data)
+        && request.resource.data.createdAt == request.time;
+      allow update: if isOwner(uid)
+        && validProfile(request.resource.data)
+        && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if false;
+
+      match /days/{date} {
+        allow read, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid) && isDateId(date) && validDayLog(request.resource.data);
+      }
+    }
+
+    function validProfile(d) {
+      return d.keys().hasOnly(['displayName', 'email', 'targets', 'createdAt', 'updatedAt'])
+        && d.keys().hasAll(['displayName', 'email', 'targets', 'createdAt', 'updatedAt'])
+        && text(d.displayName, 80)
+        && (d.email == null || (d.email is string && d.email.size() <= 254))
+        && (d.targets == null || validTargets(d.targets))
+        && d.updatedAt == request.time;
+    }
+
+    function validTargets(t) {
+      return t is map
+        && t.keys().hasOnly(['kcal', 'protein_g', 'carbohydrates_g', 'fat_g', 'fiber_g'])
+        && t.keys().hasAll(['kcal', 'protein_g', 'carbohydrates_g', 'fat_g', 'fiber_g'])
+        && inRange(t.kcal, 10000)
+        && inRange(t.protein_g, 1000)
+        && inRange(t.carbohydrates_g, 2000)
+        && inRange(t.fat_g, 1000)
+        && inRange(t.fiber_g, 500);
+    }
+
+    function validDayLog(d) {
+      return d.keys().hasOnly(['entries', 'totals', 'updatedAt'])
+        && d.keys().hasAll(['entries', 'totals', 'updatedAt'])
+        && d.entries is map && d.entries.size() <= 300
+        && validTotals(d.totals)
+        && d.updatedAt == request.time;
+    }
+
+    function validTotals(t) {
+      return t is map
+        && t.keys().hasOnly(['kcal', 'protein_g', 'carbohydrates_g', 'fat_g', 'fiber_g'])
+        && t.keys().hasAll(['kcal', 'protein_g', 'carbohydrates_g', 'fat_g', 'fiber_g'])
+        && nonNeg(t.kcal) && nonNeg(t.protein_g) && nonNeg(t.carbohydrates_g)
+        && nonNeg(t.fat_g) && nonNeg(t.fiber_g);
+    }
+
+    // ---------- admin audit trail (append-only) ----------
+
+    match /adminAuditLogs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin()
+        && request.resource.data.keys().hasOnly(['actorUid', 'actorEmail', 'action', 'target', 'before', 'after', 'at'])
+        && request.resource.data.actorUid == request.auth.uid
+        && text(request.resource.data.action, 64)
+        && request.resource.data.target is map
+        && request.resource.data.at == request.time;
+      allow update, delete: if false;
+    }
+  }
+}

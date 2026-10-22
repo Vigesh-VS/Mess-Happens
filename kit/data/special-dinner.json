@@ -1,0 +1,76 @@
+{
+  "description": "Special dinner. Served on even-week Wednesday. Main course rotates between Combination A and B; students choose veg or non-veg. Accompaniments, desserts and fruits are always served.",
+  "variants": {
+    "veg": {
+      "combinations": {
+        "A": [
+          {
+            "foodId": "naan"
+          },
+          {
+            "foodId": "paneer-butter-masala"
+          },
+          {
+            "foodId": "veg-biryani"
+          }
+        ],
+        "B": [
+          {
+            "foodId": "roti"
+          },
+          {
+            "foodId": "paneer-tikka-masala"
+          },
+          {
+            "foodId": "veg-pulao"
+          }
+        ]
+      }
+    },
+    "nonVeg": {
+      "combinations": {
+        "A": [
+          {
+            "foodId": "naan"
+          },
+          {
+            "foodId": "butter-chicken"
+          },
+          {
+            "foodId": "veg-biryani"
+          }
+        ],
+        "B": [
+          {
+            "foodId": "roti"
+          },
+          {
+            "foodId": "kadai-chicken"
+          },
+          {
+            "foodId": "veg-pulao"
+          }
+        ]
+      }
+    }
+  },
+  "alwaysServed": [
+    {
+      "foodId": "raitha"
+    },
+    {
+      "foodId": "lemon-juice"
+    },
+    {
+      "foodId": "ice-cream",
+      "servingQuantity": 1
+    },
+    {
+      "foodId": "fruit-custard"
+    },
+    {
+      "foodId": "mixed-fruits"
+    }
+  ],
+  "rotationRule": "Combination A or B 'on a rotation basis' — the PDF does not say which date gets which. Admin should pick the combination with a date override; until then show both labelled as options."
+}

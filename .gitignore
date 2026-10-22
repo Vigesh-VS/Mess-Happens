@@ -1,0 +1,28 @@
+# dependencies & build
+node_modules/
+dist/
+*.tsbuildinfo
+
+# secrets — never commit
+.env.local
+.env.*.local
+service-account*.json
+*firebase-adminsdk*.json
+
+# firebase local state
+.firebase/
+.emulator-data/
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+database-debug.log*
+
+# handoff kit: docs, PDF and tools stay local; only the seed data is tracked
+kit/*
+!kit/data/
+
+# editor / OS
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db

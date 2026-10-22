@@ -1,0 +1,3751 @@
+{
+  "schemaVersion": 1,
+  "count": 162,
+  "foods": [
+    {
+      "id": "aloo-bhujia-sabzi",
+      "name": "Aloo Bhujia Sabzi",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 140,
+        "protein_g": 2,
+        "carbohydrates_g": 17,
+        "fat_g": 7,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "aloo-curry",
+      "name": "Aloo Curry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 160,
+        "protein_g": 3,
+        "carbohydrates_g": 22,
+        "fat_g": 7,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "aloo-masala-curry",
+      "name": "Aloo Masala Curry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 160,
+        "protein_g": 3,
+        "carbohydrates_g": 22,
+        "fat_g": 7,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "aloo-paratha",
+      "name": "Aloo Paratha",
+      "category": "bread",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 240,
+        "protein_g": 5.5,
+        "carbohydrates_g": 35,
+        "fat_g": 9,
+        "fiber_g": 3.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "aloo-samosa",
+      "name": "Aloo Samosa (with peas)",
+      "category": "snack",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 150,
+        "protein_g": 3,
+        "carbohydrates_g": 17,
+        "fat_g": 8,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "andhra-tomato-dal",
+      "name": "Andhra Tomato Dal",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 140,
+        "protein_g": 7,
+        "carbohydrates_g": 18,
+        "fat_g": 4.5,
+        "fiber_g": 4,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "avial",
+      "name": "Kerala Sadya Avial",
+      "category": "curry",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 110,
+        "protein_g": 2,
+        "carbohydrates_g": 8,
+        "fat_g": 8,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "badusha",
+      "name": "Badusha",
+      "category": "dessert",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 190,
+        "protein_g": 2,
+        "carbohydrates_g": 24,
+        "fat_g": 10,
+        "fiber_g": 0.3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "bagara-rice",
+      "name": "Bagara Rice",
+      "category": "rice",
+      "servingSize": 200,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "g"
+        },
+        "calories_kcal": 330,
+        "protein_g": 5,
+        "carbohydrates_g": 55,
+        "fat_g": 9.5,
+        "fiber_g": 1,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "baigan-methi-curry",
+      "name": "Baigan Methi Curry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 120,
+        "protein_g": 2.5,
+        "carbohydrates_g": 10,
+        "fat_g": 8,
+        "fiber_g": 4,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "banana",
+      "name": "Banana",
+      "category": "fruit",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 90,
+        "protein_g": 1.1,
+        "carbohydrates_g": 23,
+        "fat_g": 0.3,
+        "fiber_g": 2.6,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "banana-bajji",
+      "name": "Banana Bajji",
+      "category": "snack",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 90,
+        "protein_g": 1.5,
+        "carbohydrates_g": 11,
+        "fat_g": 4.5,
+        "fiber_g": 1,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "banana-juice",
+      "name": "Banana Juice",
+      "category": "beverage",
+      "servingSize": 200,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "ml"
+        },
+        "calories_kcal": 160,
+        "protein_g": 4,
+        "carbohydrates_g": 30,
+        "fat_g": 3,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Assumed to be a banana milkshake. Check what is actually served."
+    },
+    {
+      "id": "beans-carrot-poriyal",
+      "name": "Beans Carrot Poriyal",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 80,
+        "protein_g": 2,
+        "carbohydrates_g": 9,
+        "fat_g": 4.5,
+        "fiber_g": 3.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "beetroot-poriyal",
+      "name": "Beetroot Poriyal",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 90,
+        "protein_g": 2,
+        "carbohydrates_g": 11,
+        "fat_g": 4.5,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "bhatura",
+      "name": "Bhatura",
+      "category": "bread",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 280,
+        "protein_g": 6,
+        "carbohydrates_g": 35,
+        "fat_g": 12.5,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "bhel-puri",
+      "name": "Bhel Puri",
+      "category": "snack",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 180,
+        "protein_g": 4,
+        "carbohydrates_g": 28,
+        "fat_g": 6,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "black-channa-curry",
+      "name": "Black Channa Curry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 190,
+        "protein_g": 9,
+        "carbohydrates_g": 25,
+        "fat_g": 6,
+        "fiber_g": 8,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "boiled-egg",
+      "name": "Boiled Egg",
+      "category": "egg",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 75,
+        "protein_g": 6.3,
+        "carbohydrates_g": 0.6,
+        "fat_g": 5.3,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "boiled-green-moong",
+      "name": "Boiled Green Moong Dal",
+      "category": "snack",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 105,
+        "protein_g": 7,
+        "carbohydrates_g": 19,
+        "fat_g": 0.4,
+        "fiber_g": 7.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "boiled-groundnut-chaat",
+      "name": "Boiled Groundnut Chaat",
+      "category": "snack",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 250,
+        "protein_g": 11,
+        "carbohydrates_g": 15,
+        "fat_g": 17,
+        "fiber_g": 6,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "boiled-groundnuts",
+      "name": "Boiled Groundnuts",
+      "category": "side",
+      "servingSize": 50,
+      "servingUnit": "g",
+      "quantityStep": 25,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 50,
+          "unit": "g"
+        },
+        "calories_kcal": 160,
+        "protein_g": 7,
+        "carbohydrates_g": 10,
+        "fat_g": 11,
+        "fiber_g": 4.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "boondi-laddu",
+      "name": "Boondi Laddu",
+      "category": "dessert",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 185,
+        "protein_g": 3,
+        "carbohydrates_g": 25,
+        "fat_g": 8.5,
+        "fiber_g": 0.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "boost",
+      "name": "Boost (sachet)",
+      "category": "beverage",
+      "servingSize": 1,
+      "servingUnit": "sachet",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "sachet"
+        },
+        "calories_kcal": 75,
+        "protein_g": 1.5,
+        "carbohydrates_g": 16,
+        "fat_g": 0.5,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Powder only; milk logged separately. Sachet size assumed 20 g."
+    },
+    {
+      "id": "bread-butter-jam",
+      "name": "Bread, Butter & Jam",
+      "category": "breakfast",
+      "servingSize": 2,
+      "servingUnit": "slice",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 2,
+          "unit": "slice"
+        },
+        "calories_kcal": 210,
+        "protein_g": 5,
+        "carbohydrates_g": 34,
+        "fat_g": 6.5,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Serving = 2 slices with butter and jam."
+    },
+    {
+      "id": "bread-halwa",
+      "name": "Bread Halwa",
+      "category": "dessert",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 300,
+        "protein_g": 4.5,
+        "carbohydrates_g": 42,
+        "fat_g": 13,
+        "fiber_g": 1,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "butter-chicken",
+      "name": "Butter Chicken",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 300,
+        "protein_g": 20,
+        "carbohydrates_g": 9,
+        "fat_g": 20,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "buttermilk",
+      "name": "Buttermilk",
+      "category": "beverage",
+      "servingSize": 200,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "ml"
+        },
+        "calories_kcal": 40,
+        "protein_g": 2,
+        "carbohydrates_g": 3,
+        "fat_g": 1.5,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "cabbage-moong-poriyal",
+      "name": "Cabbage Moong Dal Coconut Poriyal",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 100,
+        "protein_g": 4,
+        "carbohydrates_g": 9,
+        "fat_g": 5.5,
+        "fiber_g": 3.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "cauliflower-peas-poriyal",
+      "name": "Cauliflower Peas Poriyal",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 90,
+        "protein_g": 3.5,
+        "carbohydrates_g": 9,
+        "fat_g": 4.5,
+        "fiber_g": 3.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "channa-chaat",
+      "name": "Channa Chaat",
+      "category": "snack",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 160,
+        "protein_g": 8,
+        "carbohydrates_g": 24,
+        "fat_g": 3.5,
+        "fiber_g": 6,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "channa-masala",
+      "name": "Channa Masala",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 220,
+        "protein_g": 9,
+        "carbohydrates_g": 27,
+        "fat_g": 8.5,
+        "fiber_g": 7.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Also listed as Kabuli Channa Masala and as the 'chole' in Chole Bature."
+    },
+    {
+      "id": "channa-peas-palak",
+      "name": "Channa Peas Palak",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 180,
+        "protein_g": 9,
+        "carbohydrates_g": 20,
+        "fat_g": 7,
+        "fiber_g": 7,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "chapathi",
+      "name": "Tawa Chapathi",
+      "category": "bread",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 120,
+        "protein_g": 3,
+        "carbohydrates_g": 18,
+        "fat_g": 4,
+        "fiber_g": 2.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "chicken-curry",
+      "name": "Chicken Curry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 230,
+        "protein_g": 20,
+        "carbohydrates_g": 6,
+        "fat_g": 14,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "chilli-soya",
+      "name": "Chilli Soya",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 170,
+        "protein_g": 14,
+        "carbohydrates_g": 12,
+        "fat_g": 7.5,
+        "fiber_g": 4,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Listed as Chilli Soya Bean Dry and as Soya Chilli."
+    },
+    {
+      "id": "coconut-chutney",
+      "name": "Coconut Chutney",
+      "category": "chutney",
+      "servingSize": 30,
+      "servingUnit": "g",
+      "quantityStep": 15,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 30,
+          "unit": "g"
+        },
+        "calories_kcal": 70,
+        "protein_g": 1,
+        "carbohydrates_g": 2.5,
+        "fat_g": 6.5,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "coffee",
+      "name": "Coffee (with milk, no sugar)",
+      "category": "beverage",
+      "servingSize": 150,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "ml"
+        },
+        "calories_kcal": 60,
+        "protein_g": 2.5,
+        "carbohydrates_g": 4.5,
+        "fat_g": 3,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Sugar is logged separately."
+    },
+    {
+      "id": "curd",
+      "name": "Curd",
+      "category": "dairy",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 60,
+        "protein_g": 3.1,
+        "carbohydrates_g": 4.5,
+        "fat_g": 3.3,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "curd-rice",
+      "name": "Curd Rice",
+      "category": "rice",
+      "servingSize": 200,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "g"
+        },
+        "calories_kcal": 260,
+        "protein_g": 7,
+        "carbohydrates_g": 40,
+        "fat_g": 7.5,
+        "fiber_g": 0.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "dal-fry",
+      "name": "Dal Fry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 170,
+        "protein_g": 8.5,
+        "carbohydrates_g": 20,
+        "fat_g": 6.5,
+        "fiber_g": 5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "dal-makhani",
+      "name": "Dal Makhani",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 230,
+        "protein_g": 9,
+        "carbohydrates_g": 20,
+        "fat_g": 13,
+        "fiber_g": 6,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "dum-aloo",
+      "name": "Dum Aloo",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 190,
+        "protein_g": 3,
+        "carbohydrates_g": 20,
+        "fat_g": 11,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "flavoured-chapati",
+      "name": "Flavoured Chapati",
+      "category": "bread",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 130,
+        "protein_g": 3.5,
+        "carbohydrates_g": 19,
+        "fat_g": 4.5,
+        "fiber_g": 2.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "fruit-custard",
+      "name": "Fruit Custard",
+      "category": "dessert",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 180,
+        "protein_g": 4.5,
+        "carbohydrates_g": 30,
+        "fat_g": 4.5,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "fryums",
+      "name": "Fryums",
+      "category": "condiment",
+      "servingSize": 10,
+      "servingUnit": "g",
+      "quantityStep": 5,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 10,
+          "unit": "g"
+        },
+        "calories_kcal": 50,
+        "protein_g": 0.3,
+        "carbohydrates_g": 6,
+        "fat_g": 2.8,
+        "fiber_g": 0.2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "garlic-tomato-curry",
+      "name": "Garlic Tomato Curry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 110,
+        "protein_g": 2,
+        "carbohydrates_g": 11,
+        "fat_g": 6.5,
+        "fiber_g": 2.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "ghee",
+      "name": "Ghee",
+      "category": "condiment",
+      "servingSize": 1,
+      "servingUnit": "tsp",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "tsp"
+        },
+        "calories_kcal": 45,
+        "protein_g": 0,
+        "carbohydrates_g": 0,
+        "fat_g": 5,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "gobi-65",
+      "name": "Gobi 65",
+      "category": "snack",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 220,
+        "protein_g": 4,
+        "carbohydrates_g": 20,
+        "fat_g": 14,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "gongura-chutney",
+      "name": "Gongura Chutney",
+      "category": "chutney",
+      "servingSize": 20,
+      "servingUnit": "g",
+      "quantityStep": 10,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 20,
+          "unit": "g"
+        },
+        "calories_kcal": 35,
+        "protein_g": 0.5,
+        "carbohydrates_g": 2,
+        "fat_g": 2.8,
+        "fiber_g": 1,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "green-chutney",
+      "name": "Green Chutney",
+      "category": "chutney",
+      "servingSize": 15,
+      "servingUnit": "g",
+      "quantityStep": 15,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 15,
+          "unit": "g"
+        },
+        "calories_kcal": 8,
+        "protein_g": 0.3,
+        "carbohydrates_g": 1.2,
+        "fat_g": 0.3,
+        "fiber_g": 0.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "greens-poriyal",
+      "name": "Greens Poriyal",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 70,
+        "protein_g": 3,
+        "carbohydrates_g": 5,
+        "fat_g": 4.5,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "groundnut-chutney",
+      "name": "Groundnut Chutney",
+      "category": "chutney",
+      "servingSize": 30,
+      "servingUnit": "g",
+      "quantityStep": 15,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 30,
+          "unit": "g"
+        },
+        "calories_kcal": 90,
+        "protein_g": 3.5,
+        "carbohydrates_g": 3,
+        "fat_g": 7.5,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Also listed as Peanut Chutney."
+    },
+    {
+      "id": "gulab-jamun",
+      "name": "Gulab Jamun",
+      "category": "dessert",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 150,
+        "protein_g": 2,
+        "carbohydrates_g": 22,
+        "fat_g": 6,
+        "fiber_g": 0.2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "gutti-vankaya-curry",
+      "name": "Gutti Vankaya Curry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 200,
+        "protein_g": 4,
+        "carbohydrates_g": 12,
+        "fat_g": 15,
+        "fiber_g": 5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "hyderabadi-chicken-biryani",
+      "name": "Hyderabadi Chicken Biryani",
+      "category": "rice",
+      "servingSize": 250,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 250,
+          "unit": "g"
+        },
+        "calories_kcal": 450,
+        "protein_g": 22,
+        "carbohydrates_g": 50,
+        "fat_g": 17,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "hyderabadi-paneer-biryani",
+      "name": "Hyderabadi Paneer Biryani",
+      "category": "rice",
+      "servingSize": 250,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 250,
+          "unit": "g"
+        },
+        "calories_kcal": 450,
+        "protein_g": 14,
+        "carbohydrates_g": 55,
+        "fat_g": 19,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "ice-cream",
+      "name": "Ice Cream",
+      "category": "dessert",
+      "servingSize": 1,
+      "servingUnit": "cup",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "cup"
+        },
+        "calories_kcal": 120,
+        "protein_g": 2,
+        "carbohydrates_g": 15,
+        "fat_g": 6,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Assumes ~60 g cup."
+    },
+    {
+      "id": "idiyappam",
+      "name": "Idiyappam",
+      "category": "breakfast",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 70,
+        "protein_g": 1.2,
+        "carbohydrates_g": 15,
+        "fat_g": 0.2,
+        "fiber_g": 0.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "idli",
+      "name": "Idli",
+      "category": "breakfast",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 60,
+        "protein_g": 2,
+        "carbohydrates_g": 12,
+        "fat_g": 0.3,
+        "fiber_g": 0.8,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "jeera-rice",
+      "name": "Jeera Rice",
+      "category": "rice",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 230,
+        "protein_g": 4,
+        "carbohydrates_g": 42,
+        "fat_g": 5,
+        "fiber_g": 1,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "kadai-chicken",
+      "name": "Kadai Chicken",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 250,
+        "protein_g": 21,
+        "carbohydrates_g": 7,
+        "fat_g": 15,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "kadai-paneer",
+      "name": "Kadai Paneer",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 270,
+        "protein_g": 12,
+        "carbohydrates_g": 10,
+        "fat_g": 20,
+        "fiber_g": 2.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "kadalai-chutney",
+      "name": "Kadalai Chutney",
+      "category": "chutney",
+      "servingSize": 30,
+      "servingUnit": "g",
+      "quantityStep": 15,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 30,
+          "unit": "g"
+        },
+        "calories_kcal": 60,
+        "protein_g": 2.5,
+        "carbohydrates_g": 4,
+        "fat_g": 4,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "kambu-idli",
+      "name": "Kambu (Pearl Millet) Idli",
+      "category": "breakfast",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 70,
+        "protein_g": 2.5,
+        "carbohydrates_g": 13,
+        "fat_g": 0.8,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "kara-boondi",
+      "name": "Kara Boondi",
+      "category": "snack",
+      "servingSize": 25,
+      "servingUnit": "g",
+      "quantityStep": 25,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 25,
+          "unit": "g"
+        },
+        "calories_kcal": 130,
+        "protein_g": 3,
+        "carbohydrates_g": 11,
+        "fat_g": 8.5,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "keerai-sambar",
+      "name": "Keerai Sambar",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "ml"
+        },
+        "calories_kcal": 100,
+        "protein_g": 5,
+        "carbohydrates_g": 13,
+        "fat_g": 3.5,
+        "fiber_g": 4,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "kesari-bath",
+      "name": "Kesari Bath",
+      "category": "dessert",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 270,
+        "protein_g": 2.5,
+        "carbohydrates_g": 42,
+        "fat_g": 10.5,
+        "fiber_g": 0.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "kovakai-fry",
+      "name": "Kovakai Fry",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 110,
+        "protein_g": 1.5,
+        "carbohydrates_g": 7,
+        "fat_g": 8.5,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "kovakai-poriyal",
+      "name": "Kovakai Poriyal",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 80,
+        "protein_g": 1.5,
+        "carbohydrates_g": 6,
+        "fat_g": 5.5,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "kulfi",
+      "name": "Kulfi (medium)",
+      "category": "dessert",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 150,
+        "protein_g": 3.5,
+        "carbohydrates_g": 16,
+        "fat_g": 8,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "lauki-chana-dal",
+      "name": "Lauki Chana Dal",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 140,
+        "protein_g": 7,
+        "carbohydrates_g": 18,
+        "fat_g": 4.5,
+        "fiber_g": 4,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "lemon-juice",
+      "name": "Lemon Juice",
+      "category": "beverage",
+      "servingSize": 200,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "ml"
+        },
+        "calories_kcal": 70,
+        "protein_g": 0.1,
+        "carbohydrates_g": 17,
+        "fat_g": 0,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "lemon-rice",
+      "name": "Lemon Rice",
+      "category": "rice",
+      "servingSize": 200,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "g"
+        },
+        "calories_kcal": 330,
+        "protein_g": 5.5,
+        "carbohydrates_g": 55,
+        "fat_g": 10,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "masala-dosa",
+      "name": "Masala Dosa",
+      "category": "breakfast",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 250,
+        "protein_g": 5,
+        "carbohydrates_g": 38,
+        "fat_g": 9,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "masala-sambar",
+      "name": "Masala Sambar",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "ml"
+        },
+        "calories_kcal": 110,
+        "protein_g": 4.5,
+        "carbohydrates_g": 14,
+        "fat_g": 4,
+        "fiber_g": 3.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "masala-vada",
+      "name": "Masala Vada",
+      "category": "snack",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 90,
+        "protein_g": 4,
+        "carbohydrates_g": 9,
+        "fat_g": 4.5,
+        "fiber_g": 2.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "medu-vada",
+      "name": "Medu Vada",
+      "category": "snack",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 110,
+        "protein_g": 3.5,
+        "carbohydrates_g": 11,
+        "fat_g": 6,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "methi-paratha",
+      "name": "Methi Paratha",
+      "category": "bread",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 200,
+        "protein_g": 5,
+        "carbohydrates_g": 28,
+        "fat_g": 8,
+        "fiber_g": 4,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "milk",
+      "name": "Milk",
+      "category": "beverage",
+      "servingSize": 200,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "ml"
+        },
+        "calories_kcal": 120,
+        "protein_g": 6,
+        "carbohydrates_g": 9.5,
+        "fat_g": 6,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Assumes toned milk."
+    },
+    {
+      "id": "millet-dosa",
+      "name": "Millet Dosa",
+      "category": "breakfast",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 120,
+        "protein_g": 3.5,
+        "carbohydrates_g": 20,
+        "fat_g": 3,
+        "fiber_g": 2.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "millet-puttu",
+      "name": "Millet Puttu",
+      "category": "snack",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 180,
+        "protein_g": 4,
+        "carbohydrates_g": 34,
+        "fat_g": 3,
+        "fiber_g": 3.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "mint-chutney",
+      "name": "Mint Chutney",
+      "category": "chutney",
+      "servingSize": 20,
+      "servingUnit": "g",
+      "quantityStep": 10,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 20,
+          "unit": "g"
+        },
+        "calories_kcal": 15,
+        "protein_g": 0.5,
+        "carbohydrates_g": 2,
+        "fat_g": 0.5,
+        "fiber_g": 0.8,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "mix-veg-curry-punjabi",
+      "name": "Mix Veg Curry (Punjabi style)",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 160,
+        "protein_g": 3.5,
+        "carbohydrates_g": 13,
+        "fat_g": 10.5,
+        "fiber_g": 4,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "mix-veg-maggi",
+      "name": "Mix Veg Maggi",
+      "category": "snack",
+      "servingSize": 130,
+      "servingUnit": "g",
+      "quantityStep": 65,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 130,
+          "unit": "g"
+        },
+        "calories_kcal": 200,
+        "protein_g": 4.5,
+        "carbohydrates_g": 28,
+        "fat_g": 8,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Menu says 130 g; assumed to be cooked weight. If 130 g is dry noodles, values are ~3x higher."
+    },
+    {
+      "id": "mixed-dal",
+      "name": "Mixed Dal",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 160,
+        "protein_g": 9,
+        "carbohydrates_g": 22,
+        "fat_g": 4,
+        "fiber_g": 5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "mixed-fruits",
+      "name": "Mixed Fruits (special dinner)",
+      "category": "fruit",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 60,
+        "protein_g": 0.7,
+        "carbohydrates_g": 15,
+        "fat_g": 0.2,
+        "fiber_g": 2.2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Any 4 of apple, banana, grapes, papaya, pomegranate, guava."
+    },
+    {
+      "id": "mysore-bonda",
+      "name": "Mysore Bonda",
+      "category": "snack",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 100,
+        "protein_g": 2,
+        "carbohydrates_g": 11,
+        "fat_g": 5.5,
+        "fiber_g": 0.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "naan",
+      "name": "Naan",
+      "category": "bread",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 260,
+        "protein_g": 8,
+        "carbohydrates_g": 45,
+        "fat_g": 5,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "onion",
+      "name": "Onion (raw)",
+      "category": "condiment",
+      "servingSize": 30,
+      "servingUnit": "g",
+      "quantityStep": 15,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 30,
+          "unit": "g"
+        },
+        "calories_kcal": 12,
+        "protein_g": 0.3,
+        "carbohydrates_g": 2.8,
+        "fat_g": 0,
+        "fiber_g": 0.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "onion-carrot-uttapam",
+      "name": "Onion Carrot Uttapam",
+      "category": "breakfast",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 200,
+        "protein_g": 5,
+        "carbohydrates_g": 32,
+        "fat_g": 6,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "onion-mirch-salad",
+      "name": "Onion Mirch Salad",
+      "category": "side",
+      "servingSize": 50,
+      "servingUnit": "g",
+      "quantityStep": 25,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 50,
+          "unit": "g"
+        },
+        "calories_kcal": 20,
+        "protein_g": 0.5,
+        "carbohydrates_g": 4,
+        "fat_g": 0.1,
+        "fiber_g": 0.8,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "onion-pakoda",
+      "name": "Onion Pakoda",
+      "category": "snack",
+      "servingSize": 50,
+      "servingUnit": "g",
+      "quantityStep": 25,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 50,
+          "unit": "g"
+        },
+        "calories_kcal": 170,
+        "protein_g": 4,
+        "carbohydrates_g": 14,
+        "fat_g": 11,
+        "fiber_g": 2.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "palak-paneer",
+      "name": "Palak Paneer",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 230,
+        "protein_g": 10,
+        "carbohydrates_g": 8,
+        "fat_g": 17,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "panchratan-dal",
+      "name": "Panchratan Dal",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 170,
+        "protein_g": 9.5,
+        "carbohydrates_g": 22,
+        "fat_g": 5,
+        "fiber_g": 5.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "paneer-butter-masala",
+      "name": "Paneer Butter Masala",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 320,
+        "protein_g": 11,
+        "carbohydrates_g": 12,
+        "fat_g": 25,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "paneer-kofta-curry",
+      "name": "Paneer Kofta Curry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 300,
+        "protein_g": 9,
+        "carbohydrates_g": 15,
+        "fat_g": 23,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "paneer-peas-curry",
+      "name": "Paneer Peas Curry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 230,
+        "protein_g": 10,
+        "carbohydrates_g": 11,
+        "fat_g": 16,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "paneer-tikka-masala",
+      "name": "Paneer Tikka Masala",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 300,
+        "protein_g": 12,
+        "carbohydrates_g": 11,
+        "fat_g": 23,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "pani-puri",
+      "name": "Pani Puri",
+      "category": "snack",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 30,
+        "protein_g": 0.6,
+        "carbohydrates_g": 5,
+        "fat_g": 0.9,
+        "fiber_g": 0.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "papad",
+      "name": "Papad",
+      "category": "condiment",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 50,
+        "protein_g": 2,
+        "carbohydrates_g": 5.5,
+        "fat_g": 2.5,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "paruppu-payasam",
+      "name": "Paruppu Payasam (jaggery)",
+      "category": "dessert",
+      "servingSize": 150,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "ml"
+        },
+        "calories_kcal": 220,
+        "protein_g": 5.5,
+        "carbohydrates_g": 35,
+        "fat_g": 7,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "pasta",
+      "name": "Pasta",
+      "category": "snack",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 250,
+        "protein_g": 7,
+        "carbohydrates_g": 38,
+        "fat_g": 8,
+        "fiber_g": 2.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "peanut-coconut-rice",
+      "name": "Peanut Coconut Rice",
+      "category": "rice",
+      "servingSize": 200,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "g"
+        },
+        "calories_kcal": 380,
+        "protein_g": 8,
+        "carbohydrates_g": 50,
+        "fat_g": 16,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "perugu-pachadi",
+      "name": "Perugu Pachadi",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 70,
+        "protein_g": 3,
+        "carbohydrates_g": 5,
+        "fat_g": 4,
+        "fiber_g": 0.8,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "pesarattu",
+      "name": "Pesarattu",
+      "category": "breakfast",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 130,
+        "protein_g": 7,
+        "carbohydrates_g": 18,
+        "fat_g": 3.5,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "phulka",
+      "name": "Phulka",
+      "category": "bread",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 75,
+        "protein_g": 2.5,
+        "carbohydrates_g": 15,
+        "fat_g": 0.5,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Menu also spells it Pulkha / Pulka."
+    },
+    {
+      "id": "pickle",
+      "name": "Pickle",
+      "category": "condiment",
+      "servingSize": 10,
+      "servingUnit": "g",
+      "quantityStep": 5,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 10,
+          "unit": "g"
+        },
+        "calories_kcal": 20,
+        "protein_g": 0.2,
+        "carbohydrates_g": 1,
+        "fat_g": 1.8,
+        "fiber_g": 0.3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Variety rotates: mango, garlic, tomato, lemon, ginger."
+    },
+    {
+      "id": "pineapple-kesari",
+      "name": "Pineapple Kesari",
+      "category": "dessert",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 260,
+        "protein_g": 2.5,
+        "carbohydrates_g": 42,
+        "fat_g": 9.5,
+        "fiber_g": 0.8,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "plantain-poriyal",
+      "name": "Plantain Poriyal",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 140,
+        "protein_g": 1,
+        "carbohydrates_g": 22,
+        "fat_g": 5.5,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "plantain-stem-kootu",
+      "name": "Plantain Stem Kootu",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 100,
+        "protein_g": 4,
+        "carbohydrates_g": 13,
+        "fat_g": 4,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "podi",
+      "name": "Podi (Karam Podi)",
+      "category": "condiment",
+      "servingSize": 10,
+      "servingUnit": "g",
+      "quantityStep": 5,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 10,
+          "unit": "g"
+        },
+        "calories_kcal": 40,
+        "protein_g": 1.5,
+        "carbohydrates_g": 4,
+        "fat_g": 2,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "poha",
+      "name": "Poha",
+      "category": "breakfast",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 200,
+        "protein_g": 3.5,
+        "carbohydrates_g": 33,
+        "fat_g": 6,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "poori",
+      "name": "Poori",
+      "category": "bread",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 100,
+        "protein_g": 2,
+        "carbohydrates_g": 12,
+        "fat_g": 5,
+        "fiber_g": 1,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "potato-poriyal",
+      "name": "Potato Poriyal",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 140,
+        "protein_g": 2,
+        "carbohydrates_g": 17,
+        "fat_g": 7,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "pottukadalai-chutney",
+      "name": "Pottukadalai Chutney",
+      "category": "chutney",
+      "servingSize": 30,
+      "servingUnit": "g",
+      "quantityStep": 15,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 30,
+          "unit": "g"
+        },
+        "calories_kcal": 65,
+        "protein_g": 2.5,
+        "carbohydrates_g": 4,
+        "fat_g": 4.5,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "puli-kolambu",
+      "name": "Puli Kolambu",
+      "category": "curry",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 100,
+        "protein_g": 1.5,
+        "carbohydrates_g": 10,
+        "fat_g": 6.5,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "pumpkin-kootu",
+      "name": "Pumpkin Kootu",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 110,
+        "protein_g": 4.5,
+        "carbohydrates_g": 14,
+        "fat_g": 4,
+        "fiber_g": 3.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "ragi-dosa",
+      "name": "Ragi Dosa",
+      "category": "breakfast",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 110,
+        "protein_g": 3,
+        "carbohydrates_g": 20,
+        "fat_g": 2.5,
+        "fiber_g": 2.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "ragi-malt",
+      "name": "Ragi Malt Powder",
+      "category": "beverage",
+      "servingSize": 20,
+      "servingUnit": "g",
+      "quantityStep": 10,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 20,
+          "unit": "g"
+        },
+        "calories_kcal": 75,
+        "protein_g": 1.5,
+        "carbohydrates_g": 15,
+        "fat_g": 0.5,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Powder only; milk logged separately."
+    },
+    {
+      "id": "raitha",
+      "name": "Raitha",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 60,
+        "protein_g": 3,
+        "carbohydrates_g": 5,
+        "fat_g": 3,
+        "fiber_g": 0.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "rajma-curry",
+      "name": "Rajma Curry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 180,
+        "protein_g": 8.5,
+        "carbohydrates_g": 24,
+        "fat_g": 5.5,
+        "fiber_g": 7,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "rasam",
+      "name": "Rasam",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "ml"
+        },
+        "calories_kcal": 40,
+        "protein_g": 1,
+        "carbohydrates_g": 6,
+        "fat_g": 1.5,
+        "fiber_g": 1,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "rava-dosa",
+      "name": "Rava Dosa",
+      "category": "breakfast",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 140,
+        "protein_g": 3,
+        "carbohydrates_g": 22,
+        "fat_g": 5,
+        "fiber_g": 1,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "rava-idli",
+      "name": "Rava Idli",
+      "category": "breakfast",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 85,
+        "protein_g": 2.5,
+        "carbohydrates_g": 13,
+        "fat_g": 2.5,
+        "fiber_g": 0.8,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "rice",
+      "name": "Plain Rice",
+      "category": "rice",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 195,
+        "protein_g": 3.8,
+        "carbohydrates_g": 43,
+        "fat_g": 0.4,
+        "fiber_g": 0.6,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "roti",
+      "name": "Roti",
+      "category": "bread",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 120,
+        "protein_g": 4,
+        "carbohydrates_g": 24,
+        "fat_g": 1,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "sabudana-kheer",
+      "name": "Sabudana Kheer",
+      "category": "dessert",
+      "servingSize": 150,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "ml"
+        },
+        "calories_kcal": 220,
+        "protein_g": 4.5,
+        "carbohydrates_g": 35,
+        "fat_g": 7,
+        "fiber_g": 0.3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "salad",
+      "name": "Salad",
+      "category": "side",
+      "servingSize": 75,
+      "servingUnit": "g",
+      "quantityStep": 25,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 75,
+          "unit": "g"
+        },
+        "calories_kcal": 20,
+        "protein_g": 0.8,
+        "carbohydrates_g": 4,
+        "fat_g": 0.1,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "category": "condiment",
+      "servingSize": 1,
+      "servingUnit": "g",
+      "quantityStep": 1,
+      "trackable": false,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "g"
+        },
+        "calories_kcal": 0,
+        "protein_g": 0,
+        "carbohydrates_g": 0,
+        "fat_g": 0,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "sambar",
+      "name": "Sambar",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "ml"
+        },
+        "calories_kcal": 100,
+        "protein_g": 4.5,
+        "carbohydrates_g": 13,
+        "fat_g": 3.5,
+        "fiber_g": 3.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "sambar-rice",
+      "name": "Sambar Rice",
+      "category": "rice",
+      "servingSize": 200,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "g"
+        },
+        "calories_kcal": 280,
+        "protein_g": 7,
+        "carbohydrates_g": 46,
+        "fat_g": 7,
+        "fiber_g": 4,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "seasonal-cut-fruits",
+      "name": "Seasonal Cut Fruits",
+      "category": "fruit",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 50,
+        "protein_g": 0.7,
+        "carbohydrates_g": 12,
+        "fat_g": 0.2,
+        "fiber_g": 1.8,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Variety rotates: watermelon, papaya, guava, pineapple. Values are a mixed average."
+    },
+    {
+      "id": "seasonal-fruit-juice",
+      "name": "Seasonal Fruit Juice",
+      "category": "beverage",
+      "servingSize": 200,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "ml"
+        },
+        "calories_kcal": 100,
+        "protein_g": 0.8,
+        "carbohydrates_g": 24,
+        "fat_g": 0.3,
+        "fiber_g": 0.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Variety rotates: watermelon, banana, muskmelon, papaya, pineapple. Assumes added sugar."
+    },
+    {
+      "id": "semiya-upma",
+      "name": "Semiya Upma",
+      "category": "breakfast",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 200,
+        "protein_g": 4.5,
+        "carbohydrates_g": 32,
+        "fat_g": 6,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "set-dosa",
+      "name": "Set Dosa",
+      "category": "breakfast",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 120,
+        "protein_g": 2.5,
+        "carbohydrates_g": 21,
+        "fat_g": 3,
+        "fiber_g": 0.8,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "sev-tomato-gravy",
+      "name": "Sev Tomato Gravy",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 180,
+        "protein_g": 4,
+        "carbohydrates_g": 16,
+        "fat_g": 11,
+        "fiber_g": 2.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "snake-gourd-kootu",
+      "name": "Snake Gourd Kootu",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 110,
+        "protein_g": 4.5,
+        "carbohydrates_g": 13,
+        "fat_g": 4.5,
+        "fiber_g": 3.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "soya-curry",
+      "name": "Soya Curry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 180,
+        "protein_g": 13,
+        "carbohydrates_g": 12,
+        "fat_g": 9,
+        "fiber_g": 4.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "spinach-kootu",
+      "name": "Spinach Kootu",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 130,
+        "protein_g": 6,
+        "carbohydrates_g": 13,
+        "fat_g": 6,
+        "fiber_g": 4.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "sprouts",
+      "name": "Sprouts",
+      "category": "side",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 60,
+        "protein_g": 4.5,
+        "carbohydrates_g": 9,
+        "fat_g": 0.5,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "sugar",
+      "name": "Sugar",
+      "category": "condiment",
+      "servingSize": 1,
+      "servingUnit": "tsp",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "tsp"
+        },
+        "calories_kcal": 20,
+        "protein_g": 0,
+        "carbohydrates_g": 5,
+        "fat_g": 0,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "sundal",
+      "name": "Sundal (black channa + green gram dal)",
+      "category": "snack",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 150,
+        "protein_g": 7.5,
+        "carbohydrates_g": 20,
+        "fat_g": 4.5,
+        "fiber_g": 6,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "sweet-corn",
+      "name": "Sweet Corn (half cob, ~6 cm)",
+      "category": "snack",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 65,
+        "protein_g": 2.3,
+        "carbohydrates_g": 14,
+        "fat_g": 0.9,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "sweet-pongal",
+      "name": "Sweet Pongal",
+      "category": "dessert",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 250,
+        "protein_g": 4,
+        "carbohydrates_g": 38,
+        "fat_g": 9,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "tamarind-chutney",
+      "name": "Tamarind Chutney",
+      "category": "chutney",
+      "servingSize": 15,
+      "servingUnit": "g",
+      "quantityStep": 15,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 15,
+          "unit": "g"
+        },
+        "calories_kcal": 35,
+        "protein_g": 0.2,
+        "carbohydrates_g": 8.5,
+        "fat_g": 0.1,
+        "fiber_g": 0.4,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "tamarind-rice",
+      "name": "Tamarind Rice",
+      "category": "rice",
+      "servingSize": 200,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "g"
+        },
+        "calories_kcal": 330,
+        "protein_g": 5,
+        "carbohydrates_g": 55,
+        "fat_g": 10,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "tea",
+      "name": "Tea (with milk, no sugar)",
+      "category": "beverage",
+      "servingSize": 150,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "ml"
+        },
+        "calories_kcal": 40,
+        "protein_g": 1.5,
+        "carbohydrates_g": 3,
+        "fat_g": 1.5,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Sugar is logged separately."
+    },
+    {
+      "id": "tomato-onion-chutney",
+      "name": "Tomato Onion Chutney",
+      "category": "chutney",
+      "servingSize": 30,
+      "servingUnit": "g",
+      "quantityStep": 15,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 30,
+          "unit": "g"
+        },
+        "calories_kcal": 35,
+        "protein_g": 0.5,
+        "carbohydrates_g": 3.5,
+        "fat_g": 2,
+        "fiber_g": 0.8,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "tomato-sauce",
+      "name": "Tomato Sauce",
+      "category": "condiment",
+      "servingSize": 15,
+      "servingUnit": "g",
+      "quantityStep": 15,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 15,
+          "unit": "g"
+        },
+        "calories_kcal": 15,
+        "protein_g": 0.2,
+        "carbohydrates_g": 3.5,
+        "fat_g": 0,
+        "fiber_g": 0.1,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "turmeric-milk",
+      "name": "Turmeric Milk",
+      "category": "beverage",
+      "servingSize": 200,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "ml"
+        },
+        "calories_kcal": 130,
+        "protein_g": 6,
+        "carbohydrates_g": 12,
+        "fat_g": 6,
+        "fiber_g": 0,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "upma",
+      "name": "Rava Upma",
+      "category": "breakfast",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 210,
+        "protein_g": 5,
+        "carbohydrates_g": 30,
+        "fat_g": 8,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "vada-curry",
+      "name": "Vada Curry",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 200,
+        "protein_g": 7,
+        "carbohydrates_g": 16,
+        "fat_g": 12,
+        "fiber_g": 4,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "vatha-kolambu",
+      "name": "Vatha Kolambu",
+      "category": "curry",
+      "servingSize": 100,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 100,
+          "unit": "g"
+        },
+        "calories_kcal": 110,
+        "protein_g": 1.5,
+        "carbohydrates_g": 10,
+        "fat_g": 7.5,
+        "fiber_g": 2,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "veg-biryani",
+      "name": "Veg Biryani",
+      "category": "rice",
+      "servingSize": 250,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 250,
+          "unit": "g"
+        },
+        "calories_kcal": 380,
+        "protein_g": 8,
+        "carbohydrates_g": 56,
+        "fat_g": 13,
+        "fiber_g": 4,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Also covers Hyderabadi Veg Biryani on the special dinner menu."
+    },
+    {
+      "id": "veg-kurma",
+      "name": "Veg Kurma",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 180,
+        "protein_g": 3.5,
+        "carbohydrates_g": 12,
+        "fat_g": 13,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "veg-pulao",
+      "name": "Veg Pulao",
+      "category": "rice",
+      "servingSize": 200,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 200,
+          "unit": "g"
+        },
+        "calories_kcal": 300,
+        "protein_g": 6,
+        "carbohydrates_g": 46,
+        "fat_g": 10,
+        "fiber_g": 3,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review.",
+      "note": "Also covers Hyderabadi Veg Pulao."
+    },
+    {
+      "id": "ven-pongal",
+      "name": "Pongal",
+      "category": "breakfast",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 230,
+        "protein_g": 6,
+        "carbohydrates_g": 32,
+        "fat_g": 8,
+        "fiber_g": 1.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "vermicelli-payasam",
+      "name": "Vermicelli Payasam",
+      "category": "dessert",
+      "servingSize": 150,
+      "servingUnit": "ml",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "ml"
+        },
+        "calories_kcal": 210,
+        "protein_g": 5,
+        "carbohydrates_g": 32,
+        "fat_g": 7,
+        "fiber_g": 0.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "wheat-dosa",
+      "name": "Wheat Dosa",
+      "category": "breakfast",
+      "servingSize": 1,
+      "servingUnit": "piece",
+      "quantityStep": 1,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 1,
+          "unit": "piece"
+        },
+        "calories_kcal": 110,
+        "protein_g": 3.5,
+        "carbohydrates_g": 18,
+        "fat_g": 3,
+        "fiber_g": 2.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "wheat-rava-upma",
+      "name": "Wheat Rava Upma",
+      "category": "breakfast",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 200,
+        "protein_g": 5.5,
+        "carbohydrates_g": 30,
+        "fat_g": 6.5,
+        "fiber_g": 3.5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    },
+    {
+      "id": "yellow-channa-dal-masala",
+      "name": "Yellow Channa Dal Masala",
+      "category": "curry",
+      "servingSize": 150,
+      "servingUnit": "g",
+      "quantityStep": 50,
+      "trackable": true,
+      "nutrition": {
+        "basis": {
+          "quantity": 150,
+          "unit": "g"
+        },
+        "calories_kcal": 170,
+        "protein_g": 8.5,
+        "carbohydrates_g": 22,
+        "fat_g": 5,
+        "fiber_g": 5,
+        "sugar_g": null
+      },
+      "verificationStatus": "estimated",
+      "dataSource": "Estimate for a typical South Indian institutional-mess preparation, derived from standard food-composition values (IFCT 2017-style) and typical recipes. NOT lab-verified. Admin should review."
+    }
+  ]
+}

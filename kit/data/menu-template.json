@@ -1,0 +1,2600 @@
+{
+  "schemaVersion": 1,
+  "source": "Menu_Finalized_26_27.pdf (IIITDM Kancheepuram mess, 2026-27)",
+  "transcription": "Transcribed cell by cell from the rendered PDF table. Spot-check against the PDF before seeding.",
+  "mealOrder": [
+    "breakfast",
+    "lunch",
+    "snacks",
+    "dinner"
+  ],
+  "choiceGroups": {
+    "breakfast-fruit-or-egg": "Pick one: fruit/banana OR boiled egg (not both).",
+    "lunch-biryani": "Pick one: paneer biryani OR chicken biryani.",
+    "lunch-sunday-curry": "Pick one: palak paneer OR chicken curry.",
+    "breakfast-dosa": "Wheat dosa OR pesarattu (whichever the mess serves that day)."
+  },
+  "notes": [
+    "Items with limited=true are marked *** in the PDF (limited quantity).",
+    "Snacks are limited.",
+    "servingQuantity, when present, overrides the food's default serving for that menu slot (e.g. Vada (3))."
+  ],
+  "weeks": {
+    "even": {
+      "sunday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "onion-carrot-uttapam",
+              "order": 0
+            },
+            {
+              "foodId": "sambar",
+              "order": 1
+            },
+            {
+              "foodId": "coconut-chutney",
+              "order": 2
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 3
+            },
+            {
+              "foodId": "sprouts",
+              "order": 4
+            },
+            {
+              "foodId": "seasonal-cut-fruits",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "limited": true,
+              "order": 5
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 6
+            },
+            {
+              "foodId": "tea",
+              "order": 7
+            },
+            {
+              "foodId": "coffee",
+              "order": 8
+            },
+            {
+              "foodId": "milk",
+              "order": 9
+            },
+            {
+              "foodId": "sugar",
+              "order": 10
+            },
+            {
+              "foodId": "salt",
+              "order": 11
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "chapathi",
+              "order": 0
+            },
+            {
+              "foodId": "sev-tomato-gravy",
+              "order": 1
+            },
+            {
+              "foodId": "hyderabadi-paneer-biryani",
+              "choiceGroup": "lunch-biryani",
+              "order": 2
+            },
+            {
+              "foodId": "hyderabadi-chicken-biryani",
+              "choiceGroup": "lunch-biryani",
+              "order": 3
+            },
+            {
+              "foodId": "raitha",
+              "order": 4
+            },
+            {
+              "foodId": "ice-cream",
+              "servingQuantity": 1,
+              "order": 5
+            },
+            {
+              "foodId": "salad",
+              "order": 6
+            },
+            {
+              "foodId": "onion",
+              "order": 7
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "bhel-puri",
+              "order": 0
+            },
+            {
+              "foodId": "tea",
+              "order": 1
+            },
+            {
+              "foodId": "coffee",
+              "order": 2
+            },
+            {
+              "foodId": "milk",
+              "order": 3
+            },
+            {
+              "foodId": "sugar",
+              "order": 4
+            },
+            {
+              "foodId": "boost",
+              "order": 5
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "peanut-coconut-rice",
+              "order": 0
+            },
+            {
+              "foodId": "veg-kurma",
+              "order": 1
+            },
+            {
+              "foodId": "phulka",
+              "order": 2
+            },
+            {
+              "foodId": "gutti-vankaya-curry",
+              "order": 3
+            },
+            {
+              "foodId": "curd",
+              "order": 4
+            },
+            {
+              "foodId": "gulab-jamun",
+              "servingQuantity": 2,
+              "order": 5
+            }
+          ]
+        }
+      },
+      "monday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "poori",
+              "order": 0
+            },
+            {
+              "foodId": "aloo-masala-curry",
+              "order": 1
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 2
+            },
+            {
+              "foodId": "boiled-groundnuts",
+              "order": 3
+            },
+            {
+              "foodId": "banana",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 4
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 5
+            },
+            {
+              "foodId": "tea",
+              "order": 6
+            },
+            {
+              "foodId": "coffee",
+              "order": 7
+            },
+            {
+              "foodId": "milk",
+              "order": 8
+            },
+            {
+              "foodId": "sugar",
+              "order": 9
+            },
+            {
+              "foodId": "salt",
+              "order": 10
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "phulka",
+              "order": 0
+            },
+            {
+              "foodId": "garlic-tomato-curry",
+              "order": 1
+            },
+            {
+              "foodId": "avial",
+              "order": 2
+            },
+            {
+              "foodId": "rice",
+              "order": 3
+            },
+            {
+              "foodId": "vatha-kolambu",
+              "order": 4
+            },
+            {
+              "foodId": "curd",
+              "order": 5
+            },
+            {
+              "foodId": "fryums",
+              "order": 6
+            },
+            {
+              "foodId": "pickle",
+              "order": 7
+            },
+            {
+              "foodId": "sugar",
+              "order": 8
+            },
+            {
+              "foodId": "salt",
+              "order": 9
+            },
+            {
+              "foodId": "ghee",
+              "order": 10
+            },
+            {
+              "foodId": "podi",
+              "order": 11
+            },
+            {
+              "foodId": "seasonal-fruit-juice",
+              "order": 12
+            },
+            {
+              "foodId": "onion",
+              "order": 13
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "sundal",
+              "order": 0
+            },
+            {
+              "foodId": "tea",
+              "order": 1
+            },
+            {
+              "foodId": "coffee",
+              "order": 2
+            },
+            {
+              "foodId": "milk",
+              "order": 3
+            },
+            {
+              "foodId": "sugar",
+              "order": 4
+            },
+            {
+              "foodId": "ragi-malt",
+              "order": 5
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "chapathi",
+              "order": 0
+            },
+            {
+              "foodId": "channa-masala",
+              "order": 1
+            },
+            {
+              "foodId": "rice",
+              "order": 2
+            },
+            {
+              "foodId": "sambar",
+              "order": 3
+            },
+            {
+              "foodId": "rasam",
+              "order": 4
+            },
+            {
+              "foodId": "cauliflower-peas-poriyal",
+              "order": 5
+            },
+            {
+              "foodId": "buttermilk",
+              "order": 6
+            },
+            {
+              "foodId": "fryums",
+              "order": 7
+            },
+            {
+              "foodId": "boondi-laddu",
+              "servingQuantity": 1,
+              "order": 8
+            }
+          ]
+        }
+      },
+      "tuesday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "ragi-dosa",
+              "order": 0
+            },
+            {
+              "foodId": "upma",
+              "order": 1
+            },
+            {
+              "foodId": "sambar",
+              "order": 2
+            },
+            {
+              "foodId": "groundnut-chutney",
+              "order": 3
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 4
+            },
+            {
+              "foodId": "sprouts",
+              "order": 5
+            },
+            {
+              "foodId": "seasonal-cut-fruits",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "limited": true,
+              "order": 6
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 7
+            },
+            {
+              "foodId": "tea",
+              "order": 8
+            },
+            {
+              "foodId": "coffee",
+              "order": 9
+            },
+            {
+              "foodId": "milk",
+              "order": 10
+            },
+            {
+              "foodId": "sugar",
+              "order": 11
+            },
+            {
+              "foodId": "salt",
+              "order": 12
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "chapathi",
+              "order": 0
+            },
+            {
+              "foodId": "dum-aloo",
+              "order": 1
+            },
+            {
+              "foodId": "andhra-tomato-dal",
+              "order": 2
+            },
+            {
+              "foodId": "greens-poriyal",
+              "order": 3
+            },
+            {
+              "foodId": "jeera-rice",
+              "order": 4
+            },
+            {
+              "foodId": "rice",
+              "order": 5
+            },
+            {
+              "foodId": "rasam",
+              "order": 6
+            },
+            {
+              "foodId": "curd",
+              "order": 7
+            },
+            {
+              "foodId": "papad",
+              "order": 8
+            },
+            {
+              "foodId": "pickle",
+              "order": 9
+            },
+            {
+              "foodId": "sugar",
+              "order": 10
+            },
+            {
+              "foodId": "salt",
+              "order": 11
+            },
+            {
+              "foodId": "ghee",
+              "order": 12
+            },
+            {
+              "foodId": "podi",
+              "order": 13
+            },
+            {
+              "foodId": "salad",
+              "order": 14
+            },
+            {
+              "foodId": "onion",
+              "order": 15
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "onion-pakoda",
+              "order": 0
+            },
+            {
+              "foodId": "tea",
+              "order": 1
+            },
+            {
+              "foodId": "coffee",
+              "order": 2
+            },
+            {
+              "foodId": "milk",
+              "order": 3
+            },
+            {
+              "foodId": "sugar",
+              "order": 4
+            },
+            {
+              "foodId": "boost",
+              "order": 5
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "idli",
+              "order": 0
+            },
+            {
+              "foodId": "sambar",
+              "order": 1
+            },
+            {
+              "foodId": "podi",
+              "order": 2
+            },
+            {
+              "foodId": "tomato-onion-chutney",
+              "order": 3
+            },
+            {
+              "foodId": "ghee",
+              "order": 4
+            },
+            {
+              "foodId": "lemon-rice",
+              "order": 5
+            },
+            {
+              "foodId": "curd-rice",
+              "order": 6
+            },
+            {
+              "foodId": "potato-poriyal",
+              "order": 7
+            },
+            {
+              "foodId": "pickle",
+              "order": 8
+            },
+            {
+              "foodId": "sweet-pongal",
+              "limited": true,
+              "order": 9
+            }
+          ]
+        }
+      },
+      "wednesday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "masala-dosa",
+              "order": 0
+            },
+            {
+              "foodId": "sambar",
+              "order": 1
+            },
+            {
+              "foodId": "tomato-onion-chutney",
+              "order": 2
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 3
+            },
+            {
+              "foodId": "boiled-groundnuts",
+              "order": 4
+            },
+            {
+              "foodId": "banana",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 5
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 6
+            },
+            {
+              "foodId": "tea",
+              "order": 7
+            },
+            {
+              "foodId": "coffee",
+              "order": 8
+            },
+            {
+              "foodId": "milk",
+              "order": 9
+            },
+            {
+              "foodId": "sugar",
+              "order": 10
+            },
+            {
+              "foodId": "salt",
+              "order": 11
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "phulka",
+              "order": 0
+            },
+            {
+              "foodId": "yellow-channa-dal-masala",
+              "order": 1
+            },
+            {
+              "foodId": "kovakai-fry",
+              "order": 2
+            },
+            {
+              "foodId": "rice",
+              "order": 3
+            },
+            {
+              "foodId": "sambar",
+              "order": 4
+            },
+            {
+              "foodId": "rasam",
+              "order": 5
+            },
+            {
+              "foodId": "curd",
+              "order": 6
+            },
+            {
+              "foodId": "fryums",
+              "order": 7
+            },
+            {
+              "foodId": "pickle",
+              "order": 8
+            },
+            {
+              "foodId": "sugar",
+              "order": 9
+            },
+            {
+              "foodId": "salt",
+              "order": 10
+            },
+            {
+              "foodId": "ghee",
+              "order": 11
+            },
+            {
+              "foodId": "podi",
+              "order": 12
+            },
+            {
+              "foodId": "seasonal-fruit-juice",
+              "order": 13
+            },
+            {
+              "foodId": "onion",
+              "order": 14
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "banana-bajji",
+              "servingQuantity": 3,
+              "order": 0
+            },
+            {
+              "foodId": "kadalai-chutney",
+              "order": 1
+            },
+            {
+              "foodId": "tea",
+              "order": 2
+            },
+            {
+              "foodId": "coffee",
+              "order": 3
+            },
+            {
+              "foodId": "milk",
+              "order": 4
+            },
+            {
+              "foodId": "sugar",
+              "order": 5
+            },
+            {
+              "foodId": "ragi-malt",
+              "order": 6
+            }
+          ]
+        },
+        "dinner": {
+          "special": "special-dinner"
+        }
+      },
+      "thursday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "upma",
+              "order": 0
+            },
+            {
+              "foodId": "poha",
+              "order": 1
+            },
+            {
+              "foodId": "mysore-bonda",
+              "servingQuantity": 3,
+              "order": 2
+            },
+            {
+              "foodId": "coconut-chutney",
+              "order": 3
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 4
+            },
+            {
+              "foodId": "sprouts",
+              "order": 5
+            },
+            {
+              "foodId": "seasonal-cut-fruits",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "limited": true,
+              "order": 6
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 7
+            },
+            {
+              "foodId": "tea",
+              "order": 8
+            },
+            {
+              "foodId": "coffee",
+              "order": 9
+            },
+            {
+              "foodId": "milk",
+              "order": 10
+            },
+            {
+              "foodId": "sugar",
+              "order": 11
+            },
+            {
+              "foodId": "salt",
+              "order": 12
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "chapathi",
+              "order": 0
+            },
+            {
+              "foodId": "paneer-peas-curry",
+              "order": 1
+            },
+            {
+              "foodId": "spinach-kootu",
+              "order": 2
+            },
+            {
+              "foodId": "rice",
+              "order": 3
+            },
+            {
+              "foodId": "sambar",
+              "order": 4
+            },
+            {
+              "foodId": "rasam",
+              "order": 5
+            },
+            {
+              "foodId": "curd",
+              "order": 6
+            },
+            {
+              "foodId": "fryums",
+              "order": 7
+            },
+            {
+              "foodId": "pickle",
+              "order": 8
+            },
+            {
+              "foodId": "sugar",
+              "order": 9
+            },
+            {
+              "foodId": "salt",
+              "order": 10
+            },
+            {
+              "foodId": "ghee",
+              "order": 11
+            },
+            {
+              "foodId": "podi",
+              "order": 12
+            },
+            {
+              "foodId": "salad",
+              "order": 13
+            },
+            {
+              "foodId": "onion",
+              "order": 14
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "sweet-corn",
+              "servingQuantity": 1,
+              "order": 0
+            },
+            {
+              "foodId": "tea",
+              "order": 1
+            },
+            {
+              "foodId": "coffee",
+              "order": 2
+            },
+            {
+              "foodId": "milk",
+              "order": 3
+            },
+            {
+              "foodId": "sugar",
+              "order": 4
+            },
+            {
+              "foodId": "boost",
+              "order": 5
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "chapathi",
+              "order": 0
+            },
+            {
+              "foodId": "veg-biryani",
+              "order": 1
+            },
+            {
+              "foodId": "aloo-curry",
+              "order": 2
+            },
+            {
+              "foodId": "raitha",
+              "order": 3
+            },
+            {
+              "foodId": "buttermilk",
+              "order": 4
+            },
+            {
+              "foodId": "pineapple-kesari",
+              "limited": true,
+              "order": 5
+            }
+          ]
+        }
+      },
+      "friday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "rava-idli",
+              "order": 0
+            },
+            {
+              "foodId": "medu-vada",
+              "servingQuantity": 3,
+              "order": 1
+            },
+            {
+              "foodId": "sambar",
+              "order": 2
+            },
+            {
+              "foodId": "tomato-onion-chutney",
+              "order": 3
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 4
+            },
+            {
+              "foodId": "boiled-groundnuts",
+              "order": 5
+            },
+            {
+              "foodId": "banana",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 6
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 7
+            },
+            {
+              "foodId": "tea",
+              "order": 8
+            },
+            {
+              "foodId": "coffee",
+              "order": 9
+            },
+            {
+              "foodId": "milk",
+              "order": 10
+            },
+            {
+              "foodId": "sugar",
+              "order": 11
+            },
+            {
+              "foodId": "salt",
+              "order": 12
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "phulka",
+              "order": 0
+            },
+            {
+              "foodId": "aloo-masala-curry",
+              "order": 1
+            },
+            {
+              "foodId": "veg-pulao",
+              "order": 2
+            },
+            {
+              "foodId": "raitha",
+              "order": 3
+            },
+            {
+              "foodId": "gongura-chutney",
+              "order": 4
+            },
+            {
+              "foodId": "papad",
+              "order": 5
+            },
+            {
+              "foodId": "sugar",
+              "order": 6
+            },
+            {
+              "foodId": "salt",
+              "order": 7
+            },
+            {
+              "foodId": "ghee",
+              "order": 8
+            },
+            {
+              "foodId": "podi",
+              "order": 9
+            },
+            {
+              "foodId": "seasonal-fruit-juice",
+              "order": 10
+            },
+            {
+              "foodId": "onion",
+              "order": 11
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "mix-veg-maggi",
+              "order": 0
+            },
+            {
+              "foodId": "tomato-sauce",
+              "order": 1
+            },
+            {
+              "foodId": "tea",
+              "order": 2
+            },
+            {
+              "foodId": "coffee",
+              "order": 3
+            },
+            {
+              "foodId": "milk",
+              "order": 4
+            },
+            {
+              "foodId": "sugar",
+              "order": 5
+            },
+            {
+              "foodId": "ragi-malt",
+              "order": 6
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "bhatura",
+              "order": 0
+            },
+            {
+              "foodId": "channa-masala",
+              "order": 1
+            },
+            {
+              "foodId": "idiyappam",
+              "order": 2
+            },
+            {
+              "foodId": "bagara-rice",
+              "order": 3
+            },
+            {
+              "foodId": "black-channa-curry",
+              "order": 4
+            },
+            {
+              "foodId": "buttermilk",
+              "order": 5
+            },
+            {
+              "foodId": "onion",
+              "order": 6
+            },
+            {
+              "foodId": "paruppu-payasam",
+              "order": 7
+            }
+          ]
+        }
+      },
+      "saturday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "methi-paratha",
+              "order": 0
+            },
+            {
+              "foodId": "channa-masala",
+              "order": 1
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 2
+            },
+            {
+              "foodId": "sprouts",
+              "order": 3
+            },
+            {
+              "foodId": "seasonal-cut-fruits",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "limited": true,
+              "order": 4
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 5
+            },
+            {
+              "foodId": "tea",
+              "order": 6
+            },
+            {
+              "foodId": "coffee",
+              "order": 7
+            },
+            {
+              "foodId": "milk",
+              "order": 8
+            },
+            {
+              "foodId": "sugar",
+              "order": 9
+            },
+            {
+              "foodId": "salt",
+              "order": 10
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "chapathi",
+              "order": 0
+            },
+            {
+              "foodId": "baigan-methi-curry",
+              "order": 1
+            },
+            {
+              "foodId": "chilli-soya",
+              "limited": true,
+              "order": 2
+            },
+            {
+              "foodId": "perugu-pachadi",
+              "order": 3
+            },
+            {
+              "foodId": "rice",
+              "order": 4
+            },
+            {
+              "foodId": "sambar",
+              "order": 5
+            },
+            {
+              "foodId": "rasam",
+              "order": 6
+            },
+            {
+              "foodId": "papad",
+              "order": 7
+            },
+            {
+              "foodId": "pickle",
+              "order": 8
+            },
+            {
+              "foodId": "sugar",
+              "order": 9
+            },
+            {
+              "foodId": "salt",
+              "order": 10
+            },
+            {
+              "foodId": "ghee",
+              "order": 11
+            },
+            {
+              "foodId": "podi",
+              "order": 12
+            },
+            {
+              "foodId": "banana-juice",
+              "order": 13
+            },
+            {
+              "foodId": "onion",
+              "order": 14
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "aloo-samosa",
+              "servingQuantity": 2,
+              "order": 0
+            },
+            {
+              "foodId": "tomato-sauce",
+              "order": 1
+            },
+            {
+              "foodId": "mint-chutney",
+              "order": 2
+            },
+            {
+              "foodId": "tea",
+              "order": 3
+            },
+            {
+              "foodId": "coffee",
+              "order": 4
+            },
+            {
+              "foodId": "milk",
+              "order": 5
+            },
+            {
+              "foodId": "sugar",
+              "order": 6
+            },
+            {
+              "foodId": "boost",
+              "order": 7
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "millet-dosa",
+              "order": 0
+            },
+            {
+              "foodId": "groundnut-chutney",
+              "order": 1
+            },
+            {
+              "foodId": "rice",
+              "order": 2
+            },
+            {
+              "foodId": "mixed-dal",
+              "order": 3
+            },
+            {
+              "foodId": "buttermilk",
+              "order": 4
+            },
+            {
+              "foodId": "papad",
+              "order": 5
+            },
+            {
+              "foodId": "bread-halwa",
+              "limited": true,
+              "order": 6
+            }
+          ]
+        }
+      }
+    },
+    "odd": {
+      "sunday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "rava-dosa",
+              "order": 0
+            },
+            {
+              "foodId": "semiya-upma",
+              "order": 1
+            },
+            {
+              "foodId": "sambar",
+              "order": 2
+            },
+            {
+              "foodId": "groundnut-chutney",
+              "order": 3
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 4
+            },
+            {
+              "foodId": "boiled-groundnuts",
+              "order": 5
+            },
+            {
+              "foodId": "seasonal-cut-fruits",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "limited": true,
+              "order": 6
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 7
+            },
+            {
+              "foodId": "tea",
+              "order": 8
+            },
+            {
+              "foodId": "coffee",
+              "order": 9
+            },
+            {
+              "foodId": "milk",
+              "order": 10
+            },
+            {
+              "foodId": "sugar",
+              "order": 11
+            },
+            {
+              "foodId": "salt",
+              "order": 12
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "chapathi",
+              "order": 0
+            },
+            {
+              "foodId": "palak-paneer",
+              "choiceGroup": "lunch-sunday-curry",
+              "order": 1
+            },
+            {
+              "foodId": "chicken-curry",
+              "choiceGroup": "lunch-sunday-curry",
+              "order": 2
+            },
+            {
+              "foodId": "veg-biryani",
+              "order": 3
+            },
+            {
+              "foodId": "raitha",
+              "order": 4
+            },
+            {
+              "foodId": "badusha",
+              "servingQuantity": 1,
+              "order": 5
+            },
+            {
+              "foodId": "seasonal-fruit-juice",
+              "order": 6
+            },
+            {
+              "foodId": "ice-cream",
+              "servingQuantity": 1,
+              "order": 7
+            },
+            {
+              "foodId": "salad",
+              "order": 8
+            },
+            {
+              "foodId": "onion",
+              "order": 9
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "pani-puri",
+              "servingQuantity": 6,
+              "order": 0
+            },
+            {
+              "foodId": "green-chutney",
+              "order": 1
+            },
+            {
+              "foodId": "tamarind-chutney",
+              "order": 2
+            },
+            {
+              "foodId": "tea",
+              "order": 3
+            },
+            {
+              "foodId": "coffee",
+              "order": 4
+            },
+            {
+              "foodId": "milk",
+              "order": 5
+            },
+            {
+              "foodId": "sugar",
+              "order": 6
+            },
+            {
+              "foodId": "ragi-malt",
+              "order": 7
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "chapathi",
+              "order": 0
+            },
+            {
+              "foodId": "mix-veg-curry-punjabi",
+              "order": 1
+            },
+            {
+              "foodId": "tamarind-rice",
+              "order": 2
+            },
+            {
+              "foodId": "buttermilk",
+              "order": 3
+            },
+            {
+              "foodId": "aloo-bhujia-sabzi",
+              "order": 4
+            },
+            {
+              "foodId": "fryums",
+              "order": 5
+            },
+            {
+              "foodId": "pickle",
+              "order": 6
+            },
+            {
+              "foodId": "seasonal-cut-fruits",
+              "limited": true,
+              "order": 7
+            },
+            {
+              "foodId": "turmeric-milk",
+              "order": 8
+            }
+          ]
+        }
+      },
+      "monday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "ven-pongal",
+              "order": 0
+            },
+            {
+              "foodId": "medu-vada",
+              "servingQuantity": 3,
+              "order": 1
+            },
+            {
+              "foodId": "sambar",
+              "order": 2
+            },
+            {
+              "foodId": "coconut-chutney",
+              "order": 3
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 4
+            },
+            {
+              "foodId": "sprouts",
+              "order": 5
+            },
+            {
+              "foodId": "banana",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 6
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 7
+            },
+            {
+              "foodId": "tea",
+              "order": 8
+            },
+            {
+              "foodId": "coffee",
+              "order": 9
+            },
+            {
+              "foodId": "milk",
+              "order": 10
+            },
+            {
+              "foodId": "sugar",
+              "order": 11
+            },
+            {
+              "foodId": "salt",
+              "order": 12
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "phulka",
+              "order": 0
+            },
+            {
+              "foodId": "dal-makhani",
+              "order": 1
+            },
+            {
+              "foodId": "plantain-poriyal",
+              "order": 2
+            },
+            {
+              "foodId": "rice",
+              "order": 3
+            },
+            {
+              "foodId": "sambar",
+              "order": 4
+            },
+            {
+              "foodId": "rasam",
+              "order": 5
+            },
+            {
+              "foodId": "curd",
+              "order": 6
+            },
+            {
+              "foodId": "pickle",
+              "order": 7
+            },
+            {
+              "foodId": "papad",
+              "order": 8
+            },
+            {
+              "foodId": "sugar",
+              "order": 9
+            },
+            {
+              "foodId": "salt",
+              "order": 10
+            },
+            {
+              "foodId": "ghee",
+              "order": 11
+            },
+            {
+              "foodId": "podi",
+              "order": 12
+            },
+            {
+              "foodId": "seasonal-fruit-juice",
+              "order": 13
+            },
+            {
+              "foodId": "onion",
+              "order": 14
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "pasta",
+              "order": 0
+            },
+            {
+              "foodId": "tea",
+              "order": 1
+            },
+            {
+              "foodId": "coffee",
+              "order": 2
+            },
+            {
+              "foodId": "milk",
+              "order": 3
+            },
+            {
+              "foodId": "sugar",
+              "order": 4
+            },
+            {
+              "foodId": "boost",
+              "order": 5
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "bhatura",
+              "order": 0
+            },
+            {
+              "foodId": "channa-masala",
+              "order": 1
+            },
+            {
+              "foodId": "onion-mirch-salad",
+              "order": 2
+            },
+            {
+              "foodId": "rice",
+              "order": 3
+            },
+            {
+              "foodId": "snake-gourd-kootu",
+              "order": 4
+            },
+            {
+              "foodId": "curd",
+              "order": 5
+            },
+            {
+              "foodId": "rasam",
+              "order": 6
+            },
+            {
+              "foodId": "banana",
+              "servingQuantity": 1,
+              "order": 7
+            }
+          ]
+        }
+      },
+      "tuesday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "wheat-dosa",
+              "choiceGroup": "breakfast-dosa",
+              "order": 0
+            },
+            {
+              "foodId": "pesarattu",
+              "choiceGroup": "breakfast-dosa",
+              "order": 1
+            },
+            {
+              "foodId": "sambar",
+              "order": 2
+            },
+            {
+              "foodId": "tomato-onion-chutney",
+              "order": 3
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 4
+            },
+            {
+              "foodId": "boiled-groundnuts",
+              "order": 5
+            },
+            {
+              "foodId": "seasonal-cut-fruits",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "limited": true,
+              "order": 6
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 7
+            },
+            {
+              "foodId": "tea",
+              "order": 8
+            },
+            {
+              "foodId": "coffee",
+              "order": 9
+            },
+            {
+              "foodId": "milk",
+              "order": 10
+            },
+            {
+              "foodId": "sugar",
+              "order": 11
+            },
+            {
+              "foodId": "salt",
+              "order": 12
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "chapathi",
+              "order": 0
+            },
+            {
+              "foodId": "dum-aloo",
+              "order": 1
+            },
+            {
+              "foodId": "beans-carrot-poriyal",
+              "order": 2
+            },
+            {
+              "foodId": "rice",
+              "order": 3
+            },
+            {
+              "foodId": "panchratan-dal",
+              "order": 4
+            },
+            {
+              "foodId": "rasam",
+              "order": 5
+            },
+            {
+              "foodId": "curd",
+              "order": 6
+            },
+            {
+              "foodId": "fryums",
+              "order": 7
+            },
+            {
+              "foodId": "pickle",
+              "order": 8
+            },
+            {
+              "foodId": "sugar",
+              "order": 9
+            },
+            {
+              "foodId": "salt",
+              "order": 10
+            },
+            {
+              "foodId": "ghee",
+              "order": 11
+            },
+            {
+              "foodId": "podi",
+              "order": 12
+            },
+            {
+              "foodId": "salad",
+              "order": 13
+            },
+            {
+              "foodId": "onion",
+              "order": 14
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "masala-vada",
+              "servingQuantity": 3,
+              "order": 0
+            },
+            {
+              "foodId": "pottukadalai-chutney",
+              "order": 1
+            },
+            {
+              "foodId": "tea",
+              "order": 2
+            },
+            {
+              "foodId": "coffee",
+              "order": 3
+            },
+            {
+              "foodId": "milk",
+              "order": 4
+            },
+            {
+              "foodId": "sugar",
+              "order": 5
+            },
+            {
+              "foodId": "ragi-malt",
+              "order": 6
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "chapathi",
+              "order": 0
+            },
+            {
+              "foodId": "channa-masala",
+              "order": 1
+            },
+            {
+              "foodId": "rice",
+              "order": 2
+            },
+            {
+              "foodId": "sambar",
+              "order": 3
+            },
+            {
+              "foodId": "beetroot-poriyal",
+              "order": 4
+            },
+            {
+              "foodId": "buttermilk",
+              "order": 5
+            },
+            {
+              "foodId": "fryums",
+              "order": 6
+            },
+            {
+              "foodId": "bread-halwa",
+              "order": 7
+            }
+          ]
+        }
+      },
+      "wednesday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "poori",
+              "order": 0
+            },
+            {
+              "foodId": "channa-masala",
+              "order": 1
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 2
+            },
+            {
+              "foodId": "sprouts",
+              "order": 3
+            },
+            {
+              "foodId": "banana",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 4
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 5
+            },
+            {
+              "foodId": "tea",
+              "order": 6
+            },
+            {
+              "foodId": "coffee",
+              "order": 7
+            },
+            {
+              "foodId": "milk",
+              "order": 8
+            },
+            {
+              "foodId": "sugar",
+              "order": 9
+            },
+            {
+              "foodId": "salt",
+              "order": 10
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "phulka",
+              "order": 0
+            },
+            {
+              "foodId": "soya-curry",
+              "order": 1
+            },
+            {
+              "foodId": "onion-pakoda",
+              "limited": true,
+              "order": 2
+            },
+            {
+              "foodId": "perugu-pachadi",
+              "order": 3
+            },
+            {
+              "foodId": "rice",
+              "order": 4
+            },
+            {
+              "foodId": "rasam",
+              "order": 5
+            },
+            {
+              "foodId": "puli-kolambu",
+              "order": 6
+            },
+            {
+              "foodId": "papad",
+              "order": 7
+            },
+            {
+              "foodId": "cabbage-moong-poriyal",
+              "order": 8
+            },
+            {
+              "foodId": "pickle",
+              "order": 9
+            },
+            {
+              "foodId": "sugar",
+              "order": 10
+            },
+            {
+              "foodId": "salt",
+              "order": 11
+            },
+            {
+              "foodId": "ghee",
+              "order": 12
+            },
+            {
+              "foodId": "podi",
+              "order": 13
+            },
+            {
+              "foodId": "seasonal-fruit-juice",
+              "order": 14
+            },
+            {
+              "foodId": "onion",
+              "order": 15
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "boiled-groundnut-chaat",
+              "order": 0
+            },
+            {
+              "foodId": "tea",
+              "order": 1
+            },
+            {
+              "foodId": "coffee",
+              "order": 2
+            },
+            {
+              "foodId": "milk",
+              "order": 3
+            },
+            {
+              "foodId": "sugar",
+              "order": 4
+            },
+            {
+              "foodId": "boost",
+              "order": 5
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "phulka",
+              "order": 0
+            },
+            {
+              "foodId": "kambu-idli",
+              "order": 1
+            },
+            {
+              "foodId": "sambar",
+              "order": 2
+            },
+            {
+              "foodId": "tomato-onion-chutney",
+              "order": 3
+            },
+            {
+              "foodId": "dal-fry",
+              "order": 4
+            },
+            {
+              "foodId": "buttermilk",
+              "order": 5
+            },
+            {
+              "foodId": "sabudana-kheer",
+              "order": 6
+            },
+            {
+              "foodId": "kulfi",
+              "servingQuantity": 1,
+              "order": 7
+            }
+          ]
+        }
+      },
+      "thursday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "wheat-rava-upma",
+              "order": 0
+            },
+            {
+              "foodId": "poha",
+              "order": 1
+            },
+            {
+              "foodId": "mysore-bonda",
+              "servingQuantity": 3,
+              "order": 2
+            },
+            {
+              "foodId": "groundnut-chutney",
+              "order": 3
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 4
+            },
+            {
+              "foodId": "boiled-groundnuts",
+              "order": 5
+            },
+            {
+              "foodId": "seasonal-cut-fruits",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "limited": true,
+              "order": 6
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 7
+            },
+            {
+              "foodId": "tea",
+              "order": 8
+            },
+            {
+              "foodId": "coffee",
+              "order": 9
+            },
+            {
+              "foodId": "milk",
+              "order": 10
+            },
+            {
+              "foodId": "sugar",
+              "order": 11
+            },
+            {
+              "foodId": "salt",
+              "order": 12
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "chapathi",
+              "order": 0
+            },
+            {
+              "foodId": "kadai-paneer",
+              "limited": true,
+              "order": 1
+            },
+            {
+              "foodId": "rice",
+              "order": 2
+            },
+            {
+              "foodId": "masala-sambar",
+              "order": 3
+            },
+            {
+              "foodId": "curd",
+              "order": 4
+            },
+            {
+              "foodId": "fryums",
+              "order": 5
+            },
+            {
+              "foodId": "spinach-kootu",
+              "order": 6
+            },
+            {
+              "foodId": "pickle",
+              "order": 7
+            },
+            {
+              "foodId": "sugar",
+              "order": 8
+            },
+            {
+              "foodId": "salt",
+              "order": 9
+            },
+            {
+              "foodId": "ghee",
+              "order": 10
+            },
+            {
+              "foodId": "podi",
+              "order": 11
+            },
+            {
+              "foodId": "salad",
+              "order": 12
+            },
+            {
+              "foodId": "onion",
+              "order": 13
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "channa-chaat",
+              "order": 0
+            },
+            {
+              "foodId": "tea",
+              "order": 1
+            },
+            {
+              "foodId": "coffee",
+              "order": 2
+            },
+            {
+              "foodId": "milk",
+              "order": 3
+            },
+            {
+              "foodId": "sugar",
+              "order": 4
+            },
+            {
+              "foodId": "ragi-malt",
+              "order": 5
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "flavoured-chapati",
+              "order": 0
+            },
+            {
+              "foodId": "paneer-kofta-curry",
+              "order": 1
+            },
+            {
+              "foodId": "rice",
+              "order": 2
+            },
+            {
+              "foodId": "sambar",
+              "order": 3
+            },
+            {
+              "foodId": "rasam",
+              "order": 4
+            },
+            {
+              "foodId": "kovakai-poriyal",
+              "order": 5
+            },
+            {
+              "foodId": "salad",
+              "order": 6
+            },
+            {
+              "foodId": "buttermilk",
+              "order": 7
+            },
+            {
+              "foodId": "vermicelli-payasam",
+              "order": 8
+            }
+          ]
+        }
+      },
+      "friday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "idli",
+              "order": 0
+            },
+            {
+              "foodId": "medu-vada",
+              "servingQuantity": 3,
+              "order": 1
+            },
+            {
+              "foodId": "sambar",
+              "order": 2
+            },
+            {
+              "foodId": "coconut-chutney",
+              "order": 3
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 4
+            },
+            {
+              "foodId": "sprouts",
+              "order": 5
+            },
+            {
+              "foodId": "banana",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 6
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 7
+            },
+            {
+              "foodId": "tea",
+              "order": 8
+            },
+            {
+              "foodId": "coffee",
+              "order": 9
+            },
+            {
+              "foodId": "milk",
+              "order": 10
+            },
+            {
+              "foodId": "sugar",
+              "order": 11
+            },
+            {
+              "foodId": "salt",
+              "order": 12
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "phulka",
+              "order": 0
+            },
+            {
+              "foodId": "rajma-curry",
+              "order": 1
+            },
+            {
+              "foodId": "keerai-sambar",
+              "order": 2
+            },
+            {
+              "foodId": "rice",
+              "order": 3
+            },
+            {
+              "foodId": "rasam",
+              "order": 4
+            },
+            {
+              "foodId": "curd",
+              "order": 5
+            },
+            {
+              "foodId": "fryums",
+              "order": 6
+            },
+            {
+              "foodId": "pumpkin-kootu",
+              "order": 7
+            },
+            {
+              "foodId": "gongura-chutney",
+              "order": 8
+            },
+            {
+              "foodId": "sugar",
+              "order": 9
+            },
+            {
+              "foodId": "salt",
+              "order": 10
+            },
+            {
+              "foodId": "ghee",
+              "order": 11
+            },
+            {
+              "foodId": "podi",
+              "order": 12
+            },
+            {
+              "foodId": "seasonal-fruit-juice",
+              "order": 13
+            },
+            {
+              "foodId": "onion",
+              "order": 14
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "boiled-green-moong",
+              "order": 0
+            },
+            {
+              "foodId": "tea",
+              "order": 1
+            },
+            {
+              "foodId": "coffee",
+              "order": 2
+            },
+            {
+              "foodId": "milk",
+              "order": 3
+            },
+            {
+              "foodId": "sugar",
+              "order": 4
+            },
+            {
+              "foodId": "boost",
+              "order": 5
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "set-dosa",
+              "order": 0
+            },
+            {
+              "foodId": "veg-pulao",
+              "order": 1
+            },
+            {
+              "foodId": "vada-curry",
+              "order": 2
+            },
+            {
+              "foodId": "raitha",
+              "order": 3
+            },
+            {
+              "foodId": "buttermilk",
+              "order": 4
+            },
+            {
+              "foodId": "kesari-bath",
+              "limited": true,
+              "order": 5
+            }
+          ]
+        }
+      },
+      "saturday": {
+        "breakfast": {
+          "items": [
+            {
+              "foodId": "aloo-paratha",
+              "order": 0
+            },
+            {
+              "foodId": "channa-masala",
+              "order": 1
+            },
+            {
+              "foodId": "curd",
+              "order": 2
+            },
+            {
+              "foodId": "pickle",
+              "order": 3
+            },
+            {
+              "foodId": "bread-butter-jam",
+              "order": 4
+            },
+            {
+              "foodId": "boiled-groundnuts",
+              "order": 5
+            },
+            {
+              "foodId": "seasonal-cut-fruits",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "limited": true,
+              "order": 6
+            },
+            {
+              "foodId": "boiled-egg",
+              "choiceGroup": "breakfast-fruit-or-egg",
+              "order": 7
+            },
+            {
+              "foodId": "tea",
+              "order": 8
+            },
+            {
+              "foodId": "coffee",
+              "order": 9
+            },
+            {
+              "foodId": "milk",
+              "order": 10
+            },
+            {
+              "foodId": "sugar",
+              "order": 11
+            },
+            {
+              "foodId": "salt",
+              "order": 12
+            }
+          ]
+        },
+        "lunch": {
+          "items": [
+            {
+              "foodId": "chapathi",
+              "order": 0
+            },
+            {
+              "foodId": "lauki-chana-dal",
+              "order": 1
+            },
+            {
+              "foodId": "gobi-65",
+              "limited": true,
+              "order": 2
+            },
+            {
+              "foodId": "rice",
+              "order": 3
+            },
+            {
+              "foodId": "rasam",
+              "order": 4
+            },
+            {
+              "foodId": "curd",
+              "order": 5
+            },
+            {
+              "foodId": "andhra-tomato-dal",
+              "order": 6
+            },
+            {
+              "foodId": "papad",
+              "order": 7
+            },
+            {
+              "foodId": "plantain-stem-kootu",
+              "order": 8
+            },
+            {
+              "foodId": "pickle",
+              "order": 9
+            },
+            {
+              "foodId": "sugar",
+              "order": 10
+            },
+            {
+              "foodId": "salt",
+              "order": 11
+            },
+            {
+              "foodId": "ghee",
+              "order": 12
+            },
+            {
+              "foodId": "podi",
+              "order": 13
+            },
+            {
+              "foodId": "banana-juice",
+              "order": 14
+            },
+            {
+              "foodId": "onion",
+              "order": 15
+            }
+          ]
+        },
+        "snacks": {
+          "items": [
+            {
+              "foodId": "millet-puttu",
+              "order": 0
+            },
+            {
+              "foodId": "tea",
+              "order": 1
+            },
+            {
+              "foodId": "coffee",
+              "order": 2
+            },
+            {
+              "foodId": "milk",
+              "order": 3
+            },
+            {
+              "foodId": "sugar",
+              "order": 4
+            },
+            {
+              "foodId": "ragi-malt",
+              "order": 5
+            }
+          ]
+        },
+        "dinner": {
+          "items": [
+            {
+              "foodId": "phulka",
+              "order": 0
+            },
+            {
+              "foodId": "channa-peas-palak",
+              "order": 1
+            },
+            {
+              "foodId": "sambar-rice",
+              "order": 2
+            },
+            {
+              "foodId": "curd-rice",
+              "order": 3
+            },
+            {
+              "foodId": "chilli-soya",
+              "order": 4
+            },
+            {
+              "foodId": "kara-boondi",
+              "order": 5
+            },
+            {
+              "foodId": "pickle",
+              "order": 6
+            },
+            {
+              "foodId": "gulab-jamun",
+              "servingQuantity": 2,
+              "order": 7
+            }
+          ]
+        }
+      }
+    }
+  }
+}
