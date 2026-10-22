@@ -7,15 +7,14 @@ import { useDayLog } from '../data/useDayLog';
 import { useMessToday } from '../hooks/useMessToday';
 import { useOnline } from '../hooks/useOnline';
 import { foodIdsOf, resolveDay } from '../lib/menu';
-import { capitalize, formatLongDate, formatWeekdayName } from '../lib/messDate';
 import { formatNumber, scale, totalsOf } from '../lib/nutrition';
 import { CalendarMissing } from '../components/menu/CalendarMissing';
 import { DayMenuView } from '../components/menu/DayMenuView';
-import { DayNav, useSelectedDate } from '../components/menu/DayNav';
+import { DayHeader } from '../components/menu/DayHeader';
+import { useSelectedDate } from '../components/menu/DayNav';
 import type { Tracking } from '../components/menu/types';
 import { LoadingScreen } from '../components/ui/LoadingScreen';
 import { Notice } from '../components/ui/Notice';
-import { PageHeader } from '../components/ui/PageHeader';
 
 /** A stand-in for a logged food that has since been deleted, so the entry can still be corrected. */
 function foodFromEntry(e: ConsumptionEntry): CatalogFood {
@@ -79,19 +78,9 @@ export function TodayPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow={
-          <>
-            {formatLongDate(date)}
-            {day.parity ? ` · ${capitalize(day.parity)} week` : ''}
-            {date === today ? ' · Today' : ''}
-          </>
-        }
-        title={formatWeekdayName(date)}
-        actions={<DayNav date={date} today={today} />}
-      />
+      <DayHeader date={date} today={today} parity={day.parity} />
 
-      <div className="mt-4 flex min-h-6 flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+      <div className="mt-6 flex min-h-6 flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
         <p className="text-sm">
           {state.status === 'signedOut' ? (
             <span className="text-muted">

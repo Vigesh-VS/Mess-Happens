@@ -9,7 +9,6 @@ import {
   type SpecialMenu,
 } from '../../models';
 import { expandSpecial, toBlocks, type MenuBlock } from '../../lib/menu';
-import { capitalize } from '../../lib/messDate';
 import { formatNumber } from '../../lib/nutrition';
 import { FoodRow } from './FoodRow';
 import type { Tracking } from './types';
@@ -35,12 +34,12 @@ interface MealSectionProps {
 export function MealSection(props: MealSectionProps) {
   const { meal, menu, loggedKcal = 0, changedReason, offMenu = [] } = props;
   return (
-    <section aria-labelledby={`meal-${meal}`} className="border-t border-ink pt-4">
+    <section aria-labelledby={`meal-${meal}`}>
       <div className="flex items-baseline justify-between gap-4">
-        <h2 id={`meal-${meal}`} className="label text-ink">
+        <h2 id={`meal-${meal}`} className="text-section capitalize">
           {meal}
         </h2>
-        {loggedKcal > 0 ? <p className="text-sm font-semibold tabular-nums">{formatNumber(loggedKcal)} kcal</p> : null}
+        {loggedKcal > 0 ? <p className="font-semibold tabular-nums">{formatNumber(loggedKcal)} kcal</p> : null}
       </div>
       {changedReason ? <p className="mt-1 text-sm text-muted">Changed for this date — {changedReason}</p> : null}
 
@@ -53,9 +52,9 @@ export function MealSection(props: MealSectionProps) {
       )}
 
       {offMenu.length > 0 && props.tracking ? (
-        <div className="mt-2 border-t border-line pt-2">
+        <div className="mt-6">
           <p className="label">Also logged</p>
-          <ul className="divide-y divide-line">
+          <ul>
             {offMenu.map((e) => (
               <FoodRow
                 key={e.foodId}
@@ -81,13 +80,13 @@ function RegularMeal({ meal, items, foods, choiceLabels, varieties = {}, trackin
 
   return (
     <>
-      <ul className="divide-y divide-line">
+      <ul className="mt-2">
         {toBlocks(main).map((block) => (
           <Block key={blockKey(block)} block={block} meal={meal} foods={foods} choiceLabels={choiceLabels} varieties={varieties} tracking={tracking} />
         ))}
       </ul>
       {extras.length > 0 ? (
-        <details className="group border-t border-line" open={loggedExtras.length > 0 ? true : undefined}>
+        <details className="group mt-2" open={loggedExtras.length > 0 ? true : undefined}>
           <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-sm text-muted hover:text-ink [&::-webkit-details-marker]:hidden">
             <span className="min-w-0 truncate">
               <span className="font-semibold text-ink">Extras</span> · {extras.map((i) => foods[i.foodId]?.name ?? i.foodId).join(', ')}
@@ -96,7 +95,7 @@ function RegularMeal({ meal, items, foods, choiceLabels, varieties = {}, trackin
               +
             </span>
           </summary>
-          <ul className="divide-y divide-line pb-2">
+          <ul className="pb-2">
             {extras.map((item) => (
               <FoodRow key={item.foodId} meal={meal} item={item} food={foods[item.foodId]} tracking={tracking} variety={varieties[item.foodId]} compact />
             ))}
@@ -154,10 +153,10 @@ function ChoiceGroup({
 }) {
   const loggedCount = items.filter((i) => (tracking?.quantityOf(meal, i.foodId) ?? 0) > 0).length;
   return (
-    <li className="py-2">
-      <div className="border-l-2 border-ink pl-4">
-        <p className="label pt-2">Pick one{label ? ` — ${label.replace(/^Pick one:\s*/i, '')}` : ''}</p>
-        <ul className="divide-y divide-line">{children}</ul>
+    <li className="py-3">
+      <div>
+        <p className="label">Pick one{label ? ` — ${label.replace(/^Pick one:\s*/i, '')}` : ''}</p>
+        <ul>{children}</ul>
         {loggedCount > 1 ? <p className="pb-2 text-sm text-muted">You logged more than one option of a pick-one pair.</p> : null}
       </div>
     </li>
@@ -177,14 +176,14 @@ function SpecialMeal({
 
   return (
     <div>
-      <p className="mt-3 text-title">Special {capitalize(meal)}</p>
+      <p className="mt-2 text-lg font-semibold">Special {meal}</p>
       {view.pinned ? null : (
         <p className="mt-1 text-sm text-muted">Combination A or B is served on rotation — log what you were given.</p>
       )}
       {view.combinations.map((c) => (
         <div key={c.id} className="mt-4">
           <p className="label text-ink">Combination {c.id}</p>
-          <ul className="divide-y divide-line">
+          <ul>
             {c.shared.map(row)}
             {c.veg.length || c.nonVeg.length ? (
               <ChoiceGroup label="veg or non-veg" items={[...c.veg, ...c.nonVeg]} meal={meal} tracking={tracking}>
@@ -199,7 +198,7 @@ function SpecialMeal({
       ))}
       <div className="mt-4">
         <p className="label text-ink">Served with</p>
-        <ul className="divide-y divide-line">{view.alwaysServed.map(row)}</ul>
+        <ul>{view.alwaysServed.map(row)}</ul>
       </div>
     </div>
   );

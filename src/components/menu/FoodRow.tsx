@@ -47,7 +47,7 @@ export function FoodRow({ meal, item, food, tracking, variety, compact = false }
             aria-controls={detailsId}
             className={[
               'text-left leading-tight underline-offset-4 hover:underline',
-              compact ? 'text-base font-semibold' : 'text-xl font-bold tracking-tight sm:text-2xl',
+              compact ? 'text-base font-semibold' : 'text-lg font-bold tracking-tight sm:text-xl',
             ].join(' ')}
           >
             {food.name}

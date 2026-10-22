@@ -20,7 +20,7 @@ export function DayMenuView({ meals, varieties, overrideReason, tracking, byMeal
   const data = useMessData();
   const choiceLabels = data.menuConfig?.choiceGroups ?? {};
   return (
-    <div className="mt-8 space-y-10">
+    <div className="mt-12 space-y-16">
       {meals.map((m) => (
         <MealSection
           key={m.meal}

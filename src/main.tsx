@@ -5,6 +5,7 @@ import './pwa/install'; // capture the install prompt as early as possible
 import { firebaseConfigured } from './firebase/config';
 import { SetupRequired } from './pages/SetupRequired';
 import { LoadingScreen } from './components/ui/LoadingScreen';
+import { dismissSplash } from './splash';
 
 // Loaded lazily so a missing .env.local shows setup help instead of a Firebase crash.
 const App = lazy(() => import('./App'));
@@ -20,3 +21,5 @@ createRoot(document.getElementById('root')!).render(
     )}
   </StrictMode>,
 );
+
+dismissSplash();

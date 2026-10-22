@@ -5,15 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="description" content="Today's mess menu and your nutrition, in one place." />
+    <!-- Chef hat on a transparent tab: black in light mode, white in dark mode. PNGs are fallbacks. -->
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="preload" href="/brand/mess-happens.webp" as="image" type="image/webp" fetchpriority="high" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Mess" />
-    <title>Mess</title>
+    <meta name="apple-mobile-web-app-title" content="Mess Happens" />
+    <title>Mess Happens</title>
+    <style>
+      /* Splash: plain HTML/CSS so it shows instantly, before the app's JavaScript has loaded.
+         src/splash.ts fades it out once the app has started. */
+      #splash {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        background: #fff;
+        transition: opacity 0.6s ease;
+        cursor: pointer;
+      }
+      #splash img {
+        width: min(76vw, 26rem);
+        height: auto;
+        opacity: 0;
+      }
+      #splash img.in {
+        animation: splash-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+      }
+      #splash.hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+      @keyframes splash-in {
+        from {
+          opacity: 0;
+          transform: translateY(10px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #splash img,
+        #splash img.in {
+          animation: none;
+          opacity: 1;
+        }
+      }
+    </style>
   </head>
   <body>
+    <div id="splash" aria-hidden="true" onclick="this.classList.add('hide')">
+      <img src="/brand/mess-happens.webp" alt="" width="960" height="499" decoding="async" onload="this.classList.add('in')" />
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

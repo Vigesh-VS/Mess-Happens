@@ -22,6 +22,12 @@
   --text-display--letter-spacing: -0.035em;
   --text-display--font-weight: 800;
 
+  /* Meal headings on the menu: clearly above food names, below the date. */
+  --text-section: clamp(2rem, 8vw, 2.75rem);
+  --text-section--line-height: 1;
+  --text-section--letter-spacing: -0.03em;
+  --text-section--font-weight: 800;
+
   --text-title: clamp(1.5rem, 4.5vw, 2rem);
   --text-title--line-height: 1.1;
   --text-title--letter-spacing: -0.02em;

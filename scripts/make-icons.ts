@@ -1,6 +1,7 @@
 /// <reference lib="dom" />
 /**
- * Renders every icon (favicon + PWA icons in public/) from scripts/assets/logo.png, using an
+ * Renders every icon (favicon + PWA icons in public/) from scripts/assets/logo.png, and the
+ * splash wordmark (public/brand/mess-happens.webp) from scripts/assets/wordmark.png, using an
  * installed Chrome or Edge via playwright-core (no browser download).
  * Run after replacing the logo: npx tsx scripts/make-icons.ts
  *
@@ -85,7 +86,111 @@ const rendered = await page.evaluate(
   },
   { dataUrl, icons: ICONS.map(({ size, fill }) => ({ size, fill })) },
 );
+// Splash wordmark: trim to the dark ink, keep transparency, 960px wide WebP (≈2× its display size).
+const WORDMARK = resolve(import.meta.dirname, 'assets/wordmark.png');
+const wordmarkUrl = `data:image/png;base64,${readFileSync(WORDMARK).toString('base64')}`;
+const wordmark = await page.evaluate(async (src) => {
+  const img = new Image();
+  img.src = src;
+  await img.decode();
+  const probe = document.createElement('canvas');
+  probe.width = img.width;
+  probe.height = img.height;
+  const pctx = probe.getContext('2d')!;
+  pctx.drawImage(img, 0, 0);
+  const { data } = pctx.getImageData(0, 0, img.width, img.height);
+  let minX = img.width, minY = img.height, maxX = 0, maxY = 0;
+  for (let y = 0; y < img.height; y++) {
+    for (let x = 0; x < img.width; x++) {
+      const i = (y * img.width + x) * 4;
+      if (data[i + 3]! > 128 && data[i]! + data[i + 1]! + data[i + 2]! < 384) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+  const w = maxX - minX + 1;
+  const h = maxY - minY + 1;
+  const width = 960;
+  const height = Math.round((h / w) * width);
+  const out = document.createElement('canvas');
+  out.width = width;
+  out.height = height;
+  const ctx = out.getContext('2d')!;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(img, minX, minY, w, h, 0, 0, width, height);
+  return { url: out.toDataURL('image/webp', 0.92), width, height };
+}, wordmarkUrl);
+// Browser-tab favicon: the mark alone on a transparent background — white for dark tabs,
+// black for light tabs. (The source is white-on-black, so brightness becomes the alpha.)
+const FAVICON_SIZE = 64;
+const tabMarks = await page.evaluate(
+  async ({ src, size }) => {
+    const img = new Image();
+    img.src = src;
+    await img.decode();
+    const probe = document.createElement('canvas');
+    probe.width = img.width;
+    probe.height = img.height;
+    const pctx = probe.getContext('2d')!;
+    pctx.drawImage(img, 0, 0);
+    const full = pctx.getImageData(0, 0, img.width, img.height).data;
+    let minX = img.width, minY = img.height, maxX = 0, maxY = 0;
+    for (let y = 0; y < img.height; y++) {
+      for (let x = 0; x < img.width; x++) {
+        const i = (y * img.width + x) * 4;
+        if (full[i]! + full[i + 1]! + full[i + 2]! > 384) {
+          if (x < minX) minX = x;
+          if (x > maxX) maxX = x;
+          if (y < minY) minY = y;
+          if (y > maxY) maxY = y;
+        }
+      }
+    }
+    const w = maxX - minX + 1;
+    const h = maxY - minY + 1;
+    const out = document.createElement('canvas');
+    out.width = out.height = size;
+    const ctx = out.getContext('2d')!;
+    ctx.imageSmoothingQuality = 'high';
+    const scale = (size * 0.96) / Math.max(w, h);
+    ctx.drawImage(img, minX, minY, w, h, (size - w * scale) / 2, (size - h * scale) / 2, w * scale, h * scale);
+    const pixels = ctx.getImageData(0, 0, size, size);
+    // (No named inner functions here: tsx's helpers don't exist inside the browser.)
+    const urls: string[] = [];
+    for (const value of [255, 0]) {
+      const copy = new ImageData(new Uint8ClampedArray(pixels.data), size, size);
+      for (let i = 0; i < copy.data.length; i += 4) {
+        const alpha = Math.max(copy.data[i]!, copy.data[i + 1]!, copy.data[i + 2]!);
+        copy.data[i] = copy.data[i + 1] = copy.data[i + 2] = value;
+        copy.data[i + 3] = alpha;
+      }
+      ctx.clearRect(0, 0, size, size);
+      ctx.putImageData(copy, 0, 0);
+      urls.push(out.toDataURL('image/png'));
+    }
+    return { white: urls[0]!, black: urls[1]! };
+  },
+  { src: dataUrl, size: FAVICON_SIZE },
+);
 await browser.close();
+
+// One SVG holds both and picks by the browser's colour scheme.
+const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${FAVICON_SIZE} ${FAVICON_SIZE}">
+<style>.dark{display:none}@media (prefers-color-scheme:dark){.light{display:none}.dark{display:inline}}</style>
+<image class="light" width="${FAVICON_SIZE}" height="${FAVICON_SIZE}" href="${tabMarks.black}"/>
+<image class="dark" width="${FAVICON_SIZE}" height="${FAVICON_SIZE}" href="${tabMarks.white}"/>
+</svg>
+`;
+writeFileSync(resolve(ROOT, 'public/favicon.svg'), faviconSvg);
+console.log('wrote public/favicon.svg (black mark on light tabs, white on dark tabs)');
+
+const wordmarkPath = resolve(ROOT, 'public/brand/mess-happens.webp');
+mkdirSync(dirname(wordmarkPath), { recursive: true });
+writeFileSync(wordmarkPath, Buffer.from(wordmark.url.split(',')[1]!, 'base64'));
+console.log(`wrote public/brand/mess-happens.webp (${wordmark.width}×${wordmark.height})`);
 
 ICONS.forEach((icon, i) => {
   const path = resolve(ROOT, icon.file);

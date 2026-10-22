@@ -9,7 +9,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon-16.png', 'favicon-32.png', 'favicon-48.png', 'icons/apple-touch-icon.png'],
+      includeAssets: ['favicon.svg', 'favicon-16.png', 'favicon-32.png', 'favicon-48.png', 'icons/apple-touch-icon.png'],
       manifest: {
         name: 'Mess — menu & nutrition',
         short_name: 'Mess',
@@ -29,7 +29,7 @@ export default defineConfig({
       workbox: {
         // App shell only. Firestore data is cached by the Firestore SDK (IndexedDB), never by the
         // service worker, so a cached menu can't override what an admin published.
-        globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,webp,woff2}'],
         // The UI is English: only the Latin font subsets are worth caching offline.
         globIgnores: ['**/inter-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*.woff2'],
         navigateFallback: '/index.html',
