@@ -92,7 +92,7 @@ Every push to the GitHub branch redeploys automatically. If you change environme
 | `npm run seed` / `seed:emulator` | Load `kit/data` into Firestore. Idempotent; leaves admin edits alone unless `--overwrite` (foods are then versioned). `--dry-run` previews |
 | `npm run set-admin -- <email> [--remove]` | Grant/revoke admin (the only way to become admin) |
 | `npm run deploy:rules` | Deploy `firestore.rules` and indexes |
-| `npx tsx scripts/make-icons.ts` | Re-render the app icons (uses installed Edge/Chrome) |
+| `npx tsx scripts/make-icons.ts` | Re-render the favicon and app icons from `scripts/assets/logo.png` (uses installed Edge/Chrome) |
 
 ## How it works
 
