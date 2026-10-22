@@ -3,6 +3,7 @@ import {
   isSpecialMeal,
   type CatalogFood,
   type ConsumptionEntry,
+  type DayTotals,
   type Meal,
   type MealMenu,
   type MenuItem,
@@ -21,8 +22,8 @@ interface MealSectionProps {
   choiceLabels: Record<string, string>;
   varieties?: Record<string, string>;
   tracking?: Tracking;
-  /** Logged kcal for this meal (shown in the header once > 0). */
-  loggedKcal?: number;
+  /** What's logged for this meal — summarised at the end of the section once anything is. */
+  loggedTotals?: DayTotals;
   /** Shown when the meal comes from a date override. */
   changedReason?: string | null;
   /** Logged entries for foods no longer on this meal's menu (menu changed after logging). */
@@ -32,15 +33,12 @@ interface MealSectionProps {
 }
 
 export function MealSection(props: MealSectionProps) {
-  const { meal, menu, loggedKcal = 0, changedReason, offMenu = [] } = props;
+  const { meal, menu, loggedTotals, changedReason, offMenu = [] } = props;
   return (
     <section aria-labelledby={`meal-${meal}`}>
-      <div className="flex items-baseline justify-between gap-4">
-        <h2 id={`meal-${meal}`} className="text-section capitalize">
-          {meal}
-        </h2>
-        {loggedKcal > 0 ? <p className="font-semibold tabular-nums">{formatNumber(loggedKcal)} kcal</p> : null}
-      </div>
+      <h2 id={`meal-${meal}`} className="text-section capitalize">
+        {meal}
+      </h2>
       {changedReason ? <p className="mt-1 text-sm text-muted">Changed for this date — {changedReason}</p> : null}
 
       {menu === null ? (
@@ -68,7 +66,37 @@ export function MealSection(props: MealSectionProps) {
           </ul>
         </div>
       ) : null}
+
+      {props.tracking && loggedTotals && loggedTotals.kcal > 0 ? <MealTotals meal={meal} totals={loggedTotals} /> : null}
     </section>
+  );
+}
+
+/** End-of-meal summary: plain figures, no box or rule. */
+function MealTotals({ meal, totals }: { meal: Meal; totals: DayTotals }) {
+  const figures: [string, string, string][] = [
+    [formatNumber(totals.kcal), 'kcal', ''],
+    [formatNumber(totals.protein_g, 1), 'g', 'protein'],
+    [formatNumber(totals.carbohydrates_g, 1), 'g', 'carbs'],
+    [formatNumber(totals.fat_g, 1), 'g', 'fat'],
+    [formatNumber(totals.fiber_g, 1), 'g', 'fiber'],
+  ];
+  return (
+    <div className="mt-6" aria-label={`${meal} total`}>
+      <p className="label">{meal} total</p>
+      <p className="mt-2 flex flex-wrap items-baseline gap-x-5 gap-y-1 tabular-nums">
+        {figures.map(([value, unit, name]) => (
+          <span key={name || unit}>
+            <span className="text-lg font-bold">{value}</span>
+            <span className="text-sm text-muted">
+              {' '}
+              {unit}
+              {name ? ` ${name}` : ''}
+            </span>
+          </span>
+        ))}
+      </p>
+    </div>
   );
 }
 

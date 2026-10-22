@@ -7,7 +7,7 @@ import { useDayLog } from '../data/useDayLog';
 import { useMessToday } from '../hooks/useMessToday';
 import { useOnline } from '../hooks/useOnline';
 import { foodIdsOf, resolveDay } from '../lib/menu';
-import { formatNumber, scale, totalsOf } from '../lib/nutrition';
+import { totalsOf } from '../lib/nutrition';
 import { CalendarMissing } from '../components/menu/CalendarMissing';
 import { DayMenuView } from '../components/menu/DayMenuView';
 import { DayHeader } from '../components/menu/DayHeader';
@@ -51,7 +51,7 @@ export function TodayPage() {
   const log = useDayLog(uid, date);
   const online = useOnline();
 
-  const { day: totals, byMeal } = useMemo(() => totalsOf(log.entries), [log.entries]);
+  const { byMeal } = useMemo(() => totalsOf(log.entries), [log.entries]);
 
   const offMenu = useMemo(() => {
     const out: Partial<Record<Meal, ConsumptionEntry[]>> = {};
@@ -66,48 +66,25 @@ export function TodayPage() {
   const isFuture = date > today;
   const tracking: Tracking | undefined = uid === null ? undefined : {
     quantityOf: (meal, foodId) => log.entries[entryKey(meal, foodId)]?.quantity ?? 0,
-    loggedOf: (meal, foodId) => {
-      const e = log.entries[entryKey(meal, foodId)];
-      return e && e.quantity > 0 ? scale(e.snapshot, e.quantity) : null;
-    },
     step: log.step,
     setQuantity: log.setQuantity,
     disabledReason: isFuture ? 'You can log food once the day arrives.' : log.loading ? 'Loading' : null,
   };
 
-  const logged = Object.values(log.entries).some((e) => e.quantity > 0);
-
   return (
     <>
-      <DayHeader date={date} today={today} parity={day.parity} />
+      <DayHeader date={date} today={today} parity={day.parity} status={log.pending ? (online ? 'Saving…' : 'Offline — will sync') : null} />
 
-      <div className="mt-6 flex min-h-6 flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-        <p className="text-sm">
-          {state.status === 'signedOut' ? (
-            <span className="text-muted">
-              <Link to="/login" state={{ from: date === today ? '/' : `/?date=${date}` }} className="font-semibold text-ink underline underline-offset-4">
-                Sign in
-              </Link>{' '}
-              to track what you eat — the menu is open to everyone.
-            </span>
-          ) : state.status === 'loading' ? null : logged ? (
-            <>
-              <span className="font-semibold tabular-nums">{formatNumber(totals.kcal)} kcal</span>
-              <span className="text-muted"> logged · </span>
-              <Link to={date === today ? '/summary' : `/summary?date=${date}`} className="underline underline-offset-4">
-                Summary
-              </Link>
-            </>
-          ) : isFuture ? (
-            <span className="text-muted">Upcoming — logging opens on the day.</span>
-          ) : null}
+      {state.status === 'signedOut' ? (
+        <p className="mt-6 text-sm text-muted">
+          <Link to="/login" state={{ from: date === today ? '/' : `/?date=${date}` }} className="font-semibold text-ink underline underline-offset-4">
+            Sign in
+          </Link>{' '}
+          to track what you eat — the menu is open to everyone.
         </p>
-        {log.pending ? (
-          <p role="status" className="text-sm text-muted">
-            {online ? 'Saving…' : 'Saved on this device — will sync'}
-          </p>
-        ) : null}
-      </div>
+      ) : state.status === 'signedIn' && isFuture ? (
+        <p className="mt-6 text-sm text-muted">Upcoming — logging opens on the day.</p>
+      ) : null}
 
       {data.error || log.error ? (
         <div className="mt-6">

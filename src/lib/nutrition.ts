@@ -94,6 +94,27 @@ export type StepResult =
   | { kind: 'delete'; key: string }
   | { kind: 'noop' };
 
+/** Units people count one at a time (1 idli, 2 slices) — every other unit is weighed or measured. */
+export const COUNTABLE_UNITS: ReadonlySet<ServingUnit> = new Set(['piece', 'slice', 'sachet', 'cup', 'bowl', 'tsp']);
+
+export function isCountable(unit: ServingUnit): boolean {
+  return COUNTABLE_UNITS.has(unit);
+}
+
+/**
+ * What one + tap adds: one item for countable foods (1 dosa, 1 slice), otherwise one standard
+ * serving (e.g. 150 g of rice). So the stepper counts what people ate.
+ */
+export function stepOf(food: CatalogFood, unit: ServingUnit = food.servingUnit): number {
+  if (isCountable(unit)) return 1;
+  return unit === food.servingUnit ? food.servingSize : 50;
+}
+
+/** How many of the food that is: pieces for countable foods, servings for weighed ones. */
+export function countOf(food: CatalogFood, quantity: number, unit: ServingUnit = food.servingUnit): number {
+  return quantity / stepOf(food, unit);
+}
+
 /**
  * One +/− tap. Quantities never go below zero; zero removes the entry.
  * A new entry freezes the food's current nutrition; an existing one keeps its snapshot.
@@ -106,7 +127,7 @@ export function applyStep(
 ): StepResult {
   const key = entryKey(meal, food.id);
   const existing = entries[key];
-  const step = existing && existing.unit !== food.servingUnit ? 1 : food.quantityStep;
+  const step = stepOf(food, existing?.unit ?? food.servingUnit);
   const current = existing?.quantity ?? 0;
   const next = Math.max(0, roundQty(current + direction * step));
   if (next === current) return { kind: 'noop' };

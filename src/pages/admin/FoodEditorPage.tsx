@@ -200,7 +200,18 @@ function FoodForm({ food, onClose, onCreated }: { food: CatalogFood | null; onCl
         </Fieldset>
 
         <Fieldset legend="Serving and tracking">
-          <TextField label="Standard serving" inputMode="decimal" value={form.servingSize} onChange={(e) => set('servingSize', e.target.value)} error={err('servingSize')} />
+          <TextField
+            label="Standard serving"
+            inputMode="decimal"
+            value={form.servingSize}
+            onChange={(e) => set('servingSize', e.target.value)}
+            error={err('servingSize')}
+            hint={
+              ['piece', 'slice', 'sachet', 'cup', 'bowl', 'tsp'].includes(form.servingUnit)
+                ? `Students count one ${form.servingUnit} per tap`
+                : `Each + adds one serving (${form.servingSize || '?'} ${form.servingUnit})`
+            }
+          />
           <label className="block">
             <span className="label">Unit</span>
             <select className={select} value={form.servingUnit} onChange={(e) => set('servingUnit', e.target.value as FoodFormState['servingUnit'])}>
@@ -209,7 +220,6 @@ function FoodForm({ food, onClose, onCreated }: { food: CatalogFood | null; onCl
               ))}
             </select>
           </label>
-          <TextField label="+/− step" inputMode="decimal" value={form.quantityStep} onChange={(e) => set('quantityStep', e.target.value)} error={err('quantityStep')} hint={`Each tap adds ${form.quantityStep || '?'} ${form.servingUnit}`} />
           <label className="flex min-h-11 items-center gap-3 self-end">
             <input type="checkbox" checked={form.trackable} onChange={(e) => set('trackable', e.target.checked)} className="size-5 accent-black" />
             <span>Students can log this food</span>

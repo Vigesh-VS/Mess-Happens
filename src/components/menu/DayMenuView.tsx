@@ -31,7 +31,7 @@ export function DayMenuView({ meals, varieties, overrideReason, tracking, byMeal
           choiceLabels={choiceLabels}
           varieties={varieties}
           tracking={tracking}
-          loggedKcal={byMeal?.[m.meal].kcal}
+          loggedTotals={byMeal?.[m.meal]}
           changedReason={m.source === 'override' ? (overrideReason ?? 'special change') : null}
           offMenu={offMenu?.[m.meal]}
           foodForEntry={foodForEntry}

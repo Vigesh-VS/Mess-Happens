@@ -1,6 +1,6 @@
 import { useId, useState } from 'react';
 import type { CatalogFood, Meal, MenuItem } from '../../models';
-import { formatNumber, formatQuantity, perServing } from '../../lib/nutrition';
+import { countOf, formatQuantity, isCountable, stepOf } from '../../lib/nutrition';
 import { NutritionDetails } from './NutritionDetails';
 import { Stepper } from './Stepper';
 import type { Tracking } from './types';
@@ -16,8 +16,9 @@ interface FoodRowProps {
 }
 
 /**
- * Menu vs consumed: the per-serving kcal is grey; the user's logged kcal appears in black
- * only once they record a quantity.
+ * One menu item: name, what one tap adds (e.g. "150 g" or "1 slice"), and the counter.
+ * Nutrition is not shown here — it's in the food's details (tap the name), at the end of each
+ * meal, and on the Summary screen.
  */
 export function FoodRow({ meal, item, food, tracking, variety, compact = false }: FoodRowProps) {
   const [open, setOpen] = useState(false);
@@ -32,9 +33,8 @@ export function FoodRow({ meal, item, food, tracking, variety, compact = false }
   }
 
   const quantity = tracking?.quantityOf(meal, food.id) ?? 0;
-  const logged = tracking?.loggedOf(meal, food.id) ?? null;
-  const serving = perServing(food);
   const showStepper = tracking && food.trackable;
+  const countable = isCountable(food.servingUnit);
 
   return (
     <li className={compact ? 'py-2.5' : 'py-4'}>
@@ -53,16 +53,7 @@ export function FoodRow({ meal, item, food, tracking, variety, compact = false }
             {food.name}
           </button>
           <p className="mt-1 flex flex-wrap items-baseline gap-x-2 text-sm text-muted">
-            <span>{formatQuantity(food.servingSize, food.servingUnit)}</span>
-            <span aria-hidden>·</span>
-            <span>
-              {formatNumber(serving.kcal)} kcal
-              {food.verificationStatus !== 'verified' ? (
-                <abbr title="Estimate — a typical value; the real value may vary" className="ml-1 no-underline">
-                  est.
-                </abbr>
-              ) : null}
-            </span>
+            <span>{formatQuantity(stepOf(food), food.servingUnit)}</span>
             {item.servingQuantity ? <span>· {item.servingQuantity} served</span> : null}
             {item.limited ? <span className="label text-ink">Limited</span> : null}
           </p>
@@ -75,18 +66,14 @@ export function FoodRow({ meal, item, food, tracking, variety, compact = false }
           <div className="flex shrink-0 flex-col items-end gap-1.5 pt-0.5">
             <Stepper
               label={food.name}
-              value={quantity}
+              quantity={quantity}
               unit={food.servingUnit}
+              count={countOf(food, quantity)}
               disabled={tracking.disabledReason !== null}
               onStep={(dir) => tracking.step(meal, food, dir)}
               onSet={(q) => tracking.setQuantity(meal, food, q)}
             />
-            {logged && quantity > 0 ? (
-              <p className="text-xs tabular-nums">
-                <span className="font-semibold">{formatNumber(logged.kcal)} kcal</span>
-                <span className="text-muted"> · {formatNumber(logged.protein_g, 1)} g protein</span>
-              </p>
-            ) : null}
+            {quantity > 0 && !countable ? <p className="text-xs tabular-nums text-muted">{formatQuantity(quantity, food.servingUnit)}</p> : null}
           </div>
         ) : tracking && !food.trackable ? (
           <p className="shrink-0 pt-1 text-xs text-muted">not tracked</p>

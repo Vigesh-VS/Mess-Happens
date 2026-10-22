@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { CatalogFood, ConsumptionEntry } from '../models';
-import { applySet, applyStep, fiberIncomplete, formatQuantity, perServing, scale, snapshotOf, totalsOf } from './nutrition';
+import { applySet, applyStep, countOf, fiberIncomplete, formatQuantity, perServing, scale, snapshotOf, stepOf, totalsOf } from './nutrition';
 
 const rice: CatalogFood = {
   id: 'rice', name: 'Plain Rice', category: 'rice', servingSize: 150, servingUnit: 'g', quantityStep: 50, trackable: true,
@@ -34,16 +34,16 @@ describe('portion maths', () => {
   });
 });
 
-describe('applyStep (+/− tracking)', () => {
-  it('first + creates an entry with one step and a frozen snapshot', () => {
+describe('applyStep (+/− counts servings or items)', () => {
+  it('first + adds one standard serving for weighed foods (rice: 150 g)', () => {
     const r = applyStep({}, 'lunch', rice, 1);
     expect(r).toEqual({
       kind: 'set', key: 'lunch__rice',
-      entry: { meal: 'lunch', foodId: 'rice', name: 'Plain Rice', quantity: 50, unit: 'g', snapshot: snapshotOf(rice) },
+      entry: { meal: 'lunch', foodId: 'rice', name: 'Plain Rice', quantity: 150, unit: 'g', snapshot: snapshotOf(rice) },
     });
   });
 
-  it('+ and − move by the food’s step; never below zero; zero deletes', () => {
+  it('+ and − move one serving at a time; never below zero; zero deletes', () => {
     let entries: Record<string, ConsumptionEntry> = {};
     const apply = (dir: 1 | -1) => {
       const r = applyStep(entries, 'lunch', rice, dir);
@@ -55,13 +55,37 @@ describe('applyStep (+/− tracking)', () => {
       return r;
     };
     apply(1); apply(1); apply(1);
-    expect(entries['lunch__rice']!.quantity).toBe(150);
+    expect(entries['lunch__rice']!.quantity).toBe(450);
+    expect(countOf(rice, entries['lunch__rice']!.quantity)).toBe(3);
     apply(-1);
-    expect(entries['lunch__rice']!.quantity).toBe(100);
+    expect(entries['lunch__rice']!.quantity).toBe(300);
     apply(-1);
     expect(apply(-1)).toEqual({ kind: 'delete', key: 'lunch__rice' });
     expect(entries).toEqual({});
     expect(apply(-1)).toEqual({ kind: 'noop' });
+  });
+
+  it('countable foods go one item at a time, even when the listed serving is more (bread: 2 slices)', () => {
+    const bread: CatalogFood = {
+      ...rice, id: 'bread-butter-jam', name: 'Bread, Butter & Jam', servingSize: 2, servingUnit: 'slice',
+      nutrition: { ...rice.nutrition, basis: { quantity: 2, unit: 'slice' }, calories_kcal: 210 },
+    };
+    expect(stepOf(bread)).toBe(1);
+    expect(stepOf(vada)).toBe(1);
+    const one = applyStep({}, 'breakfast', bread, 1);
+    if (one.kind !== 'set') throw new Error();
+    expect(one.entry.quantity).toBe(1);
+    expect(scale(one.entry.snapshot, 1).kcal).toBe(105);
+    const two = applyStep({ [one.key]: one.entry }, 'breakfast', bread, 1);
+    expect(two.kind === 'set' && two.entry.quantity).toBe(2);
+  });
+
+  it('after typing a custom amount, + adds another serving on top', () => {
+    const typed = applySet({}, 'lunch', rice, 175);
+    if (typed?.kind !== 'set') throw new Error();
+    const r = applyStep({ [typed.key]: typed.entry }, 'lunch', rice, 1);
+    expect(r.kind === 'set' && r.entry.quantity).toBe(325);
+    expect(countOf(rice, 175)).toBeCloseTo(1.17, 2);
   });
 
   it('the same food in two meals is two entries (no duplicates within a meal)', () => {
@@ -77,7 +101,7 @@ describe('applyStep (+/− tracking)', () => {
     const edited: CatalogFood = { ...rice, version: 4, nutrition: { ...rice.nutrition, calories_kcal: 999 } };
     const second = applyStep({ [first.key]: first.entry }, 'lunch', edited, 1);
     if (second.kind !== 'set') throw new Error();
-    expect(second.entry.quantity).toBe(100);
+    expect(second.entry.quantity).toBe(300);
     expect(second.entry.snapshot.kcal).toBe(130);
     expect(second.entry.snapshot.foodVersion).toBe(3);
   });

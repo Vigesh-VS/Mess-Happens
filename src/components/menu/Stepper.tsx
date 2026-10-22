@@ -1,23 +1,26 @@
 import { useState, type KeyboardEvent } from 'react';
 import { Minus, Plus } from 'lucide-react';
 import type { ServingUnit } from '../../models';
-import { formatQuantity } from '../../lib/nutrition';
+import { formatNumber, formatQuantity } from '../../lib/nutrition';
 
 interface StepperProps {
   label: string;
-  value: number;
+  /** Logged amount in `unit` (grams, ml, pieces…). */
+  quantity: number;
   unit: ServingUnit;
+  /** How many servings/items that is — what the stepper shows. */
+  count: number;
   disabled?: boolean;
   onStep: (direction: 1 | -1) => void;
-  /** Tap the amount to type an exact value (e.g. 175 g). */
+  /** Tap the count to type an exact amount in `unit` (e.g. 175 g). */
   onSet: (quantity: number) => void;
 }
 
 /**
- * Compact [−] 150 g [+]. The visible buttons are small, but each has an invisible ~40px hit
- * area so they stay easy to tap. The amount itself is a button that turns into an input.
+ * Compact [−] 2 [+]: + adds one serving or one item. The visible buttons are small but each has
+ * an invisible ~40px hit area. Tapping the count opens an input for an exact amount.
  */
-export function Stepper({ label, value, unit, disabled = false, onStep, onSet }: StepperProps) {
+export function Stepper({ label, quantity, unit, count, disabled = false, onStep, onSet }: StepperProps) {
   const [draft, setDraft] = useState<string | null>(null);
 
   const btn = [
@@ -41,7 +44,7 @@ export function Stepper({ label, value, unit, disabled = false, onStep, onSet }:
 
   return (
     <div className="flex items-center gap-1.5" role="group" aria-label={`${label} quantity`}>
-      <button type="button" className={btn} onClick={() => onStep(-1)} disabled={disabled || value <= 0} aria-label={`Remove ${label}`}>
+      <button type="button" className={btn} onClick={() => onStep(-1)} disabled={disabled || quantity <= 0} aria-label={`Remove one ${label}`}>
         <Minus aria-hidden className="size-3" strokeWidth={2.5} />
       </button>
 
@@ -67,20 +70,20 @@ export function Stepper({ label, value, unit, disabled = false, onStep, onSet }:
         <button
           type="button"
           disabled={disabled}
-          onClick={() => setDraft(value > 0 ? String(value) : '')}
-          aria-label={`${formatQuantity(value, unit)} of ${label}. Tap to type an amount`}
+          onClick={() => setDraft(quantity > 0 ? String(quantity) : '')}
+          aria-label={`${formatNumber(count, 1)} × ${label} (${formatQuantity(quantity, unit)}). Tap to type an amount`}
           className={[
-            'relative min-w-12 px-1 text-center text-xs tabular-nums underline-offset-2',
+            'relative min-w-8 px-1 text-center text-sm tabular-nums underline-offset-2',
             "before:absolute before:-inset-y-2 before:inset-x-0 before:content-['']",
             'disabled:cursor-not-allowed enabled:hover:underline',
-            value > 0 ? 'font-semibold text-ink' : 'text-muted',
+            quantity > 0 ? 'font-bold text-ink' : 'text-muted',
           ].join(' ')}
         >
-          <span aria-live="polite">{formatQuantity(value, unit)}</span>
+          <span aria-live="polite">{formatNumber(count, 1)}</span>
         </button>
       )}
 
-      <button type="button" className={btn} onClick={() => onStep(1)} disabled={disabled} aria-label={`Add ${label}`}>
+      <button type="button" className={btn} onClick={() => onStep(1)} disabled={disabled} aria-label={`Add one ${label}`}>
         <Plus aria-hidden className="size-3" strokeWidth={2.5} />
       </button>
     </div>

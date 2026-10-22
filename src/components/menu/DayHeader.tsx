@@ -16,12 +16,18 @@ function relativeLabel(date: DateId, today: DateId): string {
  *   22 October
  *   Thursday · Even week
  */
-export function DayHeader({ date, today, parity }: { date: DateId; today: DateId; parity: Parity | null }) {
+export function DayHeader({ date, today, parity, status = null }: { date: DateId; today: DateId; parity: Parity | null; status?: string | null }) {
   const sameYear = date.slice(0, 4) === today.slice(0, 4);
   return (
     <header>
       <div className="flex items-center justify-between gap-4">
-        <p className="label">{relativeLabel(date, today)}</p>
+        <p className="label">
+          {relativeLabel(date, today)}
+          {/* Sync state sits on this line so it never shifts the menu. */}
+          <span role="status" className="ml-3 normal-case tracking-normal">
+            {status}
+          </span>
+        </p>
         <DayNav date={date} today={today} />
       </div>
       <h1 className="text-display mt-4">{formatDateId(date, sameYear ? { day: 'numeric', month: 'long' } : { day: 'numeric', month: 'long', year: 'numeric' })}</h1>
