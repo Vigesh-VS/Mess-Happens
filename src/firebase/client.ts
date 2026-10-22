@@ -19,6 +19,8 @@ export const auth = getAuth(app);
  */
 export const db = initializeFirestore(app, {
   localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() }),
+  // Optional model fields (note, choiceGroup…) may be undefined; drop them instead of throwing.
+  ignoreUndefinedProperties: true,
 });
 
 if (useEmulators) {

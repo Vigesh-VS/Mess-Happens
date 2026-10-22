@@ -5,10 +5,11 @@ import { ChevronRight, LogOut, RefreshCw } from 'lucide-react';
 import { useSignedIn } from '../auth/AuthContext';
 import { userDoc } from '../auth/profile';
 import { Button } from '../components/ui/Button';
-import { ComingInPhase } from '../components/ui/ComingInPhase';
 import { Notice } from '../components/ui/Notice';
 import { PageHeader } from '../components/ui/PageHeader';
 import { TextField } from '../components/ui/TextField';
+import { InstallHint } from './InstallHint';
+import { TargetsForm } from './TargetsForm';
 
 export function ProfilePage() {
   const { user, profile, isAdmin, refreshClaims, signOut } = useSignedIn();
@@ -44,7 +45,9 @@ export function ProfilePage() {
 
       {profile ? <NameForm key={profile.displayName} uid={user.uid} current={profile.displayName} /> : null}
 
-      <ComingInPhase phase={4}>Personal daily targets for calories, protein, carbohydrates, fat and fiber.</ComingInPhase>
+      {profile ? <TargetsForm uid={user.uid} current={profile.targets} /> : null}
+
+      <InstallHint />
 
       <div className="mt-10 flex flex-wrap gap-3 border-t border-line pt-6">
         <Button variant="secondary" icon={<RefreshCw aria-hidden className="size-4" />} busy={refreshing} onClick={handleRefresh}>

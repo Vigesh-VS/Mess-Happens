@@ -10,6 +10,7 @@ import {
 import {
   addDoc,
   collection,
+  FieldPath,
   deleteDoc,
   doc,
   getCountFromServer,
@@ -201,6 +202,34 @@ describe('admin: foods and versioning', () => {
     await assertSucceeds(batch.commit());
   });
 
+  it('accepts the Food Editor’s full batch: history + food + catalog + audit log', async () => {
+    await env.withSecurityRulesDisabled(async (ctx) => {
+      await setDoc(doc(ctx.firestore() as unknown as Firestore, 'catalog/foods'), { foods: {}, updatedAt: new Date(), updatedBy: 'seed' });
+    });
+    const db = asAdmin();
+    const current = (await getDoc(doc(db, 'foods/plain-rice'))).data()!;
+    const batch = writeBatch(db);
+    batch.set(doc(db, 'foods/plain-rice/history/1'), { ...current, archivedAt: serverTimestamp(), archivedBy: 'admin1' });
+    batch.set(doc(db, 'foods/plain-rice'), { ...foodData('admin1', 2, { verificationStatus: 'verified' }), createdAt: current.createdAt });
+    batch.update(doc(db, 'catalog/foods'), new FieldPath('foods', 'plain-rice'), { name: 'Plain Rice', version: 2 }, 'updatedAt', serverTimestamp(), 'updatedBy', 'admin1');
+    batch.set(doc(collection(db, 'adminAuditLogs')), {
+      actorUid: 'admin1', actorEmail: 'admin@example.com', action: 'food.update',
+      target: { collection: 'foods', id: 'plain-rice' }, before: null, after: null, at: serverTimestamp(),
+    });
+    await assertSucceeds(batch.commit());
+  });
+
+  it('a second edit of the same version is rejected (history/1 already exists)', async () => {
+    await env.withSecurityRulesDisabled(async (ctx) => {
+      await setDoc(doc(ctx.firestore() as unknown as Firestore, 'foods/plain-rice/history/1'), { name: 'old' });
+    });
+    const db = asAdmin();
+    const batch = writeBatch(db);
+    batch.set(doc(db, 'foods/plain-rice/history/1'), { name: 'stale', archivedAt: serverTimestamp(), archivedBy: 'admin1' });
+    batch.update(doc(db, 'foods/plain-rice'), { version: 2, updatedAt: serverTimestamp(), updatedBy: 'admin1' });
+    await assertFails(batch.commit());
+  });
+
   it('history is immutable and hidden from normal users', async () => {
     await env.withSecurityRulesDisabled(async (ctx) => {
       await setDoc(doc(ctx.firestore() as unknown as Firestore, 'foods/plain-rice/history/1'), { name: 'old' });
@@ -209,6 +238,22 @@ describe('admin: foods and versioning', () => {
     await assertSucceeds(getDoc(doc(asAdmin(), 'foods/plain-rice/history/1')));
     await assertFails(updateDoc(doc(asAdmin(), 'foods/plain-rice/history/1'), { name: 'rewritten' }));
     await assertFails(deleteDoc(doc(asAdmin(), 'foods/plain-rice/history/1')));
+  });
+});
+
+describe('food catalog', () => {
+  const catalog = (uid: string) => ({ foods: { rice: { name: 'Plain Rice' } }, updatedAt: serverTimestamp(), updatedBy: uid });
+
+  it('everyone signed in can read it; only admins can write it', async () => {
+    await assertSucceeds(getDoc(doc(asUser('alice'), 'catalog/foods')));
+    await assertFails(getDoc(doc(asGuest(), 'catalog/foods')));
+    await assertFails(setDoc(doc(asUser('alice'), 'catalog/foods'), catalog('alice')));
+    await assertSucceeds(setDoc(doc(asAdmin(), 'catalog/foods'), catalog('admin1')));
+    await assertFails(setDoc(doc(asAdmin(), 'catalog/foods'), { ...catalog('admin1'), extra: 1 }));
+  });
+
+  it('other catalog documents are denied', async () => {
+    await assertFails(setDoc(doc(asAdmin(), 'catalog/other'), catalog('admin1')));
   });
 });
 

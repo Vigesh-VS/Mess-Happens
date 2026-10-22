@@ -4,7 +4,7 @@ import { onSnapshot } from 'firebase/firestore';
 import { auth } from '../firebase/client';
 import type { UserProfile } from '../models';
 import { AuthContext, type AuthContextValue, type AuthState } from './AuthContext';
-import { ensureUserProfile, userDoc } from './profile';
+import { ensureUserProfile, setPendingSignupName, userDoc } from './profile';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null | undefined>(undefined);
@@ -38,7 +38,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return;
     }
     // Offline this may fail; the profile then already exists or is created next time online.
-    ensureUserProfile(auth.currentUser).catch((err) => console.warn('Could not ensure user profile', err));
+    ensureUserProfile(auth.currentUser)
+      .then(() => setPendingSignupName(null))
+      .catch((err) => console.warn('Could not ensure user profile', err));
     return onSnapshot(
       userDoc(uid),
       (snap) => setProfile(snap.exists() ? (snap.data() as UserProfile) : null),

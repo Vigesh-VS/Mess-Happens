@@ -17,6 +17,8 @@ export interface NutritionSnapshot {
 export interface ConsumptionEntry {
   meal: Meal;
   foodId: string;
+  /** Food name when logged, so history still reads well if the food is renamed or deleted. */
+  name: string;
   quantity: number;
   unit: ServingUnit;
   snapshot: NutritionSnapshot;

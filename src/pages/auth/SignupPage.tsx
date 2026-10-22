@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase/client';
 import { authErrorMessage } from '../../auth/authErrors';
-import { ensureUserProfile } from '../../auth/profile';
+import { setPendingSignupName } from '../../auth/profile';
 import { Button } from '../../components/ui/Button';
 import { Notice } from '../../components/ui/Notice';
 import { TextField } from '../../components/ui/TextField';
@@ -28,10 +28,12 @@ export function SignupPage() {
     setError(null);
     setBusy(true);
     try {
+      // The auth listener creates the Firestore profile with this name.
+      setPendingSignupName(name.trim());
       const { user } = await createUserWithEmailAndPassword(auth, email.trim(), password);
       await updateProfile(user, { displayName: name.trim() });
-      await ensureUserProfile(user, name);
     } catch (err) {
+      setPendingSignupName(null);
       setError(authErrorMessage(err));
       setBusy(false);
     }

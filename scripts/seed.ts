@@ -7,6 +7,8 @@
  *   npm run seed -- --overwrite         → also replace docs that differ from the kit
  *                                         (foods are versioned + archived, never silently replaced)
  *
+ * Always finishes by rebuilding catalog/foods (the one-read food list clients use) from foods/*.
+ *
  * Idempotent: document ids are fixed, so re-running never duplicates. By default existing
  * documents are left alone, so admin edits made in the app are never clobbered.
  * Does NOT create config/academicCalendar — an admin sets that in the app.
@@ -15,6 +17,7 @@ import { FieldValue, getFirestore, type DocumentReference, type Firestore, type 
 import { buildSeed, stableStringify } from './lib/buildSeed';
 import { loadKit } from './lib/kit';
 import { confirm, initAdmin, parseArgs } from './lib/adminApp';
+import { toCatalogEntry, type Food } from '../src/models';
 
 const ACTOR = 'seed-script';
 const BATCH_LIMIT = 400;
@@ -139,6 +142,22 @@ async function main() {
   });
 
   await writer.done();
+
+  // ---- catalog/foods: always rebuilt from what is actually stored in foods/* ----
+  if (!dryRun) {
+    const stored = await db.collection('foods').get();
+    const catalog = Object.fromEntries(
+      stored.docs.map((d) => [d.id, toCatalogEntry(d.data() as Omit<Food, 'id'>)]),
+    );
+    const catalogRef = db.doc('catalog/foods');
+    const existing = (await catalogRef.get()).data()?.foods;
+    if (stableStringify(existing ?? null) !== stableStringify(catalog)) {
+      await catalogRef.set({ foods: catalog, updatedAt: now, updatedBy: ACTOR });
+      console.log(`catalog/foods rebuilt (${stored.size} foods).`);
+    } else {
+      console.log('catalog/foods already up to date.');
+    }
+  }
 
   const verb = dryRun ? 'would be ' : '';
   console.log(`\n${plan.created.length} ${verb}created, ${plan.updated.length} ${verb}updated, ${plan.unchanged.length} unchanged.`);

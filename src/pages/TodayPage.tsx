@@ -1,16 +1,146 @@
-import { ComingInPhase } from '../components/ui/ComingInPhase';
+import { useMemo } from 'react';
+import { Link } from 'react-router';
+import { entryKey, type CatalogFood, type ConsumptionEntry, type Meal } from '../models';
+import { useSignedIn } from '../auth/AuthContext';
+import { useMessData } from '../data/MessDataContext';
+import { useDayLog } from '../data/useDayLog';
+import { useMessToday } from '../hooks/useMessToday';
+import { useOnline } from '../hooks/useOnline';
+import { foodIdsOf, resolveDay } from '../lib/menu';
+import { capitalize, formatLongDate, formatWeekdayName } from '../lib/messDate';
+import { formatNumber, scale, totalsOf } from '../lib/nutrition';
+import { CalendarMissing } from '../components/menu/CalendarMissing';
+import { DayMenuView } from '../components/menu/DayMenuView';
+import { DayNav, useSelectedDate } from '../components/menu/DayNav';
+import type { Tracking } from '../components/menu/types';
+import { LoadingScreen } from '../components/ui/LoadingScreen';
+import { Notice } from '../components/ui/Notice';
 import { PageHeader } from '../components/ui/PageHeader';
-import { formatMessDate } from '../lib/messDate';
+
+/** A stand-in for a logged food that has since been deleted, so the entry can still be corrected. */
+function foodFromEntry(e: ConsumptionEntry): CatalogFood {
+  return {
+    id: e.foodId,
+    name: e.name,
+    category: 'side',
+    servingSize: e.snapshot.basisQuantity,
+    servingUnit: e.unit,
+    quantityStep: e.unit === 'g' || e.unit === 'ml' ? 50 : 1,
+    trackable: true,
+    nutrition: {
+      basis: { quantity: e.snapshot.basisQuantity, unit: e.snapshot.basisUnit },
+      calories_kcal: e.snapshot.kcal,
+      protein_g: e.snapshot.protein_g,
+      carbohydrates_g: e.snapshot.carbohydrates_g,
+      fat_g: e.snapshot.fat_g,
+      fiber_g: e.snapshot.fiber_g,
+      sugar_g: null,
+    },
+    verificationStatus: 'estimated',
+    dataSource: 'No longer in the food list — values as logged.',
+    version: e.snapshot.foodVersion,
+  };
+}
 
 export function TodayPage() {
-  const { weekday, date } = formatMessDate(new Date());
+  const { user } = useSignedIn();
+  const data = useMessData();
+  const today = useMessToday(data.timezone);
+  const date = useSelectedDate(today);
+  const day = resolveDay(date, data.calendar, data.menus, data.overrides);
+  const log = useDayLog(user.uid, date);
+  const online = useOnline();
+
+  const { day: totals, byMeal } = useMemo(() => totalsOf(log.entries), [log.entries]);
+
+  const offMenu = useMemo(() => {
+    const out: Partial<Record<Meal, ConsumptionEntry[]>> = {};
+    for (const m of day.meals) {
+      const onMenu = foodIdsOf(m.menu, data.specials);
+      const extra = Object.values(log.entries).filter((e) => e.meal === m.meal && e.quantity > 0 && !onMenu.has(e.foodId));
+      if (extra.length) out[m.meal] = extra;
+    }
+    return out;
+  }, [day.meals, data.specials, log.entries]);
+
+  const isFuture = date > today;
+  const tracking: Tracking = {
+    quantityOf: (meal, foodId) => log.entries[entryKey(meal, foodId)]?.quantity ?? 0,
+    loggedKcalOf: (meal, foodId) => {
+      const e = log.entries[entryKey(meal, foodId)];
+      return e ? scale(e.snapshot, e.quantity).kcal : 0;
+    },
+    step: log.step,
+    disabledReason: isFuture ? 'You can log food once the day arrives.' : log.loading ? 'Loading' : null,
+  };
+
+  const logged = Object.values(log.entries).some((e) => e.quantity > 0);
+
   return (
     <>
-      <PageHeader eyebrow={date} title={weekday} />
-      <ComingInPhase phase={2}>
-        Today’s menu — breakfast, lunch, snacks and dinner — for the current odd/even week. Quantity controls arrive in
-        Phase 4.
-      </ComingInPhase>
+      <PageHeader
+        eyebrow={
+          <>
+            {formatLongDate(date)}
+            {day.parity ? ` · ${capitalize(day.parity)} week` : ''}
+            {date === today ? ' · Today' : ''}
+          </>
+        }
+        title={formatWeekdayName(date)}
+        actions={<DayNav date={date} today={today} />}
+      />
+
+      <div className="mt-4 flex min-h-6 flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+        <p className="text-sm">
+          {logged ? (
+            <>
+              <span className="font-semibold tabular-nums">{formatNumber(totals.kcal)} kcal</span>
+              <span className="text-muted"> logged · </span>
+              <Link to={date === today ? '/summary' : `/summary?date=${date}`} className="underline underline-offset-4">
+                Summary
+              </Link>
+            </>
+          ) : isFuture ? (
+            <span className="text-muted">Upcoming — logging opens on the day.</span>
+          ) : (
+            <span className="text-muted">Tap + on what you ate. Nothing counts until you log it.</span>
+          )}
+        </p>
+        {log.pending ? (
+          <p role="status" className="text-sm text-muted">
+            {online ? 'Saving…' : 'Saved on this device — will sync'}
+          </p>
+        ) : null}
+      </div>
+
+      {data.error || log.error ? (
+        <div className="mt-6">
+          <Notice tone="error" title="Something went wrong">
+            {data.error ?? log.error}
+          </Notice>
+        </div>
+      ) : null}
+
+      {!data.ready ? (
+        <LoadingScreen label="Loading menu" />
+      ) : (
+        <>
+          {data.calendar ? null : (
+            <div className="mt-8">
+              <CalendarMissing />
+            </div>
+          )}
+          <DayMenuView
+            meals={day.meals}
+            varieties={day.varieties}
+            overrideReason={day.override?.reason}
+            tracking={tracking}
+            byMeal={byMeal}
+            offMenu={offMenu}
+            foodForEntry={foodFromEntry}
+          />
+        </>
+      )}
     </>
   );
 }

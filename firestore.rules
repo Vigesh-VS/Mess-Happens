@@ -124,6 +124,16 @@ service cloud.firestore {
         && nullableNonNeg(n.fiber_g) && nullableNonNeg(n.sugar_g);
     }
 
+    // Every food in one document, so clients load the food list with a single read.
+    // Admins update it in the same batch as foods/{id}.
+    match /catalog/foods {
+      allow read: if signedIn();
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(['foods', 'updatedAt', 'updatedBy'])
+        && request.resource.data.foods is map
+        && stampedByMe(request.resource.data);
+    }
+
     // ---------- menus ----------
 
     match /menus/{menuId} {

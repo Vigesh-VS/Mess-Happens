@@ -1,6 +1,7 @@
 import { StrictMode, Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles/index.css';
+import './pwa/install'; // capture the install prompt as early as possible
 import { firebaseConfigured } from './firebase/config';
 import { SetupRequired } from './pages/SetupRequired';
 import { LoadingScreen } from './components/ui/LoadingScreen';

@@ -48,6 +48,25 @@ export interface Food {
   updatedBy: string;
 }
 
+/** The fields every client needs; published together in `catalog/foods`. */
+export type CatalogFood = Omit<Food, 'createdAt' | 'updatedAt' | 'updatedBy' | 'nameLower'>;
+
+/**
+ * `catalog/foods` — every food in ONE document, so a phone loads the whole food list with a
+ * single read (Spark plan has 50k reads/day). Admin edits update `foods/{id}` and this map in
+ * the same batch; `foods/{id}` stays the versioned source of truth.
+ */
+export interface FoodCatalog {
+  foods: Record<string, Omit<CatalogFood, 'id'>>;
+  updatedAt: TimestampLike;
+  updatedBy: string;
+}
+
+export function toCatalogEntry(food: Omit<Food, 'id'>): Omit<CatalogFood, 'id'> {
+  const { createdAt: _c, updatedAt: _u, updatedBy: _b, nameLower: _n, ...entry } = food;
+  return entry;
+}
+
 /** `foods/{foodId}/history/{version}` — immutable copy of a food before an edit. */
 export interface FoodHistoryEntry extends Omit<Food, 'id'> {
   archivedAt: TimestampLike;

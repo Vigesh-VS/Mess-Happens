@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import { AuthProvider } from './auth/AuthProvider';
+import { MessDataProvider } from './data/MessDataProvider';
 import { PublicOnly, RequireAdmin, RequireAuth } from './auth/guards';
 import { AdminLayout } from './components/layout/AdminLayout';
 import { AppShell } from './components/layout/AppShell';
@@ -32,7 +33,9 @@ const router = createBrowserRouter([
     path: '/',
     element: (
       <RequireAuth>
-        <AppShell />
+        <MessDataProvider>
+          <AppShell />
+        </MessDataProvider>
       </RequireAuth>
     ),
     children: [
