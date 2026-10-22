@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { CatalogFood, ConsumptionEntry } from '../models';
-import { applyStep, fiberIncomplete, formatQuantity, perServing, scale, snapshotOf, totalsOf } from './nutrition';
+import { applySet, applyStep, fiberIncomplete, formatQuantity, perServing, scale, snapshotOf, totalsOf } from './nutrition';
 
 const rice: CatalogFood = {
   id: 'rice', name: 'Plain Rice', category: 'rice', servingSize: 150, servingUnit: 'g', quantityStep: 50, trackable: true,
@@ -80,6 +80,36 @@ describe('applyStep (+/− tracking)', () => {
     expect(second.entry.quantity).toBe(100);
     expect(second.entry.snapshot.kcal).toBe(130);
     expect(second.entry.snapshot.foodVersion).toBe(3);
+  });
+});
+
+describe('applySet (typing an exact amount)', () => {
+  it('creates an entry with exactly the typed amount, and its nutrition scales', () => {
+    const r = applySet({}, 'lunch', rice, 175);
+    if (r?.kind !== 'set') throw new Error();
+    expect(r.entry.quantity).toBe(175);
+    expect(scale(r.entry.snapshot, r.entry.quantity).kcal).toBeCloseTo(227.5);
+    expect(scale(r.entry.snapshot, r.entry.quantity).protein_g).toBeCloseTo(4.725);
+  });
+
+  it('0 removes the entry; negative or non-numbers are rejected; huge values are capped', () => {
+    const first = applySet({}, 'lunch', rice, 100);
+    if (first?.kind !== 'set') throw new Error();
+    const entries = { [first.key]: first.entry };
+    expect(applySet(entries, 'lunch', rice, 0)).toEqual({ kind: 'delete', key: 'lunch__rice' });
+    expect(applySet(entries, 'lunch', rice, -5)).toBeNull();
+    expect(applySet(entries, 'lunch', rice, Number.NaN)).toBeNull();
+    const capped = applySet(entries, 'lunch', rice, 99999);
+    expect(capped?.kind === 'set' && capped.entry.quantity).toBe(3000);
+    expect(applySet(entries, 'lunch', rice, 100)).toEqual({ kind: 'noop' });
+  });
+
+  it('keeps the original snapshot when changing an existing entry', () => {
+    const first = applySet({}, 'lunch', rice, 100);
+    if (first?.kind !== 'set') throw new Error();
+    const edited: CatalogFood = { ...rice, version: 9, nutrition: { ...rice.nutrition, calories_kcal: 500 } };
+    const r = applySet({ [first.key]: first.entry }, 'lunch', edited, 250);
+    expect(r?.kind === 'set' && r.entry.snapshot.kcal).toBe(130);
   });
 });
 

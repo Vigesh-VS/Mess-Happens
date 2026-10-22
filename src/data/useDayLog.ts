@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { deleteField, doc, onSnapshot, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/client';
 import type { CatalogFood, ConsumptionEntry, DateId, DayLog, DayTotals, Meal } from '../models';
-import { applyStep, totalsOf } from '../lib/nutrition';
+import { applySet, applyStep, totalsOf, type StepResult } from '../lib/nutrition';
 import { stableStringify } from '../lib/stableStringify';
 
 export interface DayLogState {
@@ -12,6 +12,8 @@ export interface DayLogState {
   pending: boolean;
   error: string | null;
   step: (meal: Meal, food: CatalogFood, direction: 1 | -1) => void;
+  /** Set an exact amount, e.g. 175 (g). 0 removes the entry. */
+  setQuantity: (meal: Meal, food: CatalogFood, quantity: number) => void;
 }
 
 /**
@@ -70,11 +72,10 @@ export function useDayLog(uid: string | null, date: DateId): DayLogState {
     );
   }, [uid, date]);
 
-  const step = useCallback(
-    (meal: Meal, food: CatalogFood, direction: 1 | -1) => {
-      if (!uid) return;
-      const result = applyStep(latest.current, meal, food, direction);
-      if (result.kind === 'noop') return;
+  /** Applies one change locally at once, then saves it (queued while offline). */
+  const commit = useCallback(
+    (result: StepResult | null) => {
+      if (!uid || !result || result.kind === 'noop') return;
 
       const next = { ...latest.current };
       if (result.kind === 'set') next[result.key] = result.entry;
@@ -94,5 +95,15 @@ export function useDayLog(uid: string | null, date: DateId): DayLogState {
     [uid, date],
   );
 
-  return { entries, loading, pending, error, step };
+  const step = useCallback(
+    (meal: Meal, food: CatalogFood, direction: 1 | -1) => commit(applyStep(latest.current, meal, food, direction)),
+    [commit],
+  );
+
+  const setQuantity = useCallback(
+    (meal: Meal, food: CatalogFood, quantity: number) => commit(applySet(latest.current, meal, food, quantity)),
+    [commit],
+  );
+
+  return { entries, loading, pending, error, step, setQuantity };
 }

@@ -32,7 +32,7 @@ export function FoodRow({ meal, item, food, tracking, variety, compact = false }
   }
 
   const quantity = tracking?.quantityOf(meal, food.id) ?? 0;
-  const logged = tracking?.loggedKcalOf(meal, food.id) ?? 0;
+  const logged = tracking?.loggedOf(meal, food.id) ?? null;
   const serving = perServing(food);
   const showStepper = tracking && food.trackable;
 
@@ -58,7 +58,7 @@ export function FoodRow({ meal, item, food, tracking, variety, compact = false }
             <span>
               {formatNumber(serving.kcal)} kcal
               {food.verificationStatus !== 'verified' ? (
-                <abbr title="Estimated nutrition — not lab-verified" className="ml-1 no-underline">
+                <abbr title="Estimate — a typical value; the real value may vary" className="ml-1 no-underline">
                   est.
                 </abbr>
               ) : null}
@@ -72,15 +72,21 @@ export function FoodRow({ meal, item, food, tracking, variety, compact = false }
         </div>
 
         {showStepper ? (
-          <div className="flex shrink-0 flex-col items-end gap-1">
+          <div className="flex shrink-0 flex-col items-end gap-1.5 pt-0.5">
             <Stepper
               label={food.name}
               value={quantity}
-              display={quantity > 0 ? formatQuantity(quantity, food.servingUnit) : '0'}
+              unit={food.servingUnit}
               disabled={tracking.disabledReason !== null}
               onStep={(dir) => tracking.step(meal, food, dir)}
+              onSet={(q) => tracking.setQuantity(meal, food, q)}
             />
-            {quantity > 0 ? <p className="text-sm font-semibold tabular-nums">{formatNumber(logged)} kcal</p> : null}
+            {logged && quantity > 0 ? (
+              <p className="text-xs tabular-nums">
+                <span className="font-semibold">{formatNumber(logged.kcal)} kcal</span>
+                <span className="text-muted"> · {formatNumber(logged.protein_g, 1)} g protein</span>
+              </p>
+            ) : null}
           </div>
         ) : tracking && !food.trackable ? (
           <p className="shrink-0 pt-1 text-xs text-muted">not tracked</p>

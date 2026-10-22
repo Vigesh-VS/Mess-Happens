@@ -119,6 +119,35 @@ export function applyStep(
   };
 }
 
+/** Largest amount one entry may hold (guards against typos like 15000 g). */
+export const MAX_QUANTITY: Record<ServingUnit, number> = { g: 3000, ml: 3000, piece: 50, slice: 50, cup: 20, tsp: 50, sachet: 20, bowl: 20 };
+
+/**
+ * Typing an exact amount ("175 g"). Same rules as a tap: never negative, 0 removes the entry,
+ * an existing entry keeps its original nutrition snapshot. Returns null for invalid input.
+ */
+export function applySet(
+  entries: Record<string, ConsumptionEntry>,
+  meal: Meal,
+  food: CatalogFood,
+  quantity: number,
+): StepResult | null {
+  if (!Number.isFinite(quantity) || quantity < 0) return null;
+  const key = entryKey(meal, food.id);
+  const existing = entries[key];
+  const unit = existing?.unit ?? food.servingUnit;
+  const next = Math.min(roundQty(quantity), MAX_QUANTITY[unit]);
+  const current = existing?.quantity ?? 0;
+  if (next === current) return { kind: 'noop' };
+  if (next === 0) return { kind: 'delete', key };
+  if (existing) return { kind: 'set', key, entry: { ...existing, quantity: next } };
+  return {
+    kind: 'set',
+    key,
+    entry: { meal, foodId: food.id, name: food.name, quantity: next, unit: food.servingUnit, snapshot: snapshotOf(food) },
+  };
+}
+
 function roundQty(q: number): number {
   return Math.round(q * 1000) / 1000;
 }

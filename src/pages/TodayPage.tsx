@@ -66,11 +66,12 @@ export function TodayPage() {
   const isFuture = date > today;
   const tracking: Tracking | undefined = uid === null ? undefined : {
     quantityOf: (meal, foodId) => log.entries[entryKey(meal, foodId)]?.quantity ?? 0,
-    loggedKcalOf: (meal, foodId) => {
+    loggedOf: (meal, foodId) => {
       const e = log.entries[entryKey(meal, foodId)];
-      return e ? scale(e.snapshot, e.quantity).kcal : 0;
+      return e && e.quantity > 0 ? scale(e.snapshot, e.quantity) : null;
     },
     step: log.step,
+    setQuantity: log.setQuantity,
     disabledReason: isFuture ? 'You can log food once the day arrives.' : log.loading ? 'Loading' : null,
   };
 
@@ -99,9 +100,7 @@ export function TodayPage() {
             </>
           ) : isFuture ? (
             <span className="text-muted">Upcoming — logging opens on the day.</span>
-          ) : (
-            <span className="text-muted">Tap + on what you ate. Nothing counts until you log it.</span>
-          )}
+          ) : null}
         </p>
         {log.pending ? (
           <p role="status" className="text-sm text-muted">

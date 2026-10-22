@@ -1,10 +1,10 @@
 import type { CatalogFood } from '../../models';
 import { formatNumber, formatQuantity, perServing } from '../../lib/nutrition';
 
-const STATUS_LABEL: Record<CatalogFood['verificationStatus'], string> = {
-  estimated: 'Estimated — not lab-verified',
-  'needs-review': 'Needs review',
-  verified: 'Verified',
+const NOTE: Record<CatalogFood['verificationStatus'], string> = {
+  estimated: 'Estimate — a typical value for this dish. The real value may vary.',
+  'needs-review': 'Estimate — a typical value for this dish. The real value may vary.',
+  verified: 'Checked values for this dish.',
 };
 
 export function NutritionDetails({ id, food }: { id: string; food: CatalogFood }) {
@@ -31,10 +31,7 @@ export function NutritionDetails({ id, food }: { id: string; food: CatalogFood }
           </div>
         ))}
       </dl>
-      <p className="mt-2 text-xs text-muted">
-        {STATUS_LABEL[food.verificationStatus]}. {food.dataSource}
-      </p>
-      {food.note ? <p className="mt-1 text-xs text-muted">{food.note}</p> : null}
+      <p className="mt-2 text-xs text-muted">{NOTE[food.verificationStatus]}</p>
     </div>
   );
 }
