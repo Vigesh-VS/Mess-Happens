@@ -48,14 +48,24 @@ export function TargetsForm({ uid, current }: { uid: string; current: NutritionT
 
   return (
     <form onSubmit={handleSubmit} noValidate className="mt-10 border-t border-ink pt-4">
-      <h2 className="label text-ink">Daily targets</h2>
+      <h2 className="text-title">Daily calorie target</h2>
       <p className="mt-2 max-w-prose text-sm text-muted">
-        {current
-          ? 'Your own targets.'
-          : 'Showing defaults (2,000 kcal · 60 g protein · 275 g carbs · 65 g fat · 30 g fiber) — general guidance, not personal or medical advice.'}
+        Summary compares what you eat against this, so you can see if a day was light or heavy.
+        {current ? '' : ' Showing defaults — general guidance, not personal or medical advice.'}
       </p>
-      <div className="mt-6 grid gap-6 sm:grid-cols-3 lg:grid-cols-5">
-        {NUTRIENTS.map((n) => (
+      <div className="mt-6 max-w-xs">
+        <TextField
+          label="Calories per day (kcal)"
+          inputMode="decimal"
+          value={values.kcal}
+          onChange={(e) => setValues((v) => ({ ...v, kcal: e.target.value }))}
+          error={errors.kcal}
+          className="[&_input]:text-display [&_input]:min-h-16"
+        />
+      </div>
+      <p className="label mt-10">Other targets (optional)</p>
+      <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {NUTRIENTS.filter((n) => n.key !== 'kcal').map((n) => (
           <TextField
             key={n.key}
             label={`${n.label} (${n.unit})`}

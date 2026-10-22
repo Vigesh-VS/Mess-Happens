@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router';
 import { useAuth } from '../../auth/AuthContext';
 import { GUEST_NAV_ITEMS, NAV_ITEMS } from './navItems';
 import { OfflineBadge } from './OfflineBadge';
+import { Brand } from '../Brand';
 
 /**
  * Phones/tablets: content + fixed bottom bar.
@@ -16,8 +17,8 @@ export function AppShell() {
         Skip to content
       </a>
 
-      <aside className="hidden lg:sticky lg:top-0 lg:flex lg:h-dvh lg:w-60 lg:shrink-0 lg:flex-col lg:border-r lg:border-line lg:px-8 lg:py-10">
-        <p className="text-2xl font-extrabold tracking-tight">Mess Happens</p>
+      <aside className="hidden lg:sticky lg:top-0 lg:flex lg:h-dvh lg:w-64 lg:shrink-0 lg:flex-col lg:border-r lg:border-line lg:px-8 lg:py-10">
+        <Brand className="whitespace-nowrap text-lg" />
         <nav aria-label="Main" className="mt-12 flex flex-col gap-1">
           {items.map(({ to, label }) => (
             <NavLink

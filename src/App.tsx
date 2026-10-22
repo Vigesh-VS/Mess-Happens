@@ -14,6 +14,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { SummaryPage } from './pages/SummaryPage';
 import { TodayPage } from './pages/TodayPage';
+import { WeightPage } from './pages/WeightPage';
 
 // Admin screens are split out so students never download them.
 const AdminDashboardPage = lazy(() => import('./pages/admin/AdminDashboardPage'));
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
           { path: 'summary', element: <SummaryPage /> },
           { path: 'history', element: <HistoryPage /> },
           { path: 'profile', element: <ProfilePage /> },
+          { path: 'weight', element: <WeightPage /> },
           {
             path: 'admin',
             element: <RequireAdmin />,

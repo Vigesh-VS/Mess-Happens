@@ -338,6 +338,25 @@ describe('consumption days', () => {
   });
 });
 
+describe('weights', () => {
+  it('owner can log, read and delete weigh-ins; values must be sensible', async () => {
+    const ref = doc(asUser('alice'), 'users/alice/weights/2026-10-22');
+    await assertSucceeds(setDoc(ref, { kg: 68.4, updatedAt: serverTimestamp() }));
+    await assertSucceeds(getDoc(ref));
+    await assertFails(setDoc(ref, { kg: 5, updatedAt: serverTimestamp() }));
+    await assertFails(setDoc(ref, { kg: 'heavy', updatedAt: serverTimestamp() }));
+    await assertFails(setDoc(ref, { kg: 70, note: 'x', updatedAt: serverTimestamp() }));
+    await assertFails(setDoc(doc(asUser('alice'), 'users/alice/weights/today'), { kg: 70, updatedAt: serverTimestamp() }));
+    await assertSucceeds(deleteDoc(ref));
+  });
+
+  it('nobody else can see them — not even admins', async () => {
+    await assertFails(getDoc(doc(asUser('bob'), 'users/alice/weights/2026-10-22')));
+    await assertFails(getDoc(doc(asAdmin(), 'users/alice/weights/2026-10-22')));
+    await assertFails(setDoc(doc(asUser('bob'), 'users/alice/weights/2026-10-22'), { kg: 70, updatedAt: serverTimestamp() }));
+  });
+});
+
 describe('admin audit log', () => {
   const log = (actorUid: string) => ({
     actorUid, actorEmail: 'admin@example.com', action: 'food.update',

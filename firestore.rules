@@ -187,6 +187,17 @@ service cloud.firestore {
         allow read, delete: if isOwner(uid);
         allow create, update: if isOwner(uid) && isDateId(date) && validDayLog(request.resource.data);
       }
+
+      // One weigh-in per day.
+      match /weights/{date} {
+        allow read, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid) && isDateId(date)
+          && request.resource.data.keys().hasOnly(['kg', 'updatedAt'])
+          && request.resource.data.keys().hasAll(['kg', 'updatedAt'])
+          && isNum(request.resource.data.kg)
+          && request.resource.data.kg >= 20 && request.resource.data.kg <= 300
+          && request.resource.data.updatedAt == request.time;
+      }
     }
 
     function validProfile(d) {

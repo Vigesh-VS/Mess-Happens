@@ -1,12 +1,13 @@
 import type { ReactNode } from 'react';
 import { Link } from 'react-router';
+import { Brand } from '../../components/Brand';
 
 export function AuthLayout({ title, children, footer }: { title: string; children: ReactNode; footer?: ReactNode }) {
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-sm flex-col justify-center px-4 py-12">
-      <div className="flex items-baseline justify-between gap-4">
-        <Link to="/" className="text-2xl font-extrabold tracking-tight">
-          Mess Happens
+      <div className="flex items-center justify-between gap-4">
+        <Link to="/" aria-label="Mess Happens — today’s menu">
+          <Brand />
         </Link>
         <Link to="/" className="text-sm text-muted underline-offset-4 hover:text-ink hover:underline">
           See today’s menu

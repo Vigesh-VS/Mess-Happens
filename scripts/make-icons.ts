@@ -126,7 +126,7 @@ const wordmark = await page.evaluate(async (src) => {
 // Browser-tab favicon: the mark alone on a transparent background — white for dark tabs,
 // black for light tabs. (The source is white-on-black, so brightness becomes the alpha.)
 const FAVICON_SIZE = 64;
-const tabMarks = await page.evaluate(
+const renderMarks = (size: number) => page.evaluate(
   async ({ src, size }) => {
     const img = new Image();
     img.src = src;
@@ -173,8 +173,11 @@ const tabMarks = await page.evaluate(
     }
     return { white: urls[0]!, black: urls[1]! };
   },
-  { src: dataUrl, size: FAVICON_SIZE },
+  { src: dataUrl, size },
 );
+const tabMarks = await renderMarks(FAVICON_SIZE);
+// Black hat for the in-app brand (sidebar, sign-in), 2× its display size.
+const brandMark = await renderMarks(96);
 await browser.close();
 
 // One SVG holds both and picks by the browser's colour scheme.
@@ -185,6 +188,9 @@ const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${FAVIC
 </svg>
 `;
 writeFileSync(resolve(ROOT, 'public/favicon.svg'), faviconSvg);
+mkdirSync(resolve(ROOT, 'public/brand'), { recursive: true });
+writeFileSync(resolve(ROOT, 'public/brand/hat.png'), Buffer.from(brandMark.black.split(',')[1]!, 'base64'));
+console.log('wrote public/brand/hat.png');
 console.log('wrote public/favicon.svg (black mark on light tabs, white on dark tabs)');
 
 const wordmarkPath = resolve(ROOT, 'public/brand/mess-happens.webp');

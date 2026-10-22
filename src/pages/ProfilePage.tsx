@@ -34,6 +34,14 @@ export function ProfilePage() {
         <Row term="Role">{isAdmin ? 'Administrator' : 'Student'}</Row>
       </dl>
 
+      <Link
+        to="/weight"
+        className="flex min-h-14 items-center justify-between border-b border-line text-lg font-semibold transition-colors hover:bg-hover"
+      >
+        Weight
+        <ChevronRight aria-hidden className="size-5" />
+      </Link>
+
       {isAdmin ? (
         <Link
           to="/admin"

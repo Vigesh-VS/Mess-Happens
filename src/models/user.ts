@@ -17,3 +17,11 @@ export interface UserProfile {
   createdAt: TimestampLike;
   updatedAt: TimestampLike;
 }
+
+/** `users/{uid}/weights/{yyyy-mm-dd}` — one weigh-in per day, private to the user. */
+export interface WeightEntry {
+  kg: number;
+  updatedAt: TimestampLike;
+}
+
+export const WEIGHT_RANGE_KG = { min: 20, max: 300 } as const;
