@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router';
 import { entryKey, type CatalogFood, type ConsumptionEntry, type Meal } from '../models';
-import { useSignedIn } from '../auth/AuthContext';
+import { useAuth } from '../auth/AuthContext';
 import { useMessData } from '../data/MessDataContext';
 import { useDayLog } from '../data/useDayLog';
 import { useMessToday } from '../hooks/useMessToday';
@@ -43,12 +43,13 @@ function foodFromEntry(e: ConsumptionEntry): CatalogFood {
 }
 
 export function TodayPage() {
-  const { user } = useSignedIn();
+  const { state } = useAuth();
+  const uid = state.status === 'signedIn' ? state.user.uid : null;
   const data = useMessData();
   const today = useMessToday(data.timezone);
   const date = useSelectedDate(today);
   const day = resolveDay(date, data.calendar, data.menus, data.overrides);
-  const log = useDayLog(user.uid, date);
+  const log = useDayLog(uid, date);
   const online = useOnline();
 
   const { day: totals, byMeal } = useMemo(() => totalsOf(log.entries), [log.entries]);
@@ -64,7 +65,7 @@ export function TodayPage() {
   }, [day.meals, data.specials, log.entries]);
 
   const isFuture = date > today;
-  const tracking: Tracking = {
+  const tracking: Tracking | undefined = uid === null ? undefined : {
     quantityOf: (meal, foodId) => log.entries[entryKey(meal, foodId)]?.quantity ?? 0,
     loggedKcalOf: (meal, foodId) => {
       const e = log.entries[entryKey(meal, foodId)];
@@ -92,7 +93,14 @@ export function TodayPage() {
 
       <div className="mt-4 flex min-h-6 flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
         <p className="text-sm">
-          {logged ? (
+          {state.status === 'signedOut' ? (
+            <span className="text-muted">
+              <Link to="/login" state={{ from: date === today ? '/' : `/?date=${date}` }} className="font-semibold text-ink underline underline-offset-4">
+                Sign in
+              </Link>{' '}
+              to track what you eat — the menu is open to everyone.
+            </span>
+          ) : state.status === 'loading' ? null : logged ? (
             <>
               <span className="font-semibold tabular-nums">{formatNumber(totals.kcal)} kcal</span>
               <span className="text-muted"> logged · </span>

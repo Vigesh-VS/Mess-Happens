@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router';
-import { NAV_ITEMS } from './navItems';
+import { useAuth } from '../../auth/AuthContext';
+import { GUEST_NAV_ITEMS, NAV_ITEMS } from './navItems';
 import { OfflineBadge } from './OfflineBadge';
 
 /**
@@ -7,6 +8,8 @@ import { OfflineBadge } from './OfflineBadge';
  * Desktop (lg+): a quiet typographic sidebar on the left.
  */
 export function AppShell() {
+  const { state } = useAuth();
+  const items = state.status === 'signedIn' ? NAV_ITEMS : GUEST_NAV_ITEMS;
   return (
     <div className="min-h-dvh lg:flex">
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-paper focus:p-2">
@@ -16,7 +19,7 @@ export function AppShell() {
       <aside className="hidden lg:sticky lg:top-0 lg:flex lg:h-dvh lg:w-60 lg:shrink-0 lg:flex-col lg:border-r lg:border-line lg:px-8 lg:py-10">
         <p className="text-2xl font-extrabold tracking-tight">Mess.</p>
         <nav aria-label="Main" className="mt-12 flex flex-col gap-1">
-          {NAV_ITEMS.map(({ to, label }) => (
+          {items.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
@@ -43,8 +46,8 @@ export function AppShell() {
         aria-label="Main"
         className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper pb-[env(safe-area-inset-bottom)] lg:hidden"
       >
-        <ul className="mx-auto grid max-w-lg grid-cols-5">
-          {NAV_ITEMS.map(({ to, label, icon: Icon }) => (
+        <ul className={['mx-auto grid max-w-lg', items.length === 5 ? 'grid-cols-5' : 'grid-cols-3'].join(' ')}>
+          {items.map(({ to, label, icon: Icon }) => (
             <li key={to}>
               <NavLink
                 to={to}

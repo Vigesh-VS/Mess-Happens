@@ -96,10 +96,25 @@ beforeEach(async () => {
 });
 
 describe('signed-out visitors', () => {
-  it('cannot read menus, foods or config', async () => {
-    await assertFails(getDoc(doc(asGuest(), 'menus/odd_monday')));
-    await assertFails(getDoc(doc(asGuest(), 'foods/plain-rice')));
-    await assertFails(getDoc(doc(asGuest(), 'config/menu')));
+  it('can read the published menu: menus, catalog, special menus, date changes, config', async () => {
+    const db = asGuest();
+    await assertSucceeds(getDoc(doc(db, 'menus/odd_monday')));
+    await assertSucceeds(getDoc(doc(db, 'catalog/foods')));
+    await assertSucceeds(getDoc(doc(db, 'specialMenus/special-dinner')));
+    await assertSucceeds(getDoc(doc(db, 'menuOverrides/2026-10-22')));
+    await assertSucceeds(getDoc(doc(db, 'config/menu')));
+    await assertSucceeds(getDoc(doc(db, 'config/academicCalendar')));
+  });
+
+  it('cannot change anything or see private data', async () => {
+    const db = asGuest();
+    await assertFails(setDoc(doc(db, 'menus/odd_monday'), { parity: 'odd', weekday: 'monday', meals: {}, updatedAt: serverTimestamp(), updatedBy: 'x' }));
+    await assertFails(setDoc(doc(db, 'catalog/foods'), { foods: {}, updatedAt: serverTimestamp(), updatedBy: 'x' }));
+    await assertFails(getDoc(doc(db, 'foods/plain-rice')));
+    await assertFails(getDoc(doc(db, 'users/alice')));
+    await assertFails(getDoc(doc(db, 'users/alice/days/2026-10-22')));
+    await assertFails(setDoc(doc(db, 'users/alice/days/2026-10-22'), { entries: {}, totals: zeroTotals, updatedAt: serverTimestamp() }));
+    await assertFails(getDoc(doc(db, 'adminAuditLogs/log1')));
   });
 });
 
@@ -244,9 +259,9 @@ describe('admin: foods and versioning', () => {
 describe('food catalog', () => {
   const catalog = (uid: string) => ({ foods: { rice: { name: 'Plain Rice' } }, updatedAt: serverTimestamp(), updatedBy: uid });
 
-  it('everyone signed in can read it; only admins can write it', async () => {
+  it('anyone can read it; only admins can write it', async () => {
     await assertSucceeds(getDoc(doc(asUser('alice'), 'catalog/foods')));
-    await assertFails(getDoc(doc(asGuest(), 'catalog/foods')));
+    await assertSucceeds(getDoc(doc(asGuest(), 'catalog/foods')));
     await assertFails(setDoc(doc(asUser('alice'), 'catalog/foods'), catalog('alice')));
     await assertSucceeds(setDoc(doc(asAdmin(), 'catalog/foods'), catalog('admin1')));
     await assertFails(setDoc(doc(asAdmin(), 'catalog/foods'), { ...catalog('admin1'), extra: 1 }));

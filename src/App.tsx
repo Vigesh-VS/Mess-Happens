@@ -32,28 +32,33 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <RequireAuth>
-        <MessDataProvider>
-          <AppShell />
-        </MessDataProvider>
-      </RequireAuth>
+      <MessDataProvider>
+        <AppShell />
+      </MessDataProvider>
     ),
     children: [
+      // Public: anyone can see what's being served.
       { index: true, element: <TodayPage /> },
-      { path: 'summary', element: <SummaryPage /> },
-      { path: 'history', element: <HistoryPage /> },
       { path: 'menu', element: <MenuPage /> },
-      { path: 'profile', element: <ProfilePage /> },
+      // Personal: tracking, history, profile and admin need an account.
       {
-        path: 'admin',
-        element: <RequireAdmin />,
+        element: <RequireAuth />,
         children: [
+          { path: 'summary', element: <SummaryPage /> },
+          { path: 'history', element: <HistoryPage /> },
+          { path: 'profile', element: <ProfilePage /> },
           {
-            element: <AdminLayout />,
+            path: 'admin',
+            element: <RequireAdmin />,
             children: [
-              { index: true, element: <AdminDashboardPage /> },
-              { path: 'foods', element: <FoodEditorPage /> },
-              { path: 'menus', element: <MenuEditorPage /> },
+              {
+                element: <AdminLayout />,
+                children: [
+                  { index: true, element: <AdminDashboardPage /> },
+                  { path: 'foods', element: <FoodEditorPage /> },
+                  { path: 'menus', element: <MenuEditorPage /> },
+                ],
+              },
             ],
           },
         ],

@@ -23,7 +23,7 @@ export interface DayLogState {
  * - Entries are written as merged map fields, so two devices logging different foods don't
  *   overwrite each other. Totals are recomputed from the entries and self-heal if they drift.
  */
-export function useDayLog(uid: string, date: DateId): DayLogState {
+export function useDayLog(uid: string | null, date: DateId): DayLogState {
   const [entries, setEntries] = useState<Record<string, ConsumptionEntry>>({});
   const [loading, setLoading] = useState(true);
   const [pending, setPending] = useState(false);
@@ -31,9 +31,16 @@ export function useDayLog(uid: string, date: DateId): DayLogState {
   const latest = useRef<Record<string, ConsumptionEntry>>({});
 
   useEffect(() => {
-    setLoading(true);
     setEntries({});
     latest.current = {};
+    setPending(false);
+    setError(null);
+    if (!uid) {
+      // Signed out: nothing to load; the menu is shown without tracking.
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
     const ref = doc(db, 'users', uid, 'days', date);
     return onSnapshot(
       ref,
@@ -65,6 +72,7 @@ export function useDayLog(uid: string, date: DateId): DayLogState {
 
   const step = useCallback(
     (meal: Meal, food: CatalogFood, direction: 1 | -1) => {
+      if (!uid) return;
       const result = applyStep(latest.current, meal, food, direction);
       if (result.kind === 'noop') return;
 

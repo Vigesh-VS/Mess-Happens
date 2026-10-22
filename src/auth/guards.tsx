@@ -5,12 +5,12 @@ import { PageHeader } from '../components/ui/PageHeader';
 import { useAuth } from './AuthContext';
 
 /** Signed-in users only; others go to /login and come back afterwards. */
-export function RequireAuth({ children }: { children: ReactNode }) {
+export function RequireAuth({ children }: { children?: ReactNode }) {
   const { state } = useAuth();
   const location = useLocation();
   if (state.status === 'loading') return <LoadingScreen />;
-  if (state.status === 'signedOut') return <Navigate to="/login" replace state={{ from: location.pathname }} />;
-  return <>{children}</>;
+  if (state.status === 'signedOut') return <Navigate to="/login" replace state={{ from: location.pathname + location.search }} />;
+  return <>{children ?? <Outlet />}</>;
 }
 
 /** Login/sign-up screens: bounce signed-in users to where they were going. */

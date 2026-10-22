@@ -1,5 +1,5 @@
 import { useState, type FormEvent, type ReactNode } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { serverTimestamp, updateDoc } from 'firebase/firestore';
 import { ChevronRight, LogOut, RefreshCw } from 'lucide-react';
 import { useSignedIn } from '../auth/AuthContext';
@@ -13,6 +13,7 @@ import { TargetsForm } from './TargetsForm';
 
 export function ProfilePage() {
   const { user, profile, isAdmin, refreshClaims, signOut } = useSignedIn();
+  const navigate = useNavigate();
   const [refreshing, setRefreshing] = useState(false);
 
   async function handleRefresh() {
@@ -53,7 +54,10 @@ export function ProfilePage() {
         <Button variant="secondary" icon={<RefreshCw aria-hidden className="size-4" />} busy={refreshing} onClick={handleRefresh}>
           Refresh access
         </Button>
-        <Button variant="secondary" icon={<LogOut aria-hidden className="size-4" />} onClick={() => void signOut()}>
+        <Button variant="secondary" icon={<LogOut aria-hidden className="size-4" />} onClick={() => {
+            navigate('/'); // land on the public menu, not the sign-in page
+            void signOut();
+          }}>
           Sign out
         </Button>
       </div>

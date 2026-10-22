@@ -1,7 +1,8 @@
 rules_version = '2';
 
 // Mess Nutrition Tracker — Firestore Security Rules.
-// Roles: any signed-in user; admin = custom claim `admin: true` (set only by scripts/set-admin.ts).
+// Roles: anyone (signed out) can read the published menu; signed-in users track their own food;
+// admin = custom claim `admin: true` (set only by scripts/set-admin.ts).
 // Anything not matched below is denied.
 
 service cloud.firestore {
@@ -33,8 +34,10 @@ service cloud.firestore {
 
     // ---------- config ----------
 
+    // The published menu (config, catalog, menus, special menus, date changes) is public:
+    // anyone can see what's being served without an account. Only admins can change it.
     match /config/{docId} {
-      allow read: if signedIn();
+      allow read: if true;
     }
 
     match /config/academicCalendar {
@@ -127,7 +130,7 @@ service cloud.firestore {
     // Every food in one document, so clients load the food list with a single read.
     // Admins update it in the same batch as foods/{id}.
     match /catalog/foods {
-      allow read: if signedIn();
+      allow read: if true;
       allow create, update: if isAdmin()
         && request.resource.data.keys().hasOnly(['foods', 'updatedAt', 'updatedBy'])
         && request.resource.data.foods is map
@@ -137,7 +140,7 @@ service cloud.firestore {
     // ---------- menus ----------
 
     match /menus/{menuId} {
-      allow read: if signedIn();
+      allow read: if true;
       allow create, update: if isAdmin()
         && menuId.matches('^(odd|even)_(sunday|monday|tuesday|wednesday|thursday|friday|saturday)$')
         && request.resource.data.keys().hasOnly(['parity', 'weekday', 'meals', 'updatedAt', 'updatedBy'])
@@ -147,7 +150,7 @@ service cloud.firestore {
     }
 
     match /specialMenus/{specialId} {
-      allow read: if signedIn();
+      allow read: if true;
       allow create, update: if isAdmin()
         && request.resource.data.keys().hasOnly(['description', 'variants', 'alwaysServed', 'rotationRule', 'updatedAt', 'updatedBy'])
         && request.resource.data.variants is map
@@ -157,7 +160,7 @@ service cloud.firestore {
 
     // One document per date; replaces only the meals it lists.
     match /menuOverrides/{date} {
-      allow read: if signedIn();
+      allow read: if true;
       allow create, update: if isAdmin()
         && isDateId(date)
         && request.resource.data.keys().hasOnly(['reason', 'meals', 'varieties', 'updatedAt', 'updatedBy'])
