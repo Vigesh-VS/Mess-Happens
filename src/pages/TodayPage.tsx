@@ -11,6 +11,7 @@ import { totalsOf } from '../lib/nutrition';
 import { CalendarMissing } from '../components/menu/CalendarMissing';
 import { DayMenuView } from '../components/menu/DayMenuView';
 import { DayHeader } from '../components/menu/DayHeader';
+import { QuickWeight } from '../components/QuickWeight';
 import { useSelectedDate } from '../components/menu/DayNav';
 import type { Tracking } from '../components/menu/types';
 import { LoadingScreen } from '../components/ui/LoadingScreen';
@@ -73,7 +74,13 @@ export function TodayPage() {
 
   return (
     <>
-      <DayHeader date={date} today={today} parity={day.parity} status={log.pending ? (online ? 'Saving…' : 'Offline — will sync') : null} />
+      <DayHeader
+        date={date}
+        today={today}
+        parity={day.parity}
+        status={log.pending ? (online ? 'Saving…' : 'Offline — will sync') : null}
+        action={uid ? <QuickWeight uid={uid} today={today} /> : null}
+      />
 
       {state.status === 'signedOut' ? (
         <p className="mt-6 text-sm text-muted">

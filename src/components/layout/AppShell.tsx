@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from 'react-router';
 import { useAuth } from '../../auth/AuthContext';
 import { OnboardingGate } from '../../auth/guards';
-import { GUEST_NAV_ITEMS, NAV_ITEMS } from './navItems';
+import { ADMIN_NAV_ITEMS, GUEST_NAV_ITEMS, NAV_ITEMS } from './navItems';
 import { OfflineBadge } from './OfflineBadge';
 import { Brand } from '../Brand';
 
@@ -11,7 +11,7 @@ import { Brand } from '../Brand';
  */
 export function AppShell() {
   const { state } = useAuth();
-  const items = state.status === 'signedIn' ? NAV_ITEMS : GUEST_NAV_ITEMS;
+  const items = state.status !== 'signedIn' ? GUEST_NAV_ITEMS : state.isAdmin ? ADMIN_NAV_ITEMS : NAV_ITEMS;
   return (
     <div className="min-h-dvh lg:flex">
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-paper focus:p-2">
@@ -50,7 +50,7 @@ export function AppShell() {
         aria-label="Main"
         className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper pb-[env(safe-area-inset-bottom)] lg:hidden"
       >
-        <ul className={['mx-auto grid max-w-lg', items.length === 5 ? 'grid-cols-5' : 'grid-cols-3'].join(' ')}>
+        <ul className={['mx-auto grid max-w-lg', ({ 2: 'grid-cols-2', 3: 'grid-cols-3', 4: 'grid-cols-4' } as Record<number, string>)[items.length] ?? 'grid-cols-5'].join(' ')}>
           {items.map(({ to, label, icon: Icon }) => (
             <li key={to}>
               <NavLink
