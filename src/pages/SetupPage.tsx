@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from 'react-router';
 import { collection, doc, getDocs, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase/client';
 import { WEIGHT_RANGE_KG, type BodyDetails, type NutritionTargets } from '../models';
-import { useAuth, useSignedIn } from '../auth/AuthContext';
+import { useSignedIn } from '../auth/AuthContext';
 import { userDoc } from '../auth/profile';
 import { useMessData } from '../data/MessDataContext';
 import { useMessToday } from '../hooks/useMessToday';
@@ -34,22 +34,19 @@ export function SetupPage() {
 }
 
 /**
- * First-run setup on its own page, without the app's navigation: name, current and target
- * weight, body details for the calorie estimate, and daily targets. Saving goes to Today.
+ * First-run setup on its own page — just the app name at the top, no navigation. Asks for
+ * current and target weight and body details, estimates the daily targets from them, and
+ * opens the app once saved.
  */
 export function WelcomePage() {
   const { profile } = useSignedIn();
-  const { signOut } = useAuth();
   if (!profile) return <LoadingScreen />;
   if (profile.targets) return <Navigate to="/" replace />;
   return (
-    <main className="mx-auto w-full max-w-3xl px-4 pb-12 pt-8 sm:px-8">
-      <div className="flex items-center justify-between gap-4">
+    <main className="mx-auto w-full max-w-2xl px-4 pb-16 pt-10 sm:px-8">
+      <header className="flex justify-center border-b border-line pb-8">
         <Brand />
-        <button type="button" onClick={() => void signOut()} className="min-h-11 text-sm text-muted underline-offset-4 hover:text-ink hover:underline">
-          Sign out
-        </button>
-      </div>
+      </header>
       <div className="mt-10">
         <SetupForm key={profile.createdAt?.toMillis?.() ?? 0} standalone />
       </div>
@@ -127,8 +124,9 @@ function SetupForm({ standalone = false }: { standalone?: boolean }) {
   const targetErrors = Object.fromEntries(
     NUTRIENTS.map((n) => [n.key, inRange(targets[n.key], n.key === 'kcal' ? 500 : 0, LIMITS[n.key]) ? undefined : n.key === 'kcal' ? '500 – 10,000' : `0 – ${LIMITS[n.key]}`]),
   ) as Record<TargetKey, string | undefined>;
-  const valid =
-    name.trim().length > 0 && weightOk && targetWeightOk && NUTRIENTS.every((n) => !targetErrors[n.key]) && (height === '' || heightOk) && (age === '' || ageOk);
+  // First time, everything the estimate needs is required; later edits may leave body details out.
+  const detailsOk = firstTime ? heightOk && ageOk && targetWeight !== '' && targetWeightOk : targetWeightOk && (height === '' || heightOk) && (age === '' || ageOk);
+  const valid = name.trim().length > 0 && weightOk && detailsOk && NUTRIENTS.every((n) => !targetErrors[n.key]);
 
   function applySuggested() {
     if (!suggested) return;
@@ -184,20 +182,22 @@ function SetupForm({ standalone = false }: { standalone?: boolean }) {
               value={targetWeight}
               onChange={(e) => setTargetWeight(e.target.value)}
               placeholder="e.g. 65"
-              hint="Leave empty to stay at your current weight."
-              error={targetWeightOk ? undefined : `Enter ${WEIGHT_RANGE_KG.min}–${WEIGHT_RANGE_KG.max} kg`}
+              hint={firstTime ? 'Same as current weight to maintain.' : 'Leave empty to stay at your current weight.'}
+              error={
+                !targetWeightOk || (firstTime && showErrors && targetWeight === '') ? `Enter ${WEIGHT_RANGE_KG.min}–${WEIGHT_RANGE_KG.max} kg` : undefined
+              }
             />
           </div>
         </section>
 
         <section className="space-y-6">
           <div>
-            <h2 className="text-title">Your calories</h2>
-            <p className="mt-2 max-w-prose text-sm text-muted">Add your height and age to estimate the calories you burn in a day and what to eat to reach your target.</p>
+            <h2 className="text-title">{firstTime ? 'About you' : 'Your calories'}</h2>
+            <p className="mt-2 max-w-prose text-sm text-muted">Used to estimate the calories you burn in a day and what to eat to reach your target weight.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
-            <TextField label="Height (cm)" inputMode="decimal" value={height} onChange={(e) => setHeight(e.target.value)} placeholder="e.g. 170" error={height && !heightOk ? '100–250 cm' : undefined} />
-            <TextField label="Age" inputMode="numeric" value={age} onChange={(e) => setAge(e.target.value)} placeholder="e.g. 20" error={age && !ageOk ? '10–100' : undefined} />
+            <TextField label="Height (cm)" inputMode="decimal" value={height} onChange={(e) => setHeight(e.target.value)} placeholder="e.g. 170" error={(height || (firstTime && showErrors)) && !heightOk ? '100–250 cm' : undefined} />
+            <TextField label="Age" inputMode="numeric" value={age} onChange={(e) => setAge(e.target.value)} placeholder="e.g. 20" error={(age || (firstTime && showErrors)) && !ageOk ? '10–100' : undefined} />
           </div>
           <div>
             <p className="label mb-2">Sex</p>
@@ -241,12 +241,18 @@ function SetupForm({ standalone = false }: { standalone?: boolean }) {
               <div className="mt-4 flex flex-wrap items-center gap-4">
                 {targetsEdited ? (
                   <Button variant="secondary" onClick={applySuggested}>
-                    Use suggested targets
+                    Use this estimate
                   </Button>
-                ) : null}
+                ) : (
+                  <p className="text-sm font-semibold">✓ Using this estimate — or type your own targets below.</p>
+                )}
                 <p className="text-xs text-muted">An estimate (Mifflin–St Jeor) — not medical advice.</p>
               </div>
             </div>
+          ) : firstTime ? (
+            <p className="rounded-sm border border-dashed border-line px-4 py-4 text-sm text-muted">
+              Fill in your weights, height and age to see your estimated calories and protein.
+            </p>
           ) : null}
         </section>
 
@@ -277,9 +283,13 @@ function SetupForm({ standalone = false }: { standalone?: boolean }) {
         </section>
 
         {error ? <Notice tone="error">{error}</Notice> : null}
-        <div className={['sticky z-10 flex items-center gap-4 bg-paper py-4', standalone ? 'bottom-0' : 'bottom-16 lg:bottom-0'].join(' ')}>
-          <Button type="submit" busy={busy}>
-            {firstTime ? 'Start tracking' : 'Save'}
+        <div
+          className={
+            standalone ? 'flex flex-col gap-3 border-t border-line pt-8' : 'sticky bottom-16 z-10 flex items-center gap-4 bg-paper py-4 lg:bottom-0'
+          }
+        >
+          <Button type="submit" busy={busy} block={standalone}>
+            Save
           </Button>
           {showErrors && !valid ? <p className="text-sm text-danger">Fill in the highlighted fields.</p> : null}
         </div>
