@@ -1,15 +1,14 @@
 import { useState, type FormEvent } from 'react';
-import { Scale } from 'lucide-react';
+import { Check, Scale } from 'lucide-react';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/client';
 import { WEIGHT_RANGE_KG, type DateId } from '../models';
 import { useWeights } from '../data/useWeights';
-import { formatNumber } from '../lib/nutrition';
 import { Button } from './ui/Button';
 
 /**
  * "Log weight" under the day arrows on Today: one tap opens a small box to save today's
- * weigh-in. Once logged it shows the value, and tapping again changes it.
+ * weigh-in. A tick shows once today's weight is logged; tapping again changes it.
  */
 export function QuickWeight({ uid, today }: { uid: string; today: DateId }) {
   const weights = useWeights(uid);
@@ -45,7 +44,8 @@ export function QuickWeight({ uid, today }: { uid: string; today: DateId }) {
         className="flex min-h-11 items-center gap-2 border border-line px-3 text-sm font-semibold transition-colors hover:bg-hover"
       >
         <Scale aria-hidden className="size-4" />
-        {logged !== null ? <span className="tabular-nums">{formatNumber(logged, 1)} kg</span> : 'Log weight'}
+        Log weight
+        {logged !== null ? <Check aria-label="logged today" className="size-4" /> : null}
       </button>
 
       {open ? (
