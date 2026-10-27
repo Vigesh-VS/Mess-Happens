@@ -306,6 +306,8 @@ describe('user profiles', () => {
     await assertFails(updateDoc(ref, { body: { ...body, heightCm: 20 }, updatedAt: serverTimestamp() }));
     await assertFails(updateDoc(ref, { body: { ...body, sex: 'x' }, updatedAt: serverTimestamp() }));
     await assertFails(updateDoc(ref, { body: { ...body, extra: 1 }, updatedAt: serverTimestamp() }));
+    await assertSucceeds(updateDoc(ref, { body: { ...body, targetWeightKg: 60.5 }, updatedAt: serverTimestamp() }));
+    await assertFails(updateDoc(ref, { body: { ...body, targetWeightKg: 5 }, updatedAt: serverTimestamp() }));
   });
 
   it('createdAt cannot be changed and profiles cannot be deleted', async () => {

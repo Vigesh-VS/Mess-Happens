@@ -15,7 +15,7 @@ import { ProfilePage } from './pages/ProfilePage';
 import { SummaryPage } from './pages/SummaryPage';
 import { TodayPage } from './pages/TodayPage';
 import { WeightPage } from './pages/WeightPage';
-import { SetupPage } from './pages/SetupPage';
+import { SetupPage, WelcomePage } from './pages/SetupPage';
 
 // Admin screens are split out so students never download them.
 const AdminDashboardPage = lazy(() => import('./pages/admin/AdminDashboardPage'));
@@ -30,6 +30,17 @@ const router = createBrowserRouter([
       { path: '/signup', element: <SignupPage /> },
       { path: '/reset-password', element: <ResetPasswordPage /> },
     ],
+  },
+  // First-time setup: its own page, without the app's navigation.
+  {
+    path: '/welcome',
+    element: (
+      <RequireAuth>
+        <MessDataProvider>
+          <WelcomePage />
+        </MessDataProvider>
+      </RequireAuth>
+    ),
   },
   {
     path: '/',

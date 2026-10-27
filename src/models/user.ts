@@ -13,7 +13,9 @@ export interface BodyDetails {
   age: number;
   sex: 'male' | 'female';
   activity: 'sedentary' | 'light' | 'moderate' | 'active';
+  /** Derived from the target weight when one is set. */
   goal: 'lose' | 'maintain' | 'gain';
+  targetWeightKg?: number;
 }
 
 /** `users/{uid}` — the admin role is a custom claim, never a field here. */

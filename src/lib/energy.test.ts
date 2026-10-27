@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { bmi, bmiCategory, maintenanceKcal, suggestTargets } from './energy';
+import { bmi, bmiCategory, goalFor, maintenanceKcal, suggestTargets, weeksToTarget } from './energy';
 
 const body = { heightCm: 175, age: 20, sex: 'male', activity: 'moderate', goal: 'maintain' } as const;
 
@@ -30,5 +30,22 @@ describe('energy', () => {
 
   it('never suggests below 1,200 kcal', () => {
     expect(suggestTargets(40, { heightCm: 150, age: 60, sex: 'female', activity: 'sedentary', goal: 'lose' }).kcal).toBe(1200);
+  });
+
+  it('goal comes from the target weight', () => {
+    expect(goalFor(70, undefined)).toBe('maintain');
+    expect(goalFor(70, 70.5)).toBe('maintain');
+    expect(goalFor(70, 64)).toBe('lose');
+    expect(goalFor(70, 75)).toBe('gain');
+  });
+
+  it('protein follows the target weight', () => {
+    expect(suggestTargets(90, { ...body, goal: 'lose', targetWeightKg: 75 }).protein_g).toBe(120); // 75 × 1.6
+  });
+
+  it('estimates weeks to the target', () => {
+    // 6 kg × 7,700 / (500 × 7) = 13.2 → 14 weeks
+    expect(weeksToTarget(70, { ...body, goal: 'lose', targetWeightKg: 64 })).toBe(14);
+    expect(weeksToTarget(70, body)).toBeNull();
   });
 });

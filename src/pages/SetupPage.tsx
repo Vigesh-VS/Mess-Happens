@@ -1,14 +1,15 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { useNavigate } from 'react-router';
+import { Navigate, useNavigate } from 'react-router';
 import { collection, doc, getDocs, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase/client';
 import { WEIGHT_RANGE_KG, type BodyDetails, type NutritionTargets } from '../models';
-import { useSignedIn } from '../auth/AuthContext';
+import { useAuth, useSignedIn } from '../auth/AuthContext';
 import { userDoc } from '../auth/profile';
 import { useMessData } from '../data/MessDataContext';
 import { useMessToday } from '../hooks/useMessToday';
-import { ACTIVITY, GOALS, bmi, bmiCategory, maintenanceKcal, suggestTargets } from '../lib/energy';
+import { ACTIVITY, GOALS, bmi, bmiCategory, goalFor, maintenanceKcal, suggestTargets, weeksToTarget } from '../lib/energy';
 import { NUTRIENTS, formatNumber } from '../lib/nutrition';
+import { Brand } from '../components/Brand';
 import { Button } from '../components/ui/Button';
 import { LoadingScreen } from '../components/ui/LoadingScreen';
 import { Notice } from '../components/ui/Notice';
@@ -23,8 +24,8 @@ const num = (s: string) => Number(s.replace(',', '.'));
 const inRange = (s: string, min: number, max: number) => s.trim() !== '' && Number.isFinite(num(s)) && num(s) >= min && num(s) <= max;
 
 /**
- * First-run setup (and later "Targets & body details"): name, current weight, optional body
- * details for a maintenance-calorie estimate, and daily targets. Saving goes to Today.
+ * "Targets & body details" inside the app (from Profile). First-time setup is the standalone
+ * `/welcome` page instead.
  */
 export function SetupPage() {
   const { profile } = useSignedIn();
@@ -32,7 +33,31 @@ export function SetupPage() {
   return <SetupForm key={profile.createdAt?.toMillis?.() ?? 0} />;
 }
 
-function SetupForm() {
+/**
+ * First-run setup on its own page, without the app's navigation: name, current and target
+ * weight, body details for the calorie estimate, and daily targets. Saving goes to Today.
+ */
+export function WelcomePage() {
+  const { profile } = useSignedIn();
+  const { signOut } = useAuth();
+  if (!profile) return <LoadingScreen />;
+  if (profile.targets) return <Navigate to="/" replace />;
+  return (
+    <main className="mx-auto w-full max-w-3xl px-4 pb-12 pt-8 sm:px-8">
+      <div className="flex items-center justify-between gap-4">
+        <Brand />
+        <button type="button" onClick={() => void signOut()} className="min-h-11 text-sm text-muted underline-offset-4 hover:text-ink hover:underline">
+          Sign out
+        </button>
+      </div>
+      <div className="mt-10">
+        <SetupForm key={profile.createdAt?.toMillis?.() ?? 0} standalone />
+      </div>
+    </main>
+  );
+}
+
+function SetupForm({ standalone = false }: { standalone?: boolean }) {
   const { user, profile } = useSignedIn();
   const { timezone } = useMessData();
   const today = useMessToday(timezone);
@@ -46,10 +71,16 @@ function SetupForm() {
   const [age, setAge] = useState(profile?.body ? String(profile.body.age) : '');
   const [sex, setSex] = useState<BodyDetails['sex']>(profile?.body?.sex ?? 'male');
   const [activity, setActivity] = useState<BodyDetails['activity']>(profile?.body?.activity ?? 'light');
-  const [goal, setGoal] = useState<BodyDetails['goal']>(profile?.body?.goal ?? 'maintain');
+  const [targetWeight, setTargetWeight] = useState(profile?.body?.targetWeightKg ? String(profile.body.targetWeightKg) : '');
   const [targets, setTargets] = useState<Record<TargetKey, string>>(() =>
     Object.fromEntries(NUTRIENTS.map((n) => [n.key, profile?.targets ? String(profile.targets[n.key]) : ''])) as Record<TargetKey, string>,
   );
+  // First time, targets follow the calculator until the user types their own.
+  const [targetsEdited, setTargetsEdited] = useState(!firstTime);
+  const editTarget = (key: TargetKey, value: string) => {
+    setTargetsEdited(true);
+    setTargets((t) => ({ ...t, [key]: value }));
+  };
   const [showErrors, setShowErrors] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -77,17 +108,32 @@ function SetupForm() {
   const weightOk = inRange(weight, WEIGHT_RANGE_KG.min, WEIGHT_RANGE_KG.max);
   const heightOk = inRange(height, 100, 250);
   const ageOk = inRange(age, 10, 100) && Number.isInteger(num(age));
-  const bodyComplete = weightOk && heightOk && ageOk;
-  const body: BodyDetails | null = bodyComplete ? { heightCm: num(height), age: num(age), sex, activity, goal } : null;
+  const targetWeightOk = targetWeight === '' || inRange(targetWeight, WEIGHT_RANGE_KG.min, WEIGHT_RANGE_KG.max);
+  const targetKg = targetWeight !== '' && targetWeightOk ? Math.round(num(targetWeight) * 10) / 10 : undefined;
+  const goal = weightOk ? goalFor(num(weight), targetKg) : 'maintain';
+  const bodyComplete = weightOk && heightOk && ageOk && targetWeightOk;
+  const body: BodyDetails | null = bodyComplete
+    ? { heightCm: num(height), age: num(age), sex, activity, goal, ...(targetKg !== undefined ? { targetWeightKg: targetKg } : {}) }
+    : null;
+  const suggested = body ? suggestTargets(num(weight), body) : null;
+  const weeks = body ? weeksToTarget(num(weight), body) : null;
+  const suggestedKey = suggested ? NUTRIENTS.map((n) => suggested[n.key]).join() : '';
+
+  useEffect(() => {
+    if (targetsEdited || !suggestedKey) return;
+    const values = suggestedKey.split(',');
+    setTargets(Object.fromEntries(NUTRIENTS.map((n, i) => [n.key, values[i]!])) as Record<TargetKey, string>);
+  }, [targetsEdited, suggestedKey]);
   const targetErrors = Object.fromEntries(
     NUTRIENTS.map((n) => [n.key, inRange(targets[n.key], n.key === 'kcal' ? 500 : 0, LIMITS[n.key]) ? undefined : n.key === 'kcal' ? '500 – 10,000' : `0 – ${LIMITS[n.key]}`]),
   ) as Record<TargetKey, string | undefined>;
-  const valid = name.trim().length > 0 && weightOk && NUTRIENTS.every((n) => !targetErrors[n.key]) && (height === '' || heightOk) && (age === '' || ageOk);
+  const valid =
+    name.trim().length > 0 && weightOk && targetWeightOk && NUTRIENTS.every((n) => !targetErrors[n.key]) && (height === '' || heightOk) && (age === '' || ageOk);
 
   function applySuggested() {
-    if (!body) return;
-    const s = suggestTargets(num(weight), body);
-    setTargets(Object.fromEntries(NUTRIENTS.map((n) => [n.key, String(s[n.key])])) as Record<TargetKey, string>);
+    if (!suggested) return;
+    setTargetsEdited(false);
+    setTargets(Object.fromEntries(NUTRIENTS.map((n) => [n.key, String(suggested[n.key])])) as Record<TargetKey, string>);
   }
 
   async function handleSubmit(e: FormEvent) {
@@ -113,7 +159,11 @@ function SetupForm() {
   return (
     <>
       <PageHeader eyebrow={firstTime ? 'Welcome' : 'Profile'} title={firstTime ? 'Set up' : 'Targets'} />
-      {firstTime ? <p className="mt-6 max-w-prose text-lg text-muted">Tell us a little about you, set your daily targets, and you’re ready to track.</p> : null}
+      {firstTime ? (
+        <p className="mt-6 max-w-prose text-lg text-muted">
+          Tell us a little about you and we’ll work out your daily calories and protein. You can change all of this later in Profile.
+        </p>
+      ) : null}
 
       <form onSubmit={handleSubmit} noValidate className="mt-10 space-y-14">
         <section className="space-y-6">
@@ -128,13 +178,22 @@ function SetupForm() {
               placeholder="e.g. 68.5"
               error={err(weightOk, `Enter ${WEIGHT_RANGE_KG.min}–${WEIGHT_RANGE_KG.max} kg`)}
             />
+            <TextField
+              label="Target weight (kg)"
+              inputMode="decimal"
+              value={targetWeight}
+              onChange={(e) => setTargetWeight(e.target.value)}
+              placeholder="e.g. 65"
+              hint="Leave empty to stay at your current weight."
+              error={targetWeightOk ? undefined : `Enter ${WEIGHT_RANGE_KG.min}–${WEIGHT_RANGE_KG.max} kg`}
+            />
           </div>
         </section>
 
         <section className="space-y-6">
           <div>
-            <h2 className="text-title">Maintenance calories</h2>
-            <p className="mt-2 max-w-prose text-sm text-muted">Optional. Add your height and age to estimate the calories you burn in a day.</p>
+            <h2 className="text-title">Your calories</h2>
+            <p className="mt-2 max-w-prose text-sm text-muted">Add your height and age to estimate the calories you burn in a day and what to eat to reach your target.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
             <TextField label="Height (cm)" inputMode="decimal" value={height} onChange={(e) => setHeight(e.target.value)} placeholder="e.g. 170" error={height && !heightOk ? '100–250 cm' : undefined} />
@@ -148,10 +207,6 @@ function SetupForm() {
             <p className="label mb-2">Activity</p>
             <Segmented label="Activity" size="sm" value={activity} onChange={setActivity} options={Object.entries(ACTIVITY).map(([value, a]) => ({ value: value as BodyDetails['activity'], label: a.label }))} />
             <p className="mt-2 text-sm text-muted">{ACTIVITY[activity].hint}</p>
-          </div>
-          <div>
-            <p className="label mb-2">Goal</p>
-            <Segmented label="Goal" value={goal} onChange={setGoal} options={Object.entries(GOALS).map(([value, g]) => ({ value: value as BodyDetails['goal'], label: g.label }))} />
           </div>
 
           {body ? (
@@ -168,15 +223,27 @@ function SetupForm() {
                   <span className="text-muted"> {bmiCategory(bmi(num(weight), body.heightCm))}</span>
                 </p>
                 <p>
-                  <span className="label block">For “{GOALS[goal].label.toLowerCase()}”</span>
-                  <span className="text-title">{formatNumber(suggestTargets(num(weight), body).kcal)}</span>
+                  <span className="label block">To {GOALS[goal].label.toLowerCase()}</span>
+                  <span className="text-title">{formatNumber(suggested!.kcal)}</span>
                   <span className="text-muted"> kcal/day</span>
                 </p>
+                <p>
+                  <span className="label block">Protein</span>
+                  <span className="text-title">{formatNumber(suggested!.protein_g)}</span>
+                  <span className="text-muted"> g/day</span>
+                </p>
               </div>
+              {weeks !== null ? (
+                <p className="mt-3 text-sm text-muted">
+                  {formatNumber(Math.abs(body.targetWeightKg! - num(weight)), 1)} kg to {goal === 'lose' ? 'lose' : 'gain'} — about {weeks} weeks at this rate.
+                </p>
+              ) : null}
               <div className="mt-4 flex flex-wrap items-center gap-4">
-                <Button variant="secondary" onClick={applySuggested}>
-                  Use suggested targets
-                </Button>
+                {targetsEdited ? (
+                  <Button variant="secondary" onClick={applySuggested}>
+                    Use suggested targets
+                  </Button>
+                ) : null}
                 <p className="text-xs text-muted">An estimate (Mifflin–St Jeor) — not medical advice.</p>
               </div>
             </div>
@@ -190,7 +257,7 @@ function SetupForm() {
               label="Calories (kcal)"
               inputMode="decimal"
               value={targets.kcal}
-              onChange={(e) => setTargets((t) => ({ ...t, kcal: e.target.value }))}
+              onChange={(e) => editTarget('kcal', e.target.value)}
               error={showErrors ? targetErrors.kcal : undefined}
               className="[&_input]:min-h-16 [&_input]:text-display"
             />
@@ -202,7 +269,7 @@ function SetupForm() {
                 label={`${n.label} (${n.unit})`}
                 inputMode="decimal"
                 value={targets[n.key]}
-                onChange={(e) => setTargets((t) => ({ ...t, [n.key]: e.target.value }))}
+                onChange={(e) => editTarget(n.key, e.target.value)}
                 error={showErrors ? targetErrors[n.key] : undefined}
               />
             ))}
@@ -210,9 +277,9 @@ function SetupForm() {
         </section>
 
         {error ? <Notice tone="error">{error}</Notice> : null}
-        <div className="sticky bottom-16 z-10 flex items-center gap-4 bg-paper py-4 lg:bottom-0">
+        <div className={['sticky z-10 flex items-center gap-4 bg-paper py-4', standalone ? 'bottom-0' : 'bottom-16 lg:bottom-0'].join(' ')}>
           <Button type="submit" busy={busy}>
-            Save
+            {firstTime ? 'Start tracking' : 'Save'}
           </Button>
           {showErrors && !valid ? <p className="text-sm text-danger">Fill in the highlighted fields.</p> : null}
         </div>

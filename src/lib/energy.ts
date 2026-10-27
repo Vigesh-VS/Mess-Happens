@@ -34,15 +34,32 @@ export function maintenanceKcal(weightKg: number, body: Pick<BodyDetails, 'heigh
 
 const round10 = (v: number) => Math.round(v / 10) * 10;
 
+/** Within 1 kg of the current weight counts as "maintain". */
+export function goalFor(currentKg: number, targetKg: number | undefined): BodyDetails['goal'] {
+  if (targetKg === undefined || Math.abs(targetKg - currentKg) < 1) return 'maintain';
+  return targetKg < currentKg ? 'lose' : 'gain';
+}
+
 /**
- * Targets for a goal: calories = maintenance ± goal; protein by body weight; fat 25% of
- * calories; carbs the remainder; fiber 14 g per 1,000 kcal.
+ * Targets for a goal: calories = maintenance ± goal; protein by target body weight (current
+ * weight if none is set); fat 25% of calories; carbs the remainder; fiber 14 g per 1,000 kcal.
  */
 export function suggestTargets(weightKg: number, body: BodyDetails): NutritionTargets {
   const kcal = round10(Math.max(1200, maintenanceKcal(weightKg, body) + GOALS[body.goal].kcalDelta));
-  const protein = Math.round(weightKg * GOALS[body.goal].proteinPerKg);
+  const protein = Math.round((body.targetWeightKg ?? weightKg) * GOALS[body.goal].proteinPerKg);
   const fat = Math.round((kcal * 0.25) / 9);
   const carbs = Math.max(0, Math.round((kcal - protein * 4 - fat * 9) / 4));
   const fiber = Math.round((kcal / 1000) * 14);
   return { kcal, protein_g: protein, carbohydrates_g: carbs, fat_g: fat, fiber_g: fiber };
+}
+
+/** ~7,700 kcal per kg of body weight. */
+const KCAL_PER_KG = 7700;
+
+/** Rough weeks to reach the target weight at the suggested calories; null when maintaining. */
+export function weeksToTarget(weightKg: number, body: BodyDetails): number | null {
+  if (body.targetWeightKg === undefined || body.goal === 'maintain') return null;
+  const dailyGap = Math.abs(suggestTargets(weightKg, body).kcal - maintenanceKcal(weightKg, body));
+  if (dailyGap < 50) return null;
+  return Math.ceil((Math.abs(body.targetWeightKg - weightKg) * KCAL_PER_KG) / (dailyGap * 7));
 }

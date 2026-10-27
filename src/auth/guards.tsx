@@ -56,8 +56,8 @@ export function OnboardingGate({ children }: { children: ReactNode }) {
   const { state } = useAuth();
   const location = useLocation();
   const needsSetup = state.status === 'signedIn' && state.profile !== null && state.profile.targets === null;
-  if (needsSetup && location.pathname !== '/setup' && !location.pathname.startsWith('/admin')) {
-    return <Navigate to="/setup" replace />;
+  if (needsSetup && !location.pathname.startsWith('/admin')) {
+    return <Navigate to="/welcome" replace />;
   }
   return <>{children}</>;
 }
