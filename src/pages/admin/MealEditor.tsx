@@ -8,7 +8,6 @@ interface MealEditorProps {
   value: MealMenu | null;
   onChange: (next: MealMenu | null) => void;
   foods: Record<string, CatalogFood>;
-  choiceGroups: Record<string, string>;
   specialIds: string[];
   /** Date overrides may pin special-dinner combination A or B. */
   allowCombination?: boolean;
@@ -16,8 +15,8 @@ interface MealEditorProps {
 
 const iconBtn = 'flex size-11 items-center justify-center text-muted transition-colors hover:bg-hover hover:text-ink disabled:opacity-30 disabled:hover:bg-transparent';
 
-/** Edit one meal: add, remove, replace and reorder items; set pick-one / limited / served count. */
-export function MealEditor({ meal, value, onChange, foods, choiceGroups, specialIds, allowCombination }: MealEditorProps) {
+/** Edit one meal: add, remove, replace and reorder items; set either/or, limited, served count. */
+export function MealEditor({ meal, value, onChange, foods, specialIds, allowCombination }: MealEditorProps) {
   const [picking, setPicking] = useState<{ mode: 'add' } | { mode: 'replace'; index: number } | null>(null);
 
   if (value && isSpecialMeal(value)) {
@@ -49,9 +48,22 @@ export function MealEditor({ meal, value, onChange, foods, choiceGroups, special
   }
 
   const items = value?.items ?? [];
-  const setItems = (next: MenuItem[]) => onChange({ items: next });
+  const setItems = (next: MenuItem[]) => onChange({ items: keepEitherOrAdjacent(next) });
   const update = (i: number, patch: Partial<MenuItem>) =>
     setItems(items.map((item, j) => (j === i ? cleanItem({ ...item, ...patch }) : item)));
+  /** "Item 1 / Item 2": students get one or the other. Links item i with the item above it. */
+  const setEitherOr = (i: number, on: boolean) => {
+    const above = items[i - 1];
+    if (!above) return;
+    const group = above.choiceGroup ?? `${meal}-${above.foodId}`;
+    setItems(
+      items.map((item, j) => {
+        if (j === i) return cleanItem({ ...item, choiceGroup: on ? group : undefined });
+        if (j === i - 1 && on) return cleanItem({ ...item, choiceGroup: group });
+        return item;
+      }),
+    );
+  };
   const move = (i: number, d: -1 | 1) => {
     const next = [...items];
     [next[i], next[i + d]] = [next[i + d]!, next[i]!];
@@ -89,21 +101,17 @@ export function MealEditor({ meal, value, onChange, foods, choiceGroups, special
                 </button>
               </div>
               <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-2 pl-7 text-sm">
-                <label className="flex items-center gap-2">
-                  <span className="text-muted">Pick-one group</span>
-                  <select
-                    value={item.choiceGroup ?? ''}
-                    onChange={(e) => update(i, { choiceGroup: e.target.value || undefined })}
-                    className="min-h-9 max-w-44 border border-line bg-paper px-1"
-                  >
-                    <option value="">None</option>
-                    {Object.keys(choiceGroups).map((g) => (
-                      <option key={g} value={g}>
-                        {g}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+                {i > 0 ? (
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={!!item.choiceGroup && item.choiceGroup === items[i - 1]!.choiceGroup}
+                      onChange={(e) => setEitherOr(i, e.target.checked)}
+                      className="size-5 accent-black"
+                    />
+                    <span>Or the item above</span>
+                  </label>
+                ) : null}
                 <label className="flex items-center gap-2">
                   <input type="checkbox" checked={item.limited ?? false} onChange={(e) => update(i, { limited: e.target.checked || undefined })} className="size-5 accent-black" />
                   <span>Limited</span>
@@ -164,6 +172,15 @@ export function MealEditor({ meal, value, onChange, foods, choiceGroups, special
       )}
     </section>
   );
+}
+
+/** An either/or link only makes sense between neighbours; drop it when moves or removals split a pair. */
+function keepEitherOrAdjacent(items: MenuItem[]): MenuItem[] {
+  return items.map((item, i) => {
+    const g = item.choiceGroup;
+    if (!g || items[i - 1]?.choiceGroup === g || items[i + 1]?.choiceGroup === g) return item;
+    return cleanItem({ ...item, choiceGroup: undefined });
+  });
 }
 
 /** Firestore rejects undefined in arrays; drop empty optional fields. */

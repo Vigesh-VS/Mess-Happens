@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import {
   isSpecialMeal,
   type CatalogFood,
@@ -8,7 +9,7 @@ import {
   type MenuItem,
   type SpecialMenu,
 } from '../../models';
-import { expandSpecial } from '../../lib/menu';
+import { expandSpecial, toBlocks } from '../../lib/menu';
 import { formatNumber } from '../../lib/nutrition';
 import { FoodRow } from './FoodRow';
 import type { Tracking } from './types';
@@ -108,9 +109,13 @@ function RegularMeal({ meal, items, foods, varieties = {}, tracking }: MealSecti
   return (
     <>
       <ul className="mt-2">
-        {main.map((item) => (
-          <FoodRow key={item.foodId} meal={meal} item={item} food={foods[item.foodId]} tracking={tracking} variety={varieties[item.foodId]} />
-        ))}
+        {toBlocks(main).map((block) =>
+          block.kind === 'item' ? (
+            <FoodRow key={block.item.foodId} meal={meal} item={block.item} food={foods[block.item.foodId]} tracking={tracking} variety={varieties[block.item.foodId]} />
+          ) : (
+            <EitherOr key={block.groupId} meal={meal} items={block.items} foods={foods} varieties={varieties} tracking={tracking} />
+          ),
+        )}
       </ul>
       {extras.length > 0 ? (
         <details className="group mt-2" open={loggedExtras.length > 0 ? true : undefined}>
@@ -130,6 +135,59 @@ function RegularMeal({ meal, items, foods, varieties = {}, tracking }: MealSecti
         </details>
       ) : null}
     </>
+  );
+}
+
+/**
+ * "Item 1 / Item 2" on the mess menu: only one of them is served to you, so they're shown
+ * together with "or", and logging one clears the other.
+ */
+function EitherOr({
+  meal,
+  items,
+  foods,
+  varieties,
+  tracking,
+}: {
+  meal: Meal;
+  items: MenuItem[];
+  foods: Record<string, CatalogFood>;
+  varieties: Record<string, string>;
+  tracking?: Tracking;
+}) {
+  const options = items.map((i) => foods[i.foodId]).filter((f): f is CatalogFood => !!f);
+  const exclusive: Tracking | undefined = tracking && {
+    ...tracking,
+    step: (m, food, direction) => {
+      if (direction === 1) clearOthers(m, food);
+      tracking.step(m, food, direction);
+    },
+    setQuantity: (m, food, quantity) => {
+      if (quantity > 0) clearOthers(m, food);
+      tracking.setQuantity(m, food, quantity);
+    },
+  };
+  function clearOthers(m: Meal, food: CatalogFood) {
+    for (const other of options) {
+      if (other.id !== food.id && tracking!.quantityOf(m, other.id) > 0) tracking!.setQuantity(m, other, 0);
+    }
+  }
+
+  return (
+    <li className="my-2 border-l-2 border-line pl-4">
+      <ul>
+        {items.map((item, i) => (
+          <Fragment key={item.foodId}>
+            {i > 0 ? (
+              <li className="label -my-1">
+                or
+              </li>
+            ) : null}
+            <FoodRow meal={meal} item={item} food={foods[item.foodId]} tracking={exclusive} variety={varieties[item.foodId]} />
+          </Fragment>
+        ))}
+      </ul>
+    </li>
   );
 }
 

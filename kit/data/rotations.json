@@ -19,5 +19,16 @@
     "Papaya",
     "Pineapple"
   ],
+  "ice-cream": [
+    "Vanilla",
+    "Strawberry",
+    "Chocolate"
+  ],
+  "kulfi": [
+    "Malai",
+    "Pista",
+    "Mango",
+    "Strawberry"
+  ],
   "note": "The PDF lists varieties but not which day each is served. Treat as display-only variety info (or let admin set the variety per date). Nutrition uses one averaged food record."
 }

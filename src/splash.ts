@@ -1,7 +1,7 @@
 // Fades out the "mess happens" splash from index.html once the app has started.
 // It stays at least MIN_VISIBLE_MS from page load so the fade-in can finish; a tap skips it.
 
-const MIN_VISIBLE_MS = 3400; // ~2.5 s fully visible after the fade-in
+const MIN_VISIBLE_MS = 2000; // ~1.2 s fully visible after the fade-in
 const FADE_OUT_MS = 600;
 
 export function dismissSplash(): void {

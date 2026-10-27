@@ -99,7 +99,6 @@ export function WeeklyMenuEditor() {
               value={meals[meal] ?? null}
               onChange={(v) => setMeal(meal, v)}
               foods={data.foods}
-              choiceGroups={data.menuConfig?.choiceGroups ?? {}}
               specialIds={Object.keys(data.specials)}
             />
           ))}

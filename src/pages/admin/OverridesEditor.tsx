@@ -164,7 +164,6 @@ function OverrideForm({ initialDate, isNew, existing, onDone }: { initialDate: D
                     value={meals[meal] ?? null}
                     onChange={(v) => setMeals({ ...meals, [meal]: v ?? { items: [] } })}
                     foods={data.foods}
-                    choiceGroups={data.menuConfig?.choiceGroups ?? {}}
                     specialIds={Object.keys(data.specials)}
                     allowCombination
                   />
